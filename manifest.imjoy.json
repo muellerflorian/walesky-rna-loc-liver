@@ -1,0 +1,42 @@
+{
+ "name": "ImJoy Repository",
+ "description": "ImJoy plugin repository.",
+ "uri_root": "",
+ "version": "0.2.0",
+ "plugins": [
+  {
+   "name": "ExprGradient",
+   "type": "native-python",
+   "version": "0.1.2",
+   "description": "Calculate epxression gradient",
+   "tags": [
+    "stable",
+    "dev"
+   ],
+   "ui": [
+    "Name region 1: {id: 'reg1', type: 'string', placeholder: 'CV'}",
+    "Name region 2: {id: 'reg2', type: 'string', placeholder: 'PL'}"
+   ],
+   "cover": "",
+   "inputs": null,
+   "outputs": null,
+   "flags": [],
+   "icon": "extension",
+   "api_version": "0.1.5",
+   "env": "conda create -n ExprGradient python=3.6",
+   "requirements": {
+    "stable": [
+     "pip: matplotlib scikit-image nested-lookup",
+     "pip: git+https://github.com/muellerflorian/FISHquant-Analyst@3e464e0"
+    ],
+    "dev": [
+     "pip: matplotlib scikit-image nested-lookup",
+     "pip:  --editable /Volumes/PILON_HD2/fmueller/Documents/code/FISHquant-Analyst"
+    ]
+   },
+   "dependencies": [],
+   "uri": "imjoy-plugins/ExprGradient.imjoy.html"
+  }
+ ],
+ "collections": []
+}
