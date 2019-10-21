@@ -14,14 +14,14 @@ the documentation of each workflow.
 [**FISH-quant**](https://bitbucket.org/muellerflorian/fish_quant/) is a Matlab toolbox to
 localize RNAs in 3D from smFISH images.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/rna-loc/master/docs/img/fq-screenshot.png" width="600px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/fq-screenshot.png" width="600px"></img>
 
 ### ImJoy
 [**ImJoy**](https://imjoy.io/docs/#/) is image processing platform with an easy
  to use interface powered by a Python engine running in the background. ImJoy plays a
 central role in most analysis workflows.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/rna-loc/master/docs/img/imjoy-screenshot.png" width="600px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/imjoy-interface.png" width="600px"></img>
 
 #### Working with ImJoy
 We provide links to install the different ImJoy plugins in dedicated **ImJoy workspaces**.
@@ -39,4 +39,4 @@ open the web app and select the appropriate workspace [https://imjoy.io/#/app](h
 If you press on the installation link, the ImJoy web app will open and display a
 dialog asking if you want to install the specified plugin. To confirm, press the `install` button.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/annotor_install.png" width="400px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotor_install.png" width="400px"></img>

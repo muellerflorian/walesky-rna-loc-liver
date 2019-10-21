@@ -21,9 +21,9 @@
   "api_version": "0.1.5",
   "env": "conda create -n ExprGradient python=3.6",
   "requirements": {"stable":["pip: matplotlib scikit-image nested-lookup",
-                             "pip: -U git+https://github.com/muellerflorian/FISHquant-Analyst@3e464e0"],
+                             "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@3e464e0"],
                      "dev": ["pip: matplotlib scikit-image nested-lookup",
-                             "pip:  -U --editable /Volumes/PILON_HD2/fmueller/Documents/code/FISHquant-Analyst"]},
+                             "pip:  -U --editable /Volumes/PILON_HD2/fmueller/Documents/code/walesky-rna-loc-liver"]},
   "dependencies": []
 }
 </config>
@@ -36,7 +36,7 @@ import matplotlib.pyplot as plt
 
 import asyncio
 from imjoy import api
-    
+
 from fqa import expressionHeatmap
 
 class ImJoyPlugin():

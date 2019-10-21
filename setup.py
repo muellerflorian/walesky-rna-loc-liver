@@ -19,7 +19,7 @@ setup(
     name='fqa',
     version='0.1.2',
     description='Python code to post-process FISHquant analysis results.',
-    url='https://github.com/muellerflorian/FISHquant-Analyst',
+    url='https://github.com/muellerflorian/walesky-rna-loc-liver',
     author='Florian MUELLER',
     author_email='muellerf.research@gmail.com',
     license='MIT',

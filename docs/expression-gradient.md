@@ -19,9 +19,9 @@ additional auxiliary plugins.
 
 * `ImageAnnotator` - annotate your images:
 <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank">**install from here.**</a>
-* `ExpGradient` - calculate expression gradient: <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=muellerflorian/FISHquant-Analyst:ExprGradient@stable&upgrade=1" target="_blank">**install from here.**</a>
+* `ExpGradient` - calculate expression gradient: <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=muellerflorian/walesky-rna-loc-liver:ExprGradient@stable&upgrade=1" target="_blank">**install from here.**</a>
 
-<img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/exprdensity.png" width="600px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img>
 
 ## Summary of analysis workflow
 
@@ -32,7 +32,7 @@ The expression gradient is calculated as follows
     distances mean that the RNA is inside, positive that the RNA is outside.
 2.  These distances are then renormalised with the shortest distance between the center of mass
     of the second region and the polygon of the first region.
-     <img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/exprdensity-analysis.png" width="600px"></img>
+     <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity-analysis.png" width="600px"></img>
 
 3.  Distances are then summarised in histograms with bins of width 0.1 between the minimum
     and maximum renormalised distance measurements.
@@ -84,7 +84,7 @@ This is performed with the Annotator plugin running in ImJoy.
 To annotate files on your local machine, please make sure that the Python
 **plugin engine** is running. It is required to access your local file-system.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/annotor_install.png" width="600px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotor_install.png" width="600px"></img>
 
 To **annotate your image**, follow these steps
 
@@ -118,7 +118,7 @@ To **annotate your image**, follow these steps
     annotate the two different regions. To annotate, press on one of the annotation types, go to the image, and start annotating.
     For a polygon, simply press the mouse button, draw your region and release once your are done.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/annotator_screenshot.png" width="600px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotator_screenshot.png" width="600px"></img>
 
 6.  Once you are done, you can export the annotations from the `Exports` dropdown menu
     and selecting the `All annotations` option.
@@ -144,7 +144,7 @@ by pressing on the arrow down symbol next to the plugin name.
 In the example below the labels `CV` and `PL` are defined for the first and second
 region, respectively.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/expGrad-plugin-dialog.png" width="250px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/expGrad-plugin-dialog.png" width="250px"></img>
 
 Then you can press on the plugin name to execute the plugin. In a dialog, you will
 be asked to specify a folder, please select the parental folder containing the different
