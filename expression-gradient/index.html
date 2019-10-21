@@ -13,7 +13,7 @@
         <meta name="description" content="Collection of post-processing scripts for images analyzed with FISH-quant">
       
       
-        <link rel="canonical" href="https://muellerflorian.github.io/FISHquant-Analyst/ExprGradient/">
+        <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/expression-gradient/">
       
       
         <meta name="author" content="Florian MUELLER">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Expression gradient - FISHquant-Analyst</title>
+        <title>Expression gradient - QUantify RNA localization</title>
       
     
     
@@ -113,7 +113,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://muellerflorian.github.io/FISHquant-Analyst/" title="FISHquant-Analyst" class="md-header-nav__button md-logo">
+        <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" title="QUantify RNA localization" class="md-header-nav__button md-logo">
           
             <i class="md-icon">wb_sunny</i>
           
@@ -127,7 +127,7 @@
           
             
               <span class="md-header-nav__topic">
-                FISHquant-Analyst
+                QUantify RNA localization
               </span>
               <span class="md-header-nav__topic">
                 Expression gradient
@@ -175,7 +175,7 @@
   
 
 
-  <a href="https://github.com/muellerflorian/FISHquant-Analyst.git" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/muellerflorian/walesky-rna-loc-liver.git" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -219,8 +219,6 @@
 
       
         
-      
-        
   
   
     <li class="md-tabs__item">
@@ -238,7 +236,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../about/release-notes/" title="About" class="md-tabs__link">
+        <a href="../licence/" title="About" class="md-tabs__link">
           About
         </a>
       
@@ -259,12 +257,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://muellerflorian.github.io/FISHquant-Analyst/" title="FISHquant-Analyst" class="md-nav__button md-logo">
+    <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" title="QUantify RNA localization" class="md-nav__button md-logo">
       
         <i class="md-icon">wb_sunny</i>
       
     </a>
-    FISHquant-Analyst
+    QUantify RNA localization
   </label>
   
     <div class="md-nav__source">
@@ -274,7 +272,7 @@
   
 
 
-  <a href="https://github.com/muellerflorian/FISHquant-Analyst.git" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/muellerflorian/walesky-rna-loc-liver.git" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -307,30 +305,18 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../tools/" title="Analysis tools" class="md-nav__link">
-      Analysis tools
-    </a>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-2">
       Analysis workflows
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-2">
         Analysis workflows
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -440,13 +426,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-3">
       About
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-3">
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -458,19 +444,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../about/release-notes/" title="Release Notes" class="md-nav__link">
-      Release Notes
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../about/licence/" title="Licence" class="md-nav__link">
+    <a href="../licence/" title="Licence" class="md-nav__link">
       Licence
     </a>
   </li>
@@ -570,24 +544,25 @@
                 <h1 id="expression-gradient-analysis">Expression gradient analysis<a class="headerlink" href="#expression-gradient-analysis" title="Permanent link">&para;</a></h1>
 <p>In this workflow, the spatial expression gradient between two reference regions
 are created. The distances are renormalised such that results from different images
-can more easily be compared.</p>
+can be more easily be compared.</p>
 <p>As input it uses</p>
 <ul>
-<li><strong>FQ results file</strong>: created with the with Matlab version.</li>
+<li><strong>FISH-quant results file</strong>: created with the with FISH-quant.</li>
 <li><strong>ImJoy annotation files</strong>: specifying the two regions.</li>
 </ul>
 <h2 id="required-imjoy-plugins">Required ImJoy Plugins<a class="headerlink" href="#required-imjoy-plugins" title="Permanent link">&para;</a></h2>
-<p>This has to be done only once, after installation the plugins will be available in the  workspace: <strong><code>ExpGradient</code></strong></p>
-<p>Press on the links below to install the required plugins. Clicking each link
-will open ImJoy in your browser (best in Chrome) and you
-will be asked to confirm the installation with a dialog as shown below.
-After confirmation, the plugins will be installed together with
+<p>These plugins have to be installed only once,
+after installation the plugins will be available in the dedicated workspace: <strong><code>ExpGradient</code></strong></p>
+<p>Pressing on the links below, will open ImJoy in your browser (best in Chrome) and
+allow you to install the required plugins. You will be asked to confirm the installation
+with a dialog as shown below. After confirmation, the plugins will be installed together with
 additional auxiliary plugins.</p>
 <ul>
-<li><code>ImageAnnotator</code> - annotate your images: <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank"><strong>install from here.</strong></a></li>
-<li><code>ExpGradient</code> - calculate expression gradient: <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=muellerflorian/FISHquant-Analyst:ExprGradient@stable&upgrade=1" target="_blank"><strong>install from here.</strong></a></li>
+<li><code>ImageAnnotator</code> - annotate your images:
+<a href="https://imjoy.io/#/app?w=ExpGradient&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank"><strong>install from here.</strong></a></li>
+<li><code>ExpGradient</code> - calculate expression gradient: <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=muellerflorian/walesky-rna-loc-liver:ExprGradient@stable&upgrade=1" target="_blank"><strong>install from here.</strong></a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/exprdensity.png" width="600px"></img></p>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img></p>
 <h2 id="summary-of-analysis-workflow">Summary of analysis workflow<a class="headerlink" href="#summary-of-analysis-workflow" title="Permanent link">&para;</a></h2>
 <p>The expression gradient is calculated as follows</p>
 <ol>
@@ -595,9 +570,9 @@ additional auxiliary plugins.</p>
     (the shortest distance between the RNA and the polygon defining this region). Negative
     distances mean that the RNA is inside, positive that the RNA is outside.</li>
 <li>
-<p>These distances are then renormalised with the shortest distance between the centre of mass
+<p>These distances are then renormalised with the shortest distance between the center of mass
     of the second region and the polygon of the first region.
-     <img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/exprdensity-analysis.png" width="600px"></img></p>
+     <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity-analysis.png" width="600px"></img></p>
 </li>
 <li>
 <p>Distances are then summarised in histograms with bins of width 0.1 between the minimum
@@ -643,7 +618,7 @@ for all FQ results in this channel.</p>
 <p>This is performed with the Annotator plugin running in ImJoy.</p>
 <p>To annotate files on your local machine, please make sure that the Python
 <strong>plugin engine</strong> is running. It is required to access your local file-system.</p>
-<p><img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/annotor_install.png" width="600px"></img></p>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotor_install.png" width="600px"></img></p>
 <p>To <strong>annotate your image</strong>, follow these steps</p>
 <ol>
 <li>Open the annotation plugin by clicking on the plugin name <code>ImageAnnotator</code></li>
@@ -680,7 +655,7 @@ for all FQ results in this channel.</p>
     For a polygon, simply press the mouse button, draw your region and release once your are done.</p>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/annotator_screenshot.png" width="600px"></img></p>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotator_screenshot.png" width="600px"></img></p>
 <ol>
 <li>Once you are done, you can export the annotations from the <code>Exports</code> dropdown menu
     and selecting the <code>All annotations</code> option.<ol>
@@ -703,14 +678,14 @@ specify the labels of the two reference regions. You can change the default labe
 by pressing on the arrow down symbol next to the plugin name.</p>
 <p>In the example below the labels <code>CV</code> and <code>PL</code> are defined for the first and second
 region, respectively.</p>
-<p><img src="https://raw.githubusercontent.com/muellerflorian/fishquant-analyst/master/docs/img/expGrad-plugin-dialog.png" width="250px"></img></p>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/expGrad-plugin-dialog.png" width="250px"></img></p>
 <p>Then you can press on the plugin name to execute the plugin. In a dialog, you will
 be asked to specify a folder, please select the parental folder containing the different
 sample folders. The plugin will then analyse all sample folders containing an
 annotation file. The regions in this file will then be used to establish the spatial
 expression gradient between these two regions.</p>
 <p><strong>Progress is reported</strong> in the plugin log (accessible with the 'i' symbol
-next to the plugin name) and ImJoy progress bar.</p>
+next to the plugin name) and the ImJoy progress bar.</p>
 <p>Plugin creates results described in section 'Outputs'.</p>
 <h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
 <p>The function will create a number of result files, which are stored in the
@@ -727,7 +702,7 @@ Results files have the full name of the FQ file with the following prefixes</p>
 </li>
 <li>
 <p><strong>hist_expression</strong> (tab delimited text file). Contains the spatial expression
-    gradient. The most int</p>
+    gradient as a table:</p>
 <ul>
 <li>1st col: normalised distance,</li>
 <li>2nd col: normalised counts by number of pixels (4th col)</li>
@@ -769,7 +744,7 @@ Results files have the full name of the FQ file with the following prefixes</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../tools/" title="Analysis tools" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".." title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -778,19 +753,19 @@ Results files have the full name of the FQ file with the following prefixes</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Analysis tools
+                Overview
               </span>
             </div>
           </a>
         
         
-          <a href="../about/release-notes/" title="Release Notes" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../licence/" title="Licence" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Release Notes
+                Licence
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
