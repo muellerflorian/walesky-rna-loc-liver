@@ -23,6 +23,19 @@ with detailed step-by-step instructions can be found in the dedicated
 # Install guide
 
 Code has been tested on Mac OS (Mojave) on a Mac Pro (late 2010).
+=======
+Analysis has been tested on a Mac Pro (late 2010) running macOS High Sierra (10.13.6).
+
+RNA detection in FISH-quant has been tested on Matlab 2017b.
+
+Post-processing in ImJoy (v0.9.93) running on Chrome (Version 77) with the
+ImJoy plugin engine (0.8.22).
+
+No non-standard hardware is required.
+
+
+# Installation guide
+>>>>>>> Stashed changes
 
 ## FISH-quant
 You can obtain the latest version of FISH-quant
