@@ -6,7 +6,7 @@
 {
   "name": "ExprGradient",
   "type": "native-python",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Calculate epxression gradient",
   "tags": ["stable","dev"],
   "ui": [
@@ -52,7 +52,7 @@ class ImJoyPlugin():
         if ret:
             expressionHeatmap.folder_scan_process(folder_root = ret['path'],
                                                region_labels = (ctx.config.reg1,ctx.config.reg2),
-                                               log_msg_callback=api.log,
+                                               log_msg_callback=api.showStatus,
                                                log_prog_callback=api.showProgress)
 
 

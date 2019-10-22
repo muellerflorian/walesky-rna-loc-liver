@@ -3,10 +3,16 @@ In this workflow, the spatial expression gradient between two reference regions
 are created. The distances are renormalised such that results from different images
 can be more easily be compared.
 
-As input it uses
-
+As input the workflow requires
 -   **FISH-quant results file**: created with the with FISH-quant.
 -   **ImJoy annotation files**: specifying the two regions.
+
+## Demo data
+You can find already processed demo data
+<a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank">**here.**</a>
+
+**ToDo**: upon publication, demo data will be moved to Zenodo.
+
 
 ## Required ImJoy Plugins
 These plugins have to be installed only once,
@@ -64,18 +70,19 @@ for all FQ results in this channel.
 
 ```
 ├─ data_for_expression_gradient/
-│  ├─ sample1
+│  ├─ sample_1
 │  │  ├─ annotation.json
-│  │  ├─ smFISH_pos1_(green).tif
-│  │  ├─ smFISH_pos1_(green)_outline_spots_190513.txt
-│  │  ├─ smFISH_pos1_(red).tif
-│  │  ├─ smFISH_pos1_(red)_outline_spots_190513.txt
+│  │  ├─ sample_1_green_outline_spots_181018.txt
+│  │  ├─ sample_1_green.tif
+│  │  ├─ sample_1_red_outline_spots_181017.txt
+│  │  ├─ sample_1_red.tif
 │  ├─ sample2
 │  │  ├─ ...
 ```
-## FQ analysis
 
-Here we refer to the dedicated FQ manuals for how to best perform the RNA detection.
+
+## FQ analysis
+Here we refer to the dedicated <a href="https://bitbucket.org/muellerflorian/fish_quant/src/master/Documentation/" target="_blank">**FQ manuals**</a> for how to best perform the RNA detection.
 
 ## Annotate reference regions in the images
 
@@ -163,10 +170,10 @@ The function will create a number of result files, which are stored in the
 subfolder ``. For this, it will create a new sub-folder called `analysis__exprGradient`.
 Results files have the full name of the FQ file with the following prefixes
 
--   **_summary_density_** (PNG file). Contains plots of expression density plots.
+-   **_summary_density** (PNG file). Contains plots of expression density plots.
     Cells are filled with pixel values corresponding to their expression level.
 
--   **_summary_gradient_** (PNG file). Contains summary plots for the spatial gradients
+-   **_summary_gradient** (PNG file). Contains summary plots for the spatial gradients
     between two the two reference points (the first plot shown on this page).
 
 -   **hist_expression** (tab delimited text file). Contains the spatial expression

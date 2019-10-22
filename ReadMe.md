@@ -7,9 +7,6 @@ with detailed step-by-step instructions can be found in the dedicated
 <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" target="_blank">**documentation.**</a>
 
 
-# TODO
-Small dataset to test
-
 # System requirements
 1. Analysis requires Matlab to perform detection of individual RNA molecules.
  Expression gradients are determined with ImJoy (imjoy.io), which runs best on
@@ -39,8 +36,10 @@ is in the range of several minutes for the first install.
 
 # Demo
 We provide an example data-set, with detailed instructions for how
-data has to be provided, and then step-by-step instructions for how to perform
-the analysis. Demo data also contains the expected results, which should be obtained
+data has to be organised. Then we detail in step-by-step instructions how to
+perform the analysis.
+
+Demo data also contains the expected results, which are obtained
 in a few minutes.
 
 # Instructions for use

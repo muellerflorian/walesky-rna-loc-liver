@@ -82,7 +82,7 @@ def process_folder(folder_process,region_labels,log_msg_callback = None,log_prog
 
             file_open = os.path.join(folder_process,file)
             toolbox.log_message(f'\n Opening FQ file: {file_open}',callback_fun=log_msg_callback)
-            
+
             # Get information (path, file name) to save results
             drive, path_and_file = os.path.splitdrive(file_open)
             path, file = os.path.split(path_and_file)
@@ -97,7 +97,7 @@ def process_folder(folder_process,region_labels,log_msg_callback = None,log_prog
             spots_all = toolbox.get_rna(fq_dict)
             spots_pos = spots_all[:,[16, 17]].astype('int')
 
-            # Open FISH image 
+            # Open FISH image
             file_FISH_img = os.path.join(folder_process,fq_dict['file_names']['smFISH'])
             toolbox.log_message(f'Reading FISH image: {file_FISH_img}',callback_fun=log_msg_callback)
             img_FISH  = imread(file_FISH_img)
@@ -146,7 +146,6 @@ def process_folder(folder_process,region_labels,log_msg_callback = None,log_prog
 
             # Save file with histogram
             np.savetxt(os.path.join(path_save, 'hist_expression__' + file_base +  '.txt'), hist_all, fmt='%f \t %f \t %f \t %f',header='Dist_norm [um]\tCOUNTS_RAW\tCOUNTS_NORM_sum\tPIXEL_COUNTS')
-
 
             # Plot results and save figure
 
@@ -211,7 +210,7 @@ def process_folder(folder_process,region_labels,log_msg_callback = None,log_prog
             plt.savefig(os.path.join(path_save, '_summary_gradient_' + file_base +  '.png'),dpi=200)
             plt.close()
 
-
+    toolbox.log_message(f'Finished processing data!',callback_fun=log_msg_callback)
 
 
 def process_file(file_open, img_size):
