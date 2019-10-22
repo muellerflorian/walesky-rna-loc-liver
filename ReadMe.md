@@ -8,12 +8,12 @@ with detailed step-by-step instructions can be found in the dedicated
 
 
 # System requirements
-Analysis has been tested on a Mac Pro (late 2010) running macOS High Sierra (10.13.6).
+Analysis has been tested on a **Mac Pro (late 2010)** running **macOS High Sierra (10.13.6)**.
 
-RNA detection in FISH-quant has been tested on Matlab 2017b.
+RNA detection in FISH-quant has been tested on **Matlab 2017b**.
 
-Post-processing in ImJoy (v0.9.93) running on Chrome (Version 77) with the
-ImJoy plugin engine (0.8.22).
+Post-processing in **ImJoy (v0.9.93)** running on **Google Chrome (Version 77)** with the
+**ImJoy plugin engine (0.8.22)**.
 
 No non-standard hardware is required.
 
