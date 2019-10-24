@@ -1,6 +1,10 @@
+![GitHub](https://img.shields.io/github/license/muellerflorian/walesky-rna-loc-liver)
+
 # Analyze RNA localization in smFISH images from the liver
 We provide an analyze workflow to calculate **spatial expression gradients**
 in single molecule FISH (smFISH images).
+
+<img src="https://muellerflorian.github.io/walesky-rna-loc-liver/img/exprdensity.png" width="600px"></img>
 
 - [Documentation](#documentation)
 - [System Requirements](#system-requirements)
