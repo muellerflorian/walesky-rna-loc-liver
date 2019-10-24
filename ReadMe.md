@@ -1,8 +1,12 @@
+<a href="https://imjoy.io" target="_blank" ><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/imjoy-logo-powered.svg?sanitize=true" width="150"></img>
+</a>
 ![GitHub](https://img.shields.io/github/license/muellerflorian/walesky-rna-loc-liver)
 
 # Analyze RNA localization in smFISH images from the liver
 We provide an analyze workflow to calculate **spatial expression gradients**
 in single molecule FISH (smFISH images).
+
+Analysis is performed in Matlab and in Python scripts running in ImJoy.
 
 <img src="https://muellerflorian.github.io/walesky-rna-loc-liver/img/exprdensity.png" width="600px"></img>
 
@@ -40,6 +44,8 @@ FISH-quant has been tested on **Matlab 2017b**.
 
 ### ImJoy
 ImJoy plugin were tested on **ImJoy (v0.9.93)** running on **Google Chrome (Version 77)** with the **ImJoy plugin engine (0.8.22)**.
+
+More information on ImJoy: [https://arxiv.org/abs/1905.13105](https://arxiv.org/abs/1905.13105)
 
 ### Python Dependencies
 `walesky-rna-loc-liver` mainly depends on the Python scientific stack, a few smaller libraries 
