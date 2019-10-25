@@ -1,4 +1,4 @@
-<a href="https://imjoy.io" target="_blank" ><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/imjoy-logo-powered.svg?sanitize=true" width="150"></img>
+<a href="https://imjoy.io" target="_blank" ><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/imjoy-logo-powered.svg?sanitize=true" width="140"></img>
 </a>
 ![GitHub](https://img.shields.io/github/license/muellerflorian/walesky-rna-loc-liver)
 
@@ -17,7 +17,7 @@ Analysis is performed in Matlab and in Python scripts running in ImJoy.
 - [License](#license)
 
 # Documentation
-Here we provide only a brief overview. The officiel documentation with usage is at: 
+Here we provide only a brief overview. The officiel documentation with usage is at:
 <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" target="_blank">**https://muellerflorian.github.io/walesky-rna-loc-liver/.**</a>
 
 # System Requirements
@@ -31,7 +31,7 @@ This package has been tested on *macOS* on the following systems:
 + macOS: High Sierra (10.13.6) on a Mac Pro (late 2010)
 
 ### Matlab dependencies
-RNA detection is performed with our prevously published Matlab package 
+RNA detection is performed with our prevously published Matlab package
 <a href="https://bitbucket.org/muellerflorian/fish_quant" target="_blank">**FISH-quant.**</a>
 
 FISH-quant requires the following **toolboxes**:
@@ -48,7 +48,7 @@ ImJoy plugin were tested on **ImJoy (v0.9.93)** running on **Google Chrome (Vers
 More information on ImJoy: [https://arxiv.org/abs/1905.13105](https://arxiv.org/abs/1905.13105)
 
 ### Python Dependencies
-`walesky-rna-loc-liver` mainly depends on the Python scientific stack, a few smaller libraries 
+`walesky-rna-loc-liver` mainly depends on the Python scientific stack, a few smaller libraries
 are required to read FIJI region definition files
 
 ```
