@@ -3,8 +3,4 @@ __pycache__
 *.pyc
 site/
 fqa.egg-info/
-.spyproject/codestyle.ini
-.spyproject/codestyle.ini
-.spyproject/encoding.ini
-.spyproject/vcs.ini
-.spyproject/workspace.ini
+.ipynb_checkpoints/

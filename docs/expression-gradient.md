@@ -3,31 +3,10 @@ In this workflow, the spatial expression gradient between two reference regions
 are created. The distances are renormalised such that results from different images
 can be more easily be compared.
 
-As input the workflow requires
--   **FISH-quant results file**: created with the with FISH-quant.
--   **ImJoy annotation files**: specifying the two regions.
+As input the workflow requires:
 
-## Demo data
-You can find already processed demo data
-<a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank">**here.**</a>
-
-**ToDo**: upon publication, demo data will be moved to Zenodo.
-
-
-## Required ImJoy Plugins
-These plugins have to be installed only once,
-after installation the plugins will be available in the dedicated workspace: **`ExpGradient`**
-
-Pressing on the links below, will open ImJoy in your browser (best in Chrome) and
-allow you to install the required plugins. You will be asked to confirm the installation
-with a dialog as shown below. After confirmation, the plugins will be installed together with
-additional auxiliary plugins.
-
-* `ImageAnnotator` - annotate your images:
-<a href="https://imjoy.io/#/app?w=ExpGradient&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank">**install from here.**</a>
-* `ExpGradient` - calculate expression gradient: <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=muellerflorian/walesky-rna-loc-liver:ExprGradient@stable&upgrade=1" target="_blank">**install from here.**</a>
-
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img>
+-   **FISH-quant**  results file: created with the with FISH-quant.
+-   **ImJoy** annotation files: annotations of the two reference regions.
 
 ## Summary of analysis workflow
 
@@ -49,7 +28,31 @@ The expression gradient is calculated as follows
     to normalise the RNA distance counts.
 5.  Lastly, the histogram is such that frequencies sum up to 1.
 
-## Data organisation
+## Required tools
+
+### ImJoy Plugins
+These plugins have to be installed only once, after installation the plugins will be available in the dedicated workspace: **`ExpGradient`**
+
+Pressing on the links below, will open ImJoy in your browser (best in Chrome) and
+allow you to install the required plugins. You will be asked to confirm the installation
+with a dialog as shown below. After confirmation, the plugins will be installed together with
+additional auxiliary plugins.
+
+* `ImageAnnotator: annotate your images.
+<a href="https://imjoy.io/#/app?w=ExpGradient&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank">**Install from here.**</a>
+
+* `ExpGradient`: calculate expression gradient. <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=muellerflorian/walesky-rna-loc-liver:ExprGradient@stable&upgrade=1" target="_blank">**Install from here.**</a>
+
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img>
+
+### Jupyter notebook
+To perform the calculation of the expression gradients, we also provide a Jupyter notebook `expression_gradient.ipynb`. This notebook can be found
+in the folder [`notebooks`](https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks).
+
+
+## Data
+
+### Data organisation
 
 This workflow requires that data is organised in the following away
 
@@ -80,11 +83,18 @@ for all FQ results in this channel.
 │  │  ├─ ...
 ```
 
+### Demo data
+You can find already processed demo data
+<a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank">**here.**</a>
 
-## FQ analysis
+**ToDo**: upon publication, demo data will be moved to Zenodo.
+
+## Analysis
+
+### 1. RNA detection with FQ
 Here we refer to the dedicated <a href="https://bitbucket.org/muellerflorian/fish_quant/src/master/Documentation/" target="_blank">**FQ manuals**</a> for how to best perform the RNA detection.
 
-## Annotate reference regions in the images
+### 2. Annotation of reference regions
 
 This is performed with the Annotator plugin running in ImJoy.
 
@@ -137,11 +147,24 @@ To **annotate your image**, follow these steps
         folder containing your data (with Windows explorer or Mac OS finder).
         When asked if you want to merge the folders, confirm.
 
-## Calculate density profiles
+### 3. Calculate density profiles
 
-This plugin requires the **Python plugin engine**!
+You can run this analysis either with the provided code in the Jupyter notebook,
+or use ImJoy.
 
-The first installation might take a bit of time, since the necessary Python environments
+#### With Jupyter notebook
+Once you have your conda environment installed as described in the Overview section,
+you can open the Jupyter notebook and analyze your data. You have to execute the first cell
+to load the necessary code.
+
+The second cell allows you to
+1. Define the folder containing your data.
+2. Defining the labels for the two reference regions that you outlined.
+
+Executing the cell, will launch the analysis workflow. described above.
+
+#### Analysis in ImJoy
+If you use **Imjoy**, you need to install the **Python plugin engine**. The first installation might take a bit of time, since the necessary Python environments
 on the plugin engine are created.
 
 Once installed, you will see in the plugin sidebar, before using it, you have to
@@ -164,7 +187,7 @@ next to the plugin name) and the ImJoy progress bar.
 
 Plugin creates results described in section 'Outputs'.
 
-## Outputs
+### 4. Created outputs
 
 The function will create a number of result files, which are stored in the
 subfolder ``. For this, it will create a new sub-folder called `analysis__exprGradient`.

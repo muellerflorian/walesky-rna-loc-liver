@@ -1,7 +1,7 @@
 
-# smFISH images
 This is a collection of analysis tools to study RNA localization from single
-molecule FISH (smFISH) images.
+molecule FISH (smFISH) images. These tools were developed in context of RNA
+localization in liver, but can likely be applied for different questions as well.
 
 We provide different analysis workflows (listed in the banners).
 For each we specify the required installations, and detailed Instructions
@@ -10,6 +10,7 @@ for how run these workflows and what results are typically obtained.
 ## Tools
 We use a different open-source software packages, and detail their usage in
 the documentation of each workflow.
+
 ### FISH-quant: RNA detection
 [**FISH-quant**](https://bitbucket.org/muellerflorian/fish_quant/) is a Matlab toolbox to
 localize RNAs in 3D from smFISH images.
@@ -40,3 +41,47 @@ If you press on the installation link, the ImJoy web app will open and display a
 dialog asking if you want to install the specified plugin. To confirm, press the `install` button.
 
 <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotor_install.png" width="400px"></img>
+
+
+### Jupyter notebooks
+We also provide Jupyter notebooks for certain Python analysis. To run these notebooks,
+we recommend using [Anaconda with Python 3](https://www.anaconda.com/distribution/).
+
+There are many introductions to Jupyter, e.g. [here](https://realpython.com/jupyter-notebook-introduction/).
+
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/jupyter-notebook.png" width="400px"></img>
+
+We further recommend creating a **dedicated environment** for the Python code to install the code.
+
+Note 1: that steps 1, 3, 4 below have to be done only once.
+Note 2: each time you want to use Jupyter, you have to activate the environment (step 2),
+and run the notebook (step 5).
+
+You can do this from an anaconda terminal
+
+1. Create the environment, , e.g. named `rna-loc-liver`
+    ```
+    conda create -n rna-loc-liver python=3.7
+    ```
+
+2. **Activate the environment**:
+    ```
+    conda activate rna-loc-liver
+    ```
+
+3. Install the **necessary packages to run Jupyter**
+    ```
+    conda install nb_conda
+    ```
+
+4. **Install the analysis package** and all required packages
+    ```
+    pip install git+https://github.com/muellerflorian/walesky-rna-loc-liver
+    ```
+
+5. Start the Jupyter notebook (best from within the folder containing the notebook).
+    ```
+    jupyter notebook
+    ```
+    Make sure that the notebook is running in the specified environment (upper right
+    corner of interface). If not change it from the menu "Kernel".
