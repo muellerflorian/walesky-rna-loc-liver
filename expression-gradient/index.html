@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
-        <meta name="description" content="Collection of post-processing scripts for images analyzed with FISH-quant">
+        <meta name="description" content="Collection of post-processing scripts for images analyzed with FISH-quant,">
       
       
         <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/expression-gradient/">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Expression gradient - Quantify RNA localization</title>
+        <title>Expression gradient - Quantify RNA localization in liver tissue</title>
       
     
     
@@ -100,7 +100,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" title="Quantify RNA localization" class="md-header-nav__button md-logo">
+        <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" title="Quantify RNA localization in liver tissue" class="md-header-nav__button md-logo">
           
             <i class="md-icon">wb_sunny</i>
           
@@ -113,7 +113,7 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              Quantify RNA localization
+              Quantify RNA localization in liver tissue
             </span>
             <span class="md-header-nav__topic">
               
@@ -240,12 +240,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" title="Quantify RNA localization" class="md-nav__button md-logo">
+    <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" title="Quantify RNA localization in liver tissue" class="md-nav__button md-logo">
       
         <i class="md-icon">wb_sunny</i>
       
     </a>
-    Quantify RNA localization
+    Quantify RNA localization in liver tissue
   </label>
   
     <div class="md-nav__source">
@@ -336,20 +336,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#demo-data" title="Demo data" class="md-nav__link">
-    Demo data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#required-imjoy-plugins" title="Required ImJoy Plugins" class="md-nav__link">
-    Required ImJoy Plugins
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#summary-of-analysis-workflow" title="Summary of analysis workflow" class="md-nav__link">
     Summary of analysis workflow
   </a>
@@ -357,37 +343,117 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#required-tools" title="Required tools" class="md-nav__link">
+    Required tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imjoy-plugins" title="ImJoy Plugins" class="md-nav__link">
+    ImJoy Plugins
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook" title="Jupyter notebook" class="md-nav__link">
+    Jupyter notebook
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data" title="Data" class="md-nav__link">
+    Data
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#data-organisation" title="Data organisation" class="md-nav__link">
     Data organisation
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#fq-analysis" title="FQ analysis" class="md-nav__link">
-    FQ analysis
+        
+          <li class="md-nav__item">
+  <a href="#demo-data" title="Demo data" class="md-nav__link">
+    Demo data
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#annotate-reference-regions-in-the-images" title="Annotate reference regions in the images" class="md-nav__link">
-    Annotate reference regions in the images
+  <a href="#analysis" title="Analysis" class="md-nav__link">
+    Analysis
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rna-detection-with-fq" title="1. RNA detection with FQ" class="md-nav__link">
+    1. RNA detection with FQ
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#calculate-density-profiles" title="Calculate density profiles" class="md-nav__link">
-    Calculate density profiles
+        
+          <li class="md-nav__item">
+  <a href="#2-annotation-of-reference-regions" title="2. Annotation of reference regions" class="md-nav__link">
+    2. Annotation of reference regions
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#outputs" title="Outputs" class="md-nav__link">
-    Outputs
+        
+          <li class="md-nav__item">
+  <a href="#3-calculate-density-profiles" title="3. Calculate density profiles" class="md-nav__link">
+    3. Calculate density profiles
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-jupyter-notebook" title="With Jupyter notebook" class="md-nav__link">
+    With Jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis-in-imjoy" title="Analysis in ImJoy" class="md-nav__link">
+    Analysis in ImJoy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-created-outputs" title="4. Created outputs" class="md-nav__link">
+    4. Created outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -464,20 +530,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#demo-data" title="Demo data" class="md-nav__link">
-    Demo data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#required-imjoy-plugins" title="Required ImJoy Plugins" class="md-nav__link">
-    Required ImJoy Plugins
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#summary-of-analysis-workflow" title="Summary of analysis workflow" class="md-nav__link">
     Summary of analysis workflow
   </a>
@@ -485,37 +537,117 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#required-tools" title="Required tools" class="md-nav__link">
+    Required tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imjoy-plugins" title="ImJoy Plugins" class="md-nav__link">
+    ImJoy Plugins
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook" title="Jupyter notebook" class="md-nav__link">
+    Jupyter notebook
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data" title="Data" class="md-nav__link">
+    Data
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#data-organisation" title="Data organisation" class="md-nav__link">
     Data organisation
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#fq-analysis" title="FQ analysis" class="md-nav__link">
-    FQ analysis
+        
+          <li class="md-nav__item">
+  <a href="#demo-data" title="Demo data" class="md-nav__link">
+    Demo data
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#annotate-reference-regions-in-the-images" title="Annotate reference regions in the images" class="md-nav__link">
-    Annotate reference regions in the images
+  <a href="#analysis" title="Analysis" class="md-nav__link">
+    Analysis
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rna-detection-with-fq" title="1. RNA detection with FQ" class="md-nav__link">
+    1. RNA detection with FQ
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#calculate-density-profiles" title="Calculate density profiles" class="md-nav__link">
-    Calculate density profiles
+        
+          <li class="md-nav__item">
+  <a href="#2-annotation-of-reference-regions" title="2. Annotation of reference regions" class="md-nav__link">
+    2. Annotation of reference regions
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#outputs" title="Outputs" class="md-nav__link">
-    Outputs
+        
+          <li class="md-nav__item">
+  <a href="#3-calculate-density-profiles" title="3. Calculate density profiles" class="md-nav__link">
+    3. Calculate density profiles
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-jupyter-notebook" title="With Jupyter notebook" class="md-nav__link">
+    With Jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis-in-imjoy" title="Analysis in ImJoy" class="md-nav__link">
+    Analysis in ImJoy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-created-outputs" title="4. Created outputs" class="md-nav__link">
+    4. Created outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -540,26 +672,11 @@
 <p>In this workflow, the spatial expression gradient between two reference regions
 are created. The distances are renormalised such that results from different images
 can be more easily be compared.</p>
-<p>As input the workflow requires
--   <strong>FISH-quant results file</strong>: created with the with FISH-quant.
--   <strong>ImJoy annotation files</strong>: specifying the two regions.</p>
-<h2 id="demo-data">Demo data<a class="headerlink" href="#demo-data" title="Permanent link">&para;</a></h2>
-<p>You can find already processed demo data
-<a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank"><strong>here.</strong></a></p>
-<p><strong>ToDo</strong>: upon publication, demo data will be moved to Zenodo.</p>
-<h2 id="required-imjoy-plugins">Required ImJoy Plugins<a class="headerlink" href="#required-imjoy-plugins" title="Permanent link">&para;</a></h2>
-<p>These plugins have to be installed only once,
-after installation the plugins will be available in the dedicated workspace: <strong><code>ExpGradient</code></strong></p>
-<p>Pressing on the links below, will open ImJoy in your browser (best in Chrome) and
-allow you to install the required plugins. You will be asked to confirm the installation
-with a dialog as shown below. After confirmation, the plugins will be installed together with
-additional auxiliary plugins.</p>
+<p>As input the workflow requires:</p>
 <ul>
-<li><code>ImageAnnotator</code> - annotate your images:
-<a href="https://imjoy.io/#/app?w=ExpGradient&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank"><strong>install from here.</strong></a></li>
-<li><code>ExpGradient</code> - calculate expression gradient: <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=muellerflorian/walesky-rna-loc-liver:ExprGradient@stable&upgrade=1" target="_blank"><strong>install from here.</strong></a></li>
+<li><strong>FISH-quant</strong>  results file: created with the with FISH-quant.</li>
+<li><strong>ImJoy</strong> annotation files: annotations of the two reference regions.</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img></p>
 <h2 id="summary-of-analysis-workflow">Summary of analysis workflow<a class="headerlink" href="#summary-of-analysis-workflow" title="Permanent link">&para;</a></h2>
 <p>The expression gradient is calculated as follows</p>
 <ol>
@@ -582,7 +699,29 @@ additional auxiliary plugins.</p>
     to normalise the RNA distance counts.</li>
 <li>Lastly, the histogram is such that frequencies sum up to 1.</li>
 </ol>
-<h2 id="data-organisation">Data organisation<a class="headerlink" href="#data-organisation" title="Permanent link">&para;</a></h2>
+<h2 id="required-tools">Required tools<a class="headerlink" href="#required-tools" title="Permanent link">&para;</a></h2>
+<h3 id="imjoy-plugins">ImJoy Plugins<a class="headerlink" href="#imjoy-plugins" title="Permanent link">&para;</a></h3>
+<p>These plugins have to be installed only once, after installation they will be
+available in the dedicated ImJoy workspace: <strong><code>ExpGradient</code></strong></p>
+<p>Pressing on the links below, will open ImJoy in your browser (best in Chrome) and
+allow you to install the required plugins. You will be asked to confirm the installation
+with a dialog as shown below. After confirmation, the plugins will be installed together with
+additional auxiliary plugins.</p>
+<ul>
+<li>
+<p>`ImageAnnotator: annotate your images.
+<a href="https://imjoy.io/#/app?w=ExpGradient&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank"><strong>Install from here.</strong></a></p>
+</li>
+<li>
+<p><code>ExpGradient</code>: calculate expression gradient. <a href="https://imjoy.io/#/app?w=ExpGradient&plugin=muellerflorian/walesky-rna-loc-liver:ExprGradient@stable&upgrade=1" target="_blank"><strong>Install from here.</strong></a></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img></p>
+<h3 id="jupyter-notebook">Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permanent link">&para;</a></h3>
+<p>To perform the calculation of the expression gradients, we also provide a Jupyter notebook <code>expression_gradient.ipynb</code>. This notebook can be found
+in the folder <a href="https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks"><code>notebooks</code></a>.</p>
+<h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
+<h3 id="data-organisation">Data organisation<a class="headerlink" href="#data-organisation" title="Permanent link">&para;</a></h3>
 <p>This workflow requires that data is organised in the following away</p>
 <ol>
 <li>Each sample (usually a field of view) is in a separate folder. Each folder can
@@ -609,9 +748,14 @@ for all FQ results in this channel.</p>
 │  │  ├─ ...
 </pre></div>
 
-<h2 id="fq-analysis">FQ analysis<a class="headerlink" href="#fq-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="demo-data">Demo data<a class="headerlink" href="#demo-data" title="Permanent link">&para;</a></h3>
+<p>You can find already processed demo data
+<a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank"><strong>here.</strong></a></p>
+<p><strong>ToDo</strong>: upon publication, demo data will be moved to Zenodo.</p>
+<h2 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h2>
+<h3 id="1-rna-detection-with-fq">1. RNA detection with FQ<a class="headerlink" href="#1-rna-detection-with-fq" title="Permanent link">&para;</a></h3>
 <p>Here we refer to the dedicated <a href="https://bitbucket.org/muellerflorian/fish_quant/src/master/Documentation/" target="_blank"><strong>FQ manuals</strong></a> for how to best perform the RNA detection.</p>
-<h2 id="annotate-reference-regions-in-the-images">Annotate reference regions in the images<a class="headerlink" href="#annotate-reference-regions-in-the-images" title="Permanent link">&para;</a></h2>
+<h3 id="2-annotation-of-reference-regions">2. Annotation of reference regions<a class="headerlink" href="#2-annotation-of-reference-regions" title="Permanent link">&para;</a></h3>
 <p>This is performed with the Annotator plugin running in ImJoy.</p>
 <p>To annotate files on your local machine, please make sure that the Python
 <strong>plugin engine</strong> is running. It is required to access your local file-system.</p>
@@ -666,9 +810,19 @@ for all FQ results in this channel.</p>
 </ol>
 </li>
 </ol>
-<h2 id="calculate-density-profiles">Calculate density profiles<a class="headerlink" href="#calculate-density-profiles" title="Permanent link">&para;</a></h2>
-<p>This plugin requires the <strong>Python plugin engine</strong>!</p>
-<p>The first installation might take a bit of time, since the necessary Python environments
+<h3 id="3-calculate-density-profiles">3. Calculate density profiles<a class="headerlink" href="#3-calculate-density-profiles" title="Permanent link">&para;</a></h3>
+<p>You can run this analysis either with the provided code in the Jupyter notebook,
+or use ImJoy.</p>
+<h4 id="with-jupyter-notebook">With Jupyter notebook<a class="headerlink" href="#with-jupyter-notebook" title="Permanent link">&para;</a></h4>
+<p>Once you have your conda environment installed as described in the Overview section,
+you can open the Jupyter notebook and analyze your data. You have to execute the first cell
+to load the necessary code.</p>
+<p>The second cell allows you to
+1. Define the folder containing your data.
+2. Defining the labels for the two reference regions that you outlined.</p>
+<p>Executing the cell, will launch the analysis workflow. described above.</p>
+<h4 id="analysis-in-imjoy">Analysis in ImJoy<a class="headerlink" href="#analysis-in-imjoy" title="Permanent link">&para;</a></h4>
+<p>If you use <strong>Imjoy</strong>, you need to install the <strong>Python plugin engine</strong>. The first installation might take a bit of time, since the necessary Python environments
 on the plugin engine are created.</p>
 <p>Once installed, you will see in the plugin sidebar, before using it, you have to
 specify the labels of the two reference regions. You can change the default labels
@@ -684,7 +838,7 @@ expression gradient between these two regions.</p>
 <p><strong>Progress is reported</strong> in the plugin log (accessible with the 'i' symbol
 next to the plugin name) and the ImJoy progress bar.</p>
 <p>Plugin creates results described in section 'Outputs'.</p>
-<h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
+<h3 id="4-created-outputs">4. Created outputs<a class="headerlink" href="#4-created-outputs" title="Permanent link">&para;</a></h3>
 <p>The function will create a number of result files, which are stored in the
 subfolder <code>`. For this, it will create a new sub-folder called</code>analysis__exprGradient`.
 Results files have the full name of the FQ file with the following prefixes</p>
