@@ -49,7 +49,7 @@ we recommend using [Anaconda with Python 3](https://www.anaconda.com/distributio
 
 There are many introductions to Jupyter, e.g. [here](https://realpython.com/jupyter-notebook-introduction/).
 
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/jupyter-notebook.png" width="400px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/jupyter-notebook.png" width="600px"></img>
 
 We further recommend creating a **dedicated environment** for the Python code to install the code.
 
