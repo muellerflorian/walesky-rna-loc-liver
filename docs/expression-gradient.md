@@ -31,7 +31,8 @@ The expression gradient is calculated as follows
 ## Required tools
 
 ### ImJoy Plugins
-These plugins have to be installed only once, after installation the plugins will be available in the dedicated workspace: **`ExpGradient`**
+These plugins have to be installed only once, after installation they will be
+available in the dedicated ImJoy workspace: **`ExpGradient`**
 
 Pressing on the links below, will open ImJoy in your browser (best in Chrome) and
 allow you to install the required plugins. You will be asked to confirm the installation
