@@ -1,32 +1,18 @@
-# Expression gradient analysis
-In this workflow, the spatial expression gradient between two reference regions
-are created. The distances are renormalised such that results from different images
-can be more easily be compared.
+# Cell environment
+In this workflow, the spatial expression around cells is determined. For this, the user
+can define different cells per image, and the expression profile along equidistant regions 
+around these cells is calculated.
 
 As input the workflow requires:
 
 -   **FISH-quant**  results file: created with the with FISH-quant.
--   **ImJoy** annotation files: annotations of the two reference regions.
+-   **ImJoy** annotation files: annotations of the cells.
 
 ## Summary of analysis workflow
 
-The expression gradient is calculated as follows
-
-1.  In the analysis, the distance for RNA from the first reference region is calculated
-    (the shortest distance between the RNA and the polygon defining this region). Negative
-    distances mean that the RNA is inside, positive that the RNA is outside.
-2.  These distances are then renormalised with the shortest distance between the center of mass
-    of the second region and the polygon of the first region.
-     <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity-analysis.png" width="600px"></img>
-
-3.  Distances are then summarised in histograms with bins of width 0.1 between the minimum
-    and maximum renormalised distance measurements.
-4.  These counts are then further renormalised to consider the actual contained area
-    in the image for a given distance. This is done by calculating the distance transform of the image
-    with respect to region 1. These values are treated distance measurements, and treated as
-    described for the RNA distance measurements. The obtained histogram counts are used
-    to normalise the RNA distance counts.
-5.  Lastly, the histogram is such that frequencies sum up to 1.
+For each RNA, we determine the closest distance of an RNA to a membrane. For each cells, the number of 
+close RNAs is summarized as a distance histogram. To account that for larger distances, the area that
+can contain RNAs is larger, this histogram will be normalized, by this area.
 
 ## Required tools
 
@@ -42,14 +28,17 @@ additional auxiliary plugins.
 * `ImageAnnotator`: annotate your images.
 <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank">**Install from here.**</a>
 
-* `ExpGradient`: calculate expression gradient. <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=muellerflorian/walesky-rna-loc-liver:ExprGradient@stable&upgrade=1" target="_blank">**Install from here.**</a>
+* `CellEnvironment`: calculate expression gradient. <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=muellerflorian/walesky-rna-loc-liver:CellEnvironment@stable&upgrade=1" target="_blank">**Install from here.**</a>
 
 <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img>
 
+TODO: add plugin to GitHub. 
+
 ### Jupyter notebook
-To perform the calculation of the expression gradients, we also provide a Jupyter notebook `expression_gradient.ipynb`. This notebook can be found
+To perform the calculation of the expression gradients, we also provide a Jupyter notebook `cell_environment.ipynb`. This notebook can be found
 in the folder [`notebooks`](https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks).
 
+TODO: add notebook to GitHub. 
 
 ## Data
 
@@ -88,6 +77,7 @@ for all FQ results in this channel.
 You can find already processed demo data
 <a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank">**here.**</a>
 
+TODO: add demo data for cell environment analysis.
 TODO: upon publication, demo data will be moved to Zenodo.
 
 ## Analysis
@@ -95,13 +85,11 @@ TODO: upon publication, demo data will be moved to Zenodo.
 ### 1. RNA detection with FQ
 Please consult the dedicated section [**here**](rna-detection.md) for more details.
 
-### 2. Annotation of reference regions
+### 2. Annotation of cells.
 Please consult the dedicated section [**here**](imjoy-annotation.md) for more details.
 
-For this workflow, you need TWO different annotations
-
-1.  **Central vein**, we recommend naming it `CV`.
-2.  **Portal lobe**, we recommend naming it `PL`.
+For this workflow, you need one annotation type to outline all cells that you want to analyze. 
+We recommend naming it `Cells`.
 
 
 ### 3. Calculate density profiles

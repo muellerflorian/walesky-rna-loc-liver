@@ -60,9 +60,14 @@ markdown_extensions:
 
 nav:
     - Overview: index.md   # Needed for material theme but not for other
+    - Analysis tools: tools.md  # This is strange but only with this organization this file shows upd in the overview together with the index.md
+
+    - General workflows:
+      - RNA detection with FQ: rna-detection.md
+      - Image annotation with ImJoy: imjoy-annotation.md
     - Analysis workflows:
       - Expression gradient: expression-gradient.md
-
+      - Cell environment: cell-environment.md
     - About:
       - Licence: licence.md
 

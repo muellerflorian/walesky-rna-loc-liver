@@ -269,10 +269,7 @@ def read_FQ_matlab(file_open):
             else:
                 z_pos = ['']
 
-            #fq_dict['cells'][cell_id].update({nuc_id:{'nuc_pos':{'x': x_pos,'y': y_pos,'z': z_pos}}})
             fq_dict['cells'][cell_id].update({'nuc_pos':{nuc_id:{'x': x_pos,'y': y_pos,'z': z_pos}}})
-            #fq_dict['cells'][cell_id].update({'nuc_pos':{'x': x_pos,'y': y_pos,'z': z_pos,'id':nuc_id}})
-
 
         # Position of detected RNAS
         if 'SPOTS_START' in line:
