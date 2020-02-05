@@ -44,33 +44,28 @@ There are many introductions to Jupyter, e.g. [here](https://realpython.com/jupy
 
 We further recommend creating a **dedicated environment** for the Python code to install the code.
 
-Note 1: that steps 1, 3, 4 below have to be done only once.
+Note 1: that steps 1, 3 below have to be done only once.
 Note 2: each time you want to use Jupyter, you have to activate the environment (step 2),
-and run the notebook (step 5).
+and run the notebook (step 4).
 
 You can do this from an anaconda terminal
 
-1. Create the environment, , e.g. named `rna-loc-liver`
+1. Create the environment (named `rna-loc-liver` for these workflows) that already contains jupyter:
     ```
-    conda create -n rna-loc-liver python=3.7
+    conda create -n rna-loc-liver python=3.7 jupyter
     ```
 
-2. **Activate the environment**:
+0. **Activate the environment**:
     ```
     conda activate rna-loc-liver
     ```
 
-3. Install the **necessary packages to run Jupyter**
-    ```
-    conda install nb_conda
-    ```
-
-4. **Install the analysis package** and all required packages
+0. **Install the analysis package** and all required packages
     ```
     pip install git+https://github.com/muellerflorian/walesky-rna-loc-liver
     ```
 
-5. Start the Jupyter notebook (best from within the folder containing the notebook).
+0. Start the Jupyter notebook (best from within the folder containing the notebook).
     ```
     jupyter notebook
     ```
