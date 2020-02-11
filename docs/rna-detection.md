@@ -1,7 +1,6 @@
 # RNA detection with FISH-quant
 
-Below only a quick summary of the analysis steps is presented. For more details consult the <a href="https://bitbucket.org/muellerflorian/fish_quant/src/master/Documentation/FISH_QUANT_v3.pdf" target="_blank">**FQ manual.**</a> poses RNA aggregates into individual RNAs with a Gaussian
-Mixture Model (GMM).
+Below only a quick summary of the analysis steps is presented. For more details consult the <a href="https://bitbucket.org/muellerflorian/fish_quant/src/master/Documentation/FISH_QUANT_v3.pdf" target="_blank">**FQ manual.**</a>.
 
 ## Detection of individual RNAs
 
@@ -9,12 +8,12 @@ Mixture Model (GMM).
 2.  Set analysis folder to folder containing the image that should be analysed:
     `Menu Folder` > `Set root folder`)
 3.  Open image that should be analysed.
-4.  Draw outline of embryo / cells:
+4.  [Optional] Draw outline of embryo / cells / structure of interest. If you omit  t his step, RNAs will be detected in the entire image. 
     1.  Open dedicated interface: 	Button	`Define outlines`
     2.  Draw a new cell: Button	`New cell`
     3.  Save outline: Button	`Quick-save`
     4.  Return to main FQ: Button 	`Finished`
-5.  Filter image (default filter with `LoG` is usually good).
+5.  Filter image (default filter with `LoG` works usually well).
 6.  Inspect image. On the right part of the interface select `Filtered image`,
     disable `outline`, and double click on the image. This will show a maximum
     intensity projection of the filtered image in a separate window. Here, you can

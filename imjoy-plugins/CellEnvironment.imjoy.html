@@ -9,13 +9,7 @@
   "version": "0.1.0",
   "description": "Calculate expression levels around annotated regions.",
   "tags": ["stable","dev"],
-  "ui": [
-        "Region label: {id: 'reg_label', type: 'string', placeholder: 'Cells'}",
-        "Annotation file: {id: 'annotation_file', type: 'string', placeholder: 'annotation.json'}",
-        "Hist [min]: {id: 'hist_min', type: 'number', placeholder: 0}",
-        "Hist [max]: {id: 'hist_max', type: 'number', placeholder: 300}",
-        "Hist [bin_size]: {id: 'hist_bin_size', type: 'number', placeholder: 50}"
-    ],
+  "ui": "",
   "cover": "",
   "inputs": null,
   "outputs": null,
@@ -38,6 +32,9 @@ from imjoy import api
 import asyncio
 import sys
 
+import pathlib
+import os
+
 from fqa import cell_environment
 
 if sys.platform == "darwin":
@@ -48,19 +45,67 @@ class ImJoyPlugin():
     def setup(self):
         api.log('CellEnvironment plugin initialized')
 
-    async def run(self, ctx):
+        # Prepare data
+        api.register({
+            "name": "Press to define folder",
+            "type": "op",
+            "ui": "Define folder for processing",
+            "run":self.define_folder
+        })
+
+        # Prepare data
+        api.register({
+            "name": "Press to run analysis",
+            "type": "op",
+            "ui": [
+                    "Region label: {id: 'reg_label', type: 'string', placeholder: 'Cells'}",
+                    "Annotation file: {id: 'annotation_file', type: 'string', placeholder: 'annotation.json'}",
+                    "Hist [min]: {id: 'hist_min', type: 'number', placeholder: 0}",
+                    "Hist [max]: {id: 'hist_max', type: 'number', placeholder: 300}",
+                    "Hist [bin_size]: {id: 'hist_bin_size', type: 'number', placeholder: 50}"
+                ],
+            "run":self.run_analysis
+        })
+
+    async def define_folder(self,ctx):
+        """
+        Define folder to be processed.
+        """
+        ret_data = await api.showFileDialog(title="Please select a folder containing data to pre-process", type= 'directory', engine=api.ENGINE_URL)
+        if not ret_data:
+            return
+
+        api.log(f'Specified folder: {ret_data.path}')
+        self.path_scan = ret_data.path
+
+        api.log((os.getcwd()))
+        #api.log(pathlib.WindowsPath(os.getcwd()))
+        api.log(pathlib.Path(os.getcwd()))
+
+        api.register({
+            "name": "Press to define folder",
+            "type": "op",
+            "ui": ret_data.path,
+            "run":self.define_folder
+        })
         
-        # Ask for folder
-        ret = await api.showFileDialog(type='directory')
+    async def run_analysis(self,ctx):
+        """
+        Analyse specified folder.
+        """
         
-        # Process files
         cell_environment.process_folder(
-            path_scan = ret['path'], 
+            path_scan = self.path_scan, 
             region_label = ctx.config.reg_label, 
             bin_prop = (ctx.config.hist_min,ctx.config.hist_max,ctx.config.hist_bin_size), 
             annotation_file = ctx.config.annotation_file, 
             log_msg_callback = api.showStatus, 
             log_prog_callback = api.showProgress)
+
+
+    async def run(self, ctx):
+
+        api.log('Use specific plugin ops.')
         
 api.export(ImJoyPlugin())
 </script>

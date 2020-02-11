@@ -5,7 +5,7 @@ can be more easily be compared.
 
 As input the workflow requires:
 
--   **FISH-quant**  results file: created with the with FISH-quant.
+-   **FISH-quant**  results file: created with FISH-quant.
 -   **ImJoy** annotation files: annotations of the two reference regions.
 
 ## Summary of analysis workflow
@@ -47,9 +47,9 @@ additional auxiliary plugins.
 <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img>
 
 ### Jupyter notebook
-To perform the calculation of the expression gradients, we also provide a Jupyter notebook `expression_gradient.ipynb`. This notebook can be found
+To perform the calculation of the expression gradients, we also provide a 
+Jupyter notebook `expression_gradient.ipynb`, which can be found on GitHub
 in the folder [`notebooks`](https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks).
-
 
 ## Data
 
@@ -69,8 +69,8 @@ two different channels (`...(green).tif` and `...(red).tif` ), the FQ results
 for both channels `....txt`, and an annotation file (`annotation.json`).
 
 Please note that you can have **only one annotation file per sample folder**. You
-can generate it based on any of the channels, but the same file will be used
-for all FQ results in this channel.
+can generate it based on any of the channels, but the same annnotations will be used
+for each FQ results file in this folder.
 
 ```
 ├─ data_for_expression_gradient/
@@ -121,12 +121,13 @@ The second cell allows you to
 Executing the cell, will launch the analysis workflow. described above.
 
 #### Analysis in ImJoy
-If you use **Imjoy**, you need to install the **Python plugin engine**. The first installation might take a bit of time, since the necessary Python environments
-on the plugin engine are created.
+If you use **ImJoy**, you need to install the **Python plugin engine**. 
+The first installation might take a bit of time, since the necessary Python environments
+are created.
 
-Once installed, you will see in the plugin sidebar, before using it, you have to
-specify the labels of the two reference regions. You can change the default labels
-by pressing on the arrow down symbol next to the plugin name.
+Once installed, you will see in the the plugin in the sidebar. Before using it, you have 
+to specify the labels of the two reference regions. To access the plugin parameters, press
+on the arrow down symbol next to the plugin name.
 
 In the example below the labels `CV` and `PL` are defined for the first and second
 region, respectively.
@@ -142,12 +143,10 @@ expression gradient between these two regions.
 **Progress is reported** in the plugin log (accessible with the 'i' symbol
 next to the plugin name) and the ImJoy progress bar.
 
-Plugin creates results described in section 'Outputs'.
-
 ### 4. Created outputs
 
 The function will create a number of result files, which are stored in the
-subfolder ``. For this, it will create a new sub-folder called `analysis__exprGradient`.
+subfolder `analysis__exprGradient`.
 Results files have the full name of the FQ file with the following prefixes
 
 -   **_summary_density** (PNG file). Contains plots of expression density plots.

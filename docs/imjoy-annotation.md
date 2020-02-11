@@ -3,12 +3,11 @@
 This is performed with the Annotator plugin running in ImJoy.
 
 **Note** that annotation can only be performed on **2D images**. 
-If your images are 3D, please convert them to
-2D images first, e.g. with a maximum intensity projection. 
+If your images are 3D, please convert them first to 2D images, e.g. with a maximum intensity projection. 
 
 <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotor_install.png" width="600px"></img>
 
-To **annotate your image**, follow these steps
+To **annotate your images**, follow these steps
 
 1.  Open the annotation plugin by clicking on the plugin name `ImageAnnotator`
 2.  The plugin will open with a default image and you have to **load your own data**.

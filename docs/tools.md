@@ -10,20 +10,53 @@ localize RNAs in 3D from smFISH images.
 
 ## ImJoy
 [**ImJoy**](https://imjoy.io/docs/#/) is image processing platform with an easy
- to use interface powered by a Python engine running in the background. ImJoy plays a
-central role in most analysis workflows.
+ to use interface powered.
+ 
+   <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/imjoy-interface.png" width="600px"></img>
 
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/imjoy-interface.png" width="600px"></img>
+### Running Python plugins
 
-#### Working with ImJoy
-We provide links to install the different ImJoy plugins in dedicated **ImJoy workspaces**.
-Workspaces can be selected from little puzzle symbol in the upper left part of the
-interface.
+Some of the provided plugins are written in Python. In order for ImJoy to run Python code it can connect either to a **ImJoy plugin engine** or a **Jupyter engine**. Either option requires a one-time installation.
 
-Most plugins require the **ImJoy Plugin Engine**, to perform computations in
-Python. You will need to **install** it only once, but **launch** it each time
-you work with ImJoy. For more information for how to install and use the plugin engine,
+##### Plugin engine
+The plugin engine has to be **installed** only once, but **launched** each time
+you work with ImJoy.
+
+For more information for how to install and use the plugin engine,
 please consult the [ImJoy documentation](https://imjoy.io/docs/#/user-manual?id=python-engine).
+
+Please note, that the Python engine might not work well under windows. Here, we recommend using a Jupyter server instead.
+
+##### Jupyter notebook
+Python code can be execute on a Jupyter notebook running locally or remotely. We recommend installing
+Ptyhon with Jupyter with [Miniconda with Python 3.7](https://docs.conda.io/en/latest/miniconda.html).
+
+Once you installed Miniconda, open and Anaconda terminal and Create the environment (named `rna-loc-liver` for these workflows) containing jupyter (you only need to do this once):
+    
+```
+conda create -n rna-loc-liver python=3.7 jupyter
+```
+
+Once you have this environment, you can activate it and start an Jupyter Kernel, to which ImJoy can connect to. 
+
+1. **Activate the environment**:
+    ```
+    conda activate rna-loc-liver
+    ```
+2. Start Jupyter notebook. Note that for security reasons, from within a Jupyter Kernel 
+   you can only see folder (and the subfolders) from which it was started. In order to process your data, navigate to the folder containing your data and start the notebook from there:
+    ```
+    jupyter notebook --NotebookApp.allow_origin='*' --no-browser
+    ```
+    Copy the provided URL including the token:, somehting like `http://127.0.0.1:8889/?token=16126ce8b02ee35103200c46d71b3f946bfb408d1cae0f68`
+3. In ImJoy, press on the rocket symbol in the upper right corner, select `Add Jupyter-Engine` 
+    and past the URL from the step above. 
+4. You can now connect your plugin to this Juypyter Kernel, by clicking on the puzzle symbol 
+    next to the plugin name, and selecting the Juypyter Notebook as       
+
+
+### Working with ImJoy
+We provide links to install the different ImJoy plugins in dedicated **ImJoy workspaces**. Workspaces can be selected from little puzzle symbol in the upper left part of the interface.
 
 Once installed, ImJoy remembers the workspaces and plugins and you simply have to
 open the web app and select the appropriate workspace [https://imjoy.io/#/app](https://imjoy.io/#/app)
@@ -35,27 +68,22 @@ dialog asking if you want to install the specified plugin. To confirm, press the
 
 
 ## Jupyter notebooks
-We also provide Jupyter notebooks for certain Python analysis. To run these notebooks,
-we recommend using [Anaconda with Python 3](https://www.anaconda.com/distribution/).
-
-There are many introductions to Jupyter, e.g. [here](https://realpython.com/jupyter-notebook-introduction/).
+We also provide Jupyter notebooks for certain Python analysis workflows. These notebookd provide
+an interactive interface to run analysis workflows. For more details, see any of the excellentThere are  introductions to Jupyter, e.g. [here](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/index.html) or [here](https://realpython.com/jupyter-notebook-introduction/)
 
 <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/jupyter-notebook.png" width="600px"></img>
 
-We further recommend creating a **dedicated environment** for the Python code to install the code.
+To run these notebooks, we recommend using either [Miniconda with Python 3.7](https://docs.conda.io/en/latest/miniconda.html) or if you plan on using Python more, [Anaconda with Python 3.7](https://www.anaconda.com/distribution/).
 
-Note 1: that steps 1, 3 below have to be done only once.
-Note 2: each time you want to use Jupyter, you have to activate the environment (step 2),
-and run the notebook (step 4).
+We further recommend creating a **dedicated environment** for the Python code to install the code. You can do this from an anaconda terminal. To create and environment named `rna-loc-liver` that already contains jupyter type (you only have to do this once):
 
-You can do this from an anaconda terminal
+```
+conda create -n rna-loc-liver python=3.7 jupyter
+```
 
-1. Create the environment (named `rna-loc-liver` for these workflows) that already contains jupyter:
-    ```
-    conda create -n rna-loc-liver python=3.7 jupyter
-    ```
+To install the analysis code (you only have to do this once):
 
-0. **Activate the environment**:
+1. **Activate the environment**:
     ```
     conda activate rna-loc-liver
     ```
@@ -65,9 +93,21 @@ You can do this from an anaconda terminal
     pip install git+https://github.com/muellerflorian/walesky-rna-loc-liver
     ```
 
-0. Start the Jupyter notebook (best from within the folder containing the notebook).
+To open a notebook, open an anaconda terminal in the folder containing the notebook
+
+1. **Activate the environment**:
+    ```
+    conda activate rna-loc-liver
+    ```
+0. Navigate to the folder containing the notebook you want to execute.
+0. Launch the Jupyter notebook App. . 
     ```
     jupyter notebook
     ```
+    This will launch a new browser window (or a new tab)
+    showing the Notebook Dashboard, a sort of control panel that allows (among other things) to select which notebook to open
+    
     Make sure that the notebook is running in the specified environment (upper right
     corner of interface). If not change it from the menu "Kernel".
+
+    Click on the name of the notebook that you want to open.

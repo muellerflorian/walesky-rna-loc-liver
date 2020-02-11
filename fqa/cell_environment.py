@@ -3,6 +3,7 @@
 # IMPORTS
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 from scipy import ndimage
 import matplotlib.pyplot as plt
 from skimage.io import imread
@@ -32,7 +33,7 @@ def process_folder(path_scan, region_label, bin_prop,
 
         # Get sample path
         path_sample = p_sample.parents[0]
-        print(f'\n >> Analyzing {p_sample}')
+        toolbox.log_message(f'\n\n>> Analyzing {p_sample}', callback_fun=log_msg_callback)
 
         # Open annotation
         file_read = path_sample / annotation_file
@@ -45,12 +46,13 @@ def process_folder(path_scan, region_label, bin_prop,
         # Calculate distance transform for each annotated cell
         # Note that coordinates are exchanged and y flipped
         n_regs = 0
-        for feat_idx, feat in enumerate(data_json['features']):
+        toolbox.log_message(f' Looping over all regions, will consider only following label for analysis: {region_label}', callback_fun=log_msg_callback)      
+        for feat in tqdm(data_json['features']):    
             label = feat['properties']['label']
 
             if label == region_label:
 
-                toolbox.log_message(f'Annotated region found:  ({region_label})', callback_fun=log_msg_callback)
+                #toolbox.log_message(f'Annotated region found:  ({region_label})', callback_fun=log_msg_callback)
                 reg_pos = np.squeeze(np.asarray(feat['geometry']['coordinates']))
                 reg_pos[:, [0, 1]] = reg_pos[:, [1, 0]]
                 reg_pos[:, 0] = -1*reg_pos[:, 0]+img_size[0]
@@ -66,20 +68,16 @@ def process_folder(path_scan, region_label, bin_prop,
 
                 n_regs += 1
 
-        toolbox.log_message(f'Total number of annotated regions ({region_label}) in image:  {n_regs}', callback_fun=log_msg_callback)    
+        toolbox.log_message(f'   Total number of annotated regions  in image: {n_regs}', 
+                            callback_fun=log_msg_callback)    
 
         # Loop over all FQ result files
         for p_fq in path_sample.glob('*_spots_*'):
 
-                toolbox.log_message(f'\n Opening FQ file: {p_fq}',callback_fun=log_msg_callback)
+                toolbox.log_message(f' \nOpening FQ file: {p_fq}',callback_fun=log_msg_callback)
 
                 # Get information (path, file name) to save results
                 file_base = p_fq.stem
-
-                path_save = path_sample  / 'analysis__cell_env' / file_base
-                toolbox.log_message(f'Results will be saved in folder: {path_save}',callback_fun=log_msg_callback)
-                if not path_save.is_dir():
-                    path_save.mkdir(parents=True)
 
                 # Load FQ results file
                 fq_dict  = toolbox.read_FQ_matlab(p_fq)
@@ -90,25 +88,31 @@ def process_folder(path_scan, region_label, bin_prop,
                     toolbox.log_message(f'No RNAs detected in this file.', callback_fun=log_msg_callback)
                     continue
                 else:
-                    pos_rna = np.divide(spots_all[:,0:2],fq_dict['settings']['microscope']['pix_xy']).astype(int)
+                    pos_rna = np.divide(spots_all[:, 0:2], fq_dict['settings']['microscope']['pix_xy']).astype(int)
 
                 # Open FISH image
                 file_FISH_img = path_sample / fq_dict['file_names']['smFISH']
-                toolbox.log_message(f'Reading FISH image: {file_FISH_img}',callback_fun=log_msg_callback)
+                toolbox.log_message(f'  Reading FISH image: {file_FISH_img}',callback_fun=log_msg_callback)
                 img_FISH = imread(file_FISH_img)
 
+                # Folder to save results
+                path_save = path_sample / 'analysis__cell_env' / file_base
+                toolbox.log_message(f'  Results will be saved in folder: {path_save}',
+                                    callback_fun=log_msg_callback)
+                if not path_save.is_dir():
+                    path_save.mkdir(parents=True)
 
                 # Matrix with distance to all nuclei: each RNA is one row
                 rna_dist_regs_all = dist_mat[pos_rna[:, 0], pos_rna[:, 1], :]
 
                 # Sort matrix with shortest distance in first column
-                ind_closest_regs = np.argsort(rna_dist_regs_all, axis=1) # Index with sorted distance to nuclei
+                ind_closest_regs = np.argsort(rna_dist_regs_all, axis=1)  # Index with sorted distance to nuclei
 
                 # Get for each RNA closest nuclei: index and distance
                 dist_closest_regs = np.take_along_axis(rna_dist_regs_all, ind_closest_regs, axis=1)
 
-                df_rna_dist = pd.DataFrame({'region_label': ind_closest_regs[:,0],
-                                            'dist': dist_closest_regs[:,0]
+                df_rna_dist = pd.DataFrame({'region_label': ind_closest_regs[:, 0],
+                                            'dist': dist_closest_regs[:, 0]
                                             })
 
                 for i_reg in range(0, n_regs):
@@ -123,8 +127,8 @@ def process_folder(path_scan, region_label, bin_prop,
                     dist_reg_rna = df_loop['dist'].to_numpy()
 
                     # Calculate histograms
-                    hist_counts_rna, bins = np.histogram(dist_reg_rna,bins_hist ,density=False)
-                    hist_counts_pix, bins = np.histogram(dist_reg_pix,bins_hist ,density=False)
+                    hist_counts_rna, bins = np.histogram(dist_reg_rna, bins_hist, density=False)
+                    hist_counts_pix, bins = np.histogram(dist_reg_pix, bins_hist, density=False)
 
                     hist_counts_rna_norm = hist_counts_rna/hist_counts_rna.sum()
                     hist_counts_pix_norm = hist_counts_pix/hist_counts_pix.sum()
@@ -181,3 +185,5 @@ def process_folder(path_scan, region_label, bin_prop,
                     name_save = path_save / f'histogram_summary__reg_{i_reg}.png'
                     plt.savefig(name_save, dpi=200)
                     plt.close()
+                
+    toolbox.log_message(f'\nProcessing finished!',callback_fun=log_msg_callback)

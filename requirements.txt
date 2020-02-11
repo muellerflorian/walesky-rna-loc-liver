@@ -5,3 +5,4 @@ matplotlib
 nested_lookup
 read-roi
 roipoly
+tqdm

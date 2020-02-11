@@ -5,8 +5,8 @@ around these cells is calculated.
 
 As input the workflow requires:
 
--   **FISH-quant**  results file: created with the with FISH-quant.
--   **ImJoy** annotation files: annotations of the cells.
+-   **FISH-quant**  results file: positions of RNAs.
+-   **ImJoy** annotation files: positions of cells.
 
 ## Summary of analysis workflow
 
@@ -20,25 +20,23 @@ can contain RNAs is larger, this histogram will be normalized, by this area.
 These plugins have to be installed only once, after installation they will be
 available in the dedicated ImJoy workspace: **`liver-rna-loc`**
 
-Pressing on the links below, will open ImJoy in your browser (best in Chrome) and
-allow you to install the required plugins. You will be asked to confirm the installation
-with a dialog as shown below. After confirmation, the plugins will be installed together with
-additional auxiliary plugins.
+When pressing on the links below, ImJoy will open in your browser (best in Chrome) and
+you will be asked to confirm the installation with a dialog as shown below. 
+After confirmation, the plugin together with additional auxiliary plugins will be installed.
 
 * `ImageAnnotator`: annotate your images.
 <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank">**Install from here.**</a>
 
 * `CellEnvironment`: calculate expression gradient. <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=muellerflorian/walesky-rna-loc-liver:CellEnvironment@stable&upgrade=1" target="_blank">**Install from here.**</a>
 
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img>
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/cell_env.png" width="600px"></img>
 
 TODO: add plugin to GitHub. 
 
 ### Jupyter notebook
-To perform the calculation of the expression gradients, we also provide a Jupyter notebook `cell_environment.ipynb`. This notebook can be found
-in the folder [`notebooks`](https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks).
-
 TODO: add notebook to GitHub. 
+To perform the calculation of the expression gradients, we also provide a Jupyter notebook `cell_environment.ipynb`, which can be found
+on GitHub in the folder [`notebooks`](https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks).
 
 ## Data
 
@@ -48,18 +46,18 @@ This workflow requires that data is organised in the following away
 
 1.  A parental folder contains all sample folders.
 0.  Each sample (usually a field of view) is in a separate folder, e.g. named `Sample_1`, `Sample_2`, ....       Each sample folder can contain images of multiple channels.
-0.  FQ result file are in the same folder. A folder can contain FQ results for different channels.
-0.  An annotation file with the two reference regions (`annotation.json`). See below
+0.  FQ result files are in the same folder. A folder can contain **multiple FQ results** for different channels.
+0.  An annotation file with the outlines cells (`annotation.json`). See below
     for more details.
 
 
 In the example below, a folder contains the annotations (`annotation.json`),
 two different channels (`...(green).tif` and `...(red).tif` ), the FQ results
-for both channels `....txt`, and an annotation file (`annotation.json`).
+for the green channels `....txt`, and an annotation file (`annotation.json`).
 
 Please note that you can have **only one annotation file per sample folder**. You
-can generate it based on any of the channels, but the same file will be used
-for all FQ results in this channel.
+can create it by visualizing any of the channels, but the same annotations will be used
+for each FQ results file in this folder.
 
 ```
 ├─ data_for_expression_gradient/
@@ -67,17 +65,17 @@ for all FQ results in this channel.
 │  │  ├─ annotation.json
 │  │  ├─ sample_1_green_outline_spots_181018.txt
 │  │  ├─ sample_1_green.tif
-│  │  ├─ sample_1_red_outline_spots_181017.txt
 │  │  ├─ sample_1_red.tif
 │  ├─ Sample_2
 │  │  ├─ ...
 ```
 
 ### Demo data
+TODO: add demo data for cell environment analysis.
+
 You can find already processed demo data
 <a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank">**here.**</a>
 
-TODO: add demo data for cell environment analysis.
 TODO: upon publication, demo data will be moved to Zenodo.
 
 ## Analysis
@@ -88,8 +86,8 @@ Please consult the dedicated section [**here**](rna-detection.md) for more detai
 ### 2. Annotation of cells.
 Please consult the dedicated section [**here**](imjoy-annotation.md) for more details.
 
-For this workflow, you need one annotation type to outline all cells that you want to analyze. 
-We recommend naming it `Cells`.
+For this workflow, you outline all cells that you want to analyze with one annotation type. 
+We recommend naming this annotation `Cells`.
 
 
 ### 3. Calculate density profiles
@@ -109,17 +107,24 @@ The second cell allows you to
 Executing the cell, will launch the analysis workflow. described above.
 
 #### Analysis in ImJoy
-If you use **Imjoy**, you need to install the **Python plugin engine**. The first installation might take a bit of time, since the necessary Python environments
+If you use **Imjoy**, you need to install the **Python plugin engine**. 
+The first installation might take a bit of time, since the necessary Python environments
 on the plugin engine are created.
 
-Once installed, you will see in the plugin sidebar, before using it, you have to
-specify the labels of the two reference regions. You can change the default labels
-by pressing on the arrow down symbol next to the plugin name.
+Once installed, you will see in the plugin sidebar, before using it, you have to specify
+a few analysis parameters, as explained in the table below.
 
-In the example below the labels `CV` and `PL` are defined for the first and second
-region, respectively.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/expGrad-plugin-dialog.png" width="250px"></img>
+Option           | Type | Default     | Description
+---------------- | ---- | ----------- | -----------
+`Region label`    | str  | `Cells` | Label of the annotated regions.
+`Annotation file` | str  | `annotation.json` | Name of the ImJoy annotation file.
+`Hist [min]`    | int  |  0 | Minimum value of histogram to summarize enrichment (in pixel).
+`Hist [max]`     | int  | 300 |Maximum value of histogram to summarize enrichment (in pixel).
+`Hist [bin]`     | int  | 50 | Bin size (in pixel).
+
+
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/cellenv-plugin-dialog.png" width="250px"></img>
 
 Then you can press on the plugin name to execute the plugin. In a dialog, you will
 be asked to specify a folder, please select the parental folder containing the different
@@ -130,34 +135,23 @@ expression gradient between these two regions.
 **Progress is reported** in the plugin log (accessible with the 'i' symbol
 next to the plugin name) and the ImJoy progress bar.
 
-Plugin creates results described in section 'Outputs'.
-
 ### 4. Created outputs
 
 The function will create a number of result files, which are stored in the
-subfolder ``. For this, it will create a new sub-folder called `analysis__exprGradient`.
+subfolder `analysis__cell_env`. For each FQ result file, a separate subfolder 
+with name of this file is created.
+
+In this folder, results for **each region** are stored
 Results files have the full name of the FQ file with the following prefixes
 
--   **_summary_density** (PNG file). Contains plots of expression density plots.
-    Cells are filled with pixel values corresponding to their expression level.
+-   **histogram__reg_i.csv** (tab delimited text file), where i is a running index. 
+    Contains the spatial expression gradient as a table:
 
--   **_summary_gradient** (PNG file). Contains summary plots for the spatial gradients
-    between two the two reference points (the first plot shown on this page).
+    -   1st col: center of histogram bins
+    -   2nd col: RNA counts
+    -   3rd col: Pixel counts
+    -   4th col: Normalize counts.
 
--   **hist_expression** (tab delimited text file). Contains the spatial expression
-    gradient as a table:
-
-    -   1st col: normalised distance,
-    -   2nd col: normalised counts by number of pixels (4th col)
-    -   3rd col: RNA counts
-    -   4th col: number of pixels in the image within range (for normalisation)
-
--   **img_density** (16bit tif file). Contains the expression density plots. The pixel
-    value of the cell corresponds to the number of RNAs in this cell. No outlines are
-    shown. Files can be rendered with Fiji and an adequate look-up table.
-
--   **img_density_outline** (16 bit tif file). Contains the expression density plot
-    and the cell outlines. The outlines of the cells are set to the maximum RNA count
-    in the image. This guarantees that the outlines can be seen.
-
--   **img_outline** (8 bit image). Outlines of all cells in the image.
+-   **histogram_summary__reg_i.png**, summary image of for region `i`. First row shows
+    smFISH image, mask of region, distance transform (distance from region). Second row 
+    shows the raw histograms for RNAs and pixels, as well as the renormalized histogram. 
