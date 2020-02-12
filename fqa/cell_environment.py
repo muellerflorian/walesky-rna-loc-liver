@@ -211,8 +211,10 @@ def process_folder(path_scan, region_label, bin_prop,
                 df_hist_RNA_all.to_csv(path_save / f'histogram__RNA.csv',
                                        index=False)
                 df_hist_PIX_all.to_csv(path_save / f'histogram__PIX.csv',
-                                       index=False))
+                                       index=False)
                 df_hist_RNA_norm_all.to_csv(path_save / f'histogram__RNA_norm.csv',
-                                       index=False))
+                                       index=False)
                 
+    
     toolbox.log_message(f'\nProcessing finished!', callback_fun=log_msg_callback)
+

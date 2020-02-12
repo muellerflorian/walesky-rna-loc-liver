@@ -32,7 +32,7 @@ from imjoy import api
 import asyncio
 import sys
 
-import pathlib
+from pathlib import Path
 import os
 
 from fqa import cell_environment
@@ -75,17 +75,23 @@ class ImJoyPlugin():
         if not ret_data:
             return
 
-        api.log(f'Specified folder: {ret_data.path}')
-        self.path_scan = ret_data.path
+        # Folder that was specified
+        path_data = Path(ret_data.path)
+        api.log(f'Specified folder: {str(path_data)}')
 
-        api.log((os.getcwd()))
-        #api.log(pathlib.WindowsPath(os.getcwd()))
-        api.log(pathlib.Path(os.getcwd()))
+        cwd = Path.cwd()
+        api.log(f'Current working directory: {str(cwd)}')
 
+
+        # TODO: solve problem of composite path:leading "/" provided by api.showFileDialog overwrites all children directories of cwd.
+        path_scan = cwd / path_data
+        api.log(f'Path to process: {str(path_scan)}')
+
+        # Change ui of registered op
         api.register({
             "name": "Press to define folder",
             "type": "op",
-            "ui": ret_data.path,
+            "ui": str(path_scan),
             "run":self.define_folder
         })
         
@@ -94,12 +100,12 @@ class ImJoyPlugin():
         Analyse specified folder.
         """
         
-        cell_environment.process_folder(
-            path_scan = self.path_scan, 
+        await cell_environment.process_folder(
+            path_scan = Path("D:/Documents/Data/collaborations/walesky-rna-loc-liver/200131_macrophages/data_for_cell_environment"), #self.path_scan, 
             region_label = ctx.config.reg_label, 
             bin_prop = (ctx.config.hist_min,ctx.config.hist_max,ctx.config.hist_bin_size), 
             annotation_file = ctx.config.annotation_file, 
-            log_msg_callback = api.showStatus, 
+            log_msg_callback = api.log, 
             log_prog_callback = api.showProgress)
 
 
