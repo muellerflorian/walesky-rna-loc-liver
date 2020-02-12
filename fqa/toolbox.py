@@ -67,18 +67,26 @@ def colorbar(mappable):
     return fig.colorbar(mappable, cax=cax)
 
 
-def log_message(msg, callback_fun = None):
-    ''' Output log, either terminal or some callback taking a string as input''' 
+def log_message(msg, callback_fun=None):
+    """ Display log, either terminal or any callback accepting a string as input.
+
+    Parameters
+    ----------
+    msg : [string]
+        [description]
+    callback_fun : [type], optional
+        [description], by default None
+    """
     if callback_fun:
         callback_fun(msg)
     else:
         print(msg)
 
 
-
-def log_progress(iteration, total, callback_fun = None):
-    ''' Progress log, either terminal or some callback taking a percantage as input''' 
-    
+def log_progress(iteration, total, callback_fun=None):
+    """ 
+    Progress log, either terminal or some callback taking a percantage as input
+    """
     if callback_fun:
         completed = (iteration / float(total))
         callback_fun(completed)

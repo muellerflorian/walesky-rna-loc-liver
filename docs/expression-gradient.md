@@ -143,7 +143,7 @@ expression gradient between these two regions.
 **Progress is reported** in the plugin log (accessible with the 'i' symbol
 next to the plugin name) and the ImJoy progress bar.
 
-### 4. Created outputs
+### 4. Generated result files
 
 The function will create a number of result files, which are stored in the
 subfolder `analysis__exprGradient`.

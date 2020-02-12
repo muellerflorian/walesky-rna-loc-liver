@@ -46,12 +46,11 @@ def process_folder(path_scan, region_label, bin_prop,
         # Calculate distance transform for each annotated cell
         # Note that coordinates are exchanged and y flipped
         n_regs = 0
-        toolbox.log_message(f' Looping over all regions, will consider only following label for analysis: {region_label}', callback_fun=log_msg_callback)      
+        toolbox.log_message(f' Loop over regions [Create distance maps]. Will label {region_label} for analysis.', callback_fun=log_msg_callback)      
         for feat in tqdm(data_json['features']):    
             label = feat['properties']['label']
-
+            
             if label == region_label:
-
                 #toolbox.log_message(f'Annotated region found:  ({region_label})', callback_fun=log_msg_callback)
                 reg_pos = np.squeeze(np.asarray(feat['geometry']['coordinates']))
                 reg_pos[:, [0, 1]] = reg_pos[:, [1, 0]]
@@ -74,7 +73,7 @@ def process_folder(path_scan, region_label, bin_prop,
         # Loop over all FQ result files
         for p_fq in path_sample.glob('*_spots_*'):
 
-                toolbox.log_message(f' \nOpening FQ file: {p_fq}',callback_fun=log_msg_callback)
+                toolbox.log_message(f' \nOpening FQ file: {p_fq}', callback_fun=log_msg_callback)
 
                 # Get information (path, file name) to save results
                 file_base = p_fq.stem
@@ -102,6 +101,11 @@ def process_folder(path_scan, region_label, bin_prop,
                 if not path_save.is_dir():
                     path_save.mkdir(parents=True)
 
+                path_save_details = path_sample / 'analysis__cell_env' / file_base / 'results_per_region'
+                if not path_save_details.is_dir():
+                    path_save_details.mkdir(parents=True)
+
+
                 # Matrix with distance to all nuclei: each RNA is one row
                 rna_dist_regs_all = dist_mat[pos_rna[:, 0], pos_rna[:, 1], :]
 
@@ -115,7 +119,12 @@ def process_folder(path_scan, region_label, bin_prop,
                                             'dist': dist_closest_regs[:, 0]
                                             })
 
-                for i_reg in range(0, n_regs):
+                df_hist_RNA_all = pd.DataFrame({'bins_center': bins_center})
+                df_hist_PIX_all = pd.DataFrame({'bins_center': bins_center})
+                df_hist_RNA_norm_all = pd.DataFrame({'bins_center': bins_center})
+
+                toolbox.log_message(f' Loop over regions [Calculate expression gradients]', callback_fun=log_msg_callback) 
+                for i_reg in tqdm(range(0, n_regs)):
                     df_loop = df_rna_dist.loc[df_rna_dist['region_label'] == i_reg]
 
                     # Distance transform
@@ -136,14 +145,20 @@ def process_folder(path_scan, region_label, bin_prop,
                     hist_counts_rna_norm2 = np.divide(hist_counts_rna_norm,hist_counts_pix_norm)
                     hist_counts_rna_norm2 = np.nan_to_num(hist_counts_rna_norm2)
 
+                    # Histogram 
+                    df_hist_RNA_all[f'reg_{i_reg}'] = hist_counts_rna
+                    df_hist_PIX_all[f'reg_{i_reg}'] = hist_counts_pix
+                    df_hist_RNA_norm_all[f'reg_{i_reg}'] = hist_counts_rna_norm2
+
+                    # Histograms per image
                     df_hist = pd.DataFrame({'bins_center': bins_center,
                                             'counts_rna': hist_counts_rna,
                                             'counts_pix': hist_counts_pix,
                                             'counts_rna_': hist_counts_rna_norm2,
                                             })
 
-                    name_save = path_save / f'histogram__reg_{i_reg}.csv'
-                    df_hist.to_csv(name_save)
+                    df_hist.to_csv(path_save_details / f'histogram__reg_{i_reg}.csv',
+                                   index=False)
 
                     # Generate plot
                     fig1, ax = plt.subplots(2, 3, num='Cell environment analysis')
@@ -162,28 +177,42 @@ def process_folder(path_scan, region_label, bin_prop,
                     ax[0][2].get_yaxis().set_visible(False)
                     toolbox.colorbar(img_dist)
 
-                    ax[1][0].bar(bins_center, hist_counts_rna, align='center', width=bins_width)
+                    ax[1][0].bar(bins_center, hist_counts_rna, align='center', 
+                                 width=bins_width)
                     ax[1][0].set_xticks(bins_center)
-                    ax[1][0].set_xticklabels(bins_center.astype(int), rotation=90, ha='right')
+                    ax[1][0].set_xticklabels(bins_center.astype(int), 
+                                             rotation=90, ha='right')
                     ax[1][0].set_xlabel('Distance from region [pixel]')
                     ax[1][0].set_ylabel('# RNAs')
                     plt.xticks(rotation=30, ha='right')
 
-                    ax[1][1].bar(bins_center, hist_counts_pix, align='center', width=bins_width)
+                    ax[1][1].bar(bins_center, hist_counts_pix, align='center', 
+                                 width=bins_width)
                     ax[1][1].set_xticks(bins_center)
-                    ax[1][1].set_xticklabels(bins_center.astype(int), rotation=90, ha='right')
+                    ax[1][1].set_xticklabels(bins_center.astype(int), 
+                                             rotation=90, ha='right')
                     ax[1][1].set_xlabel('Distance from region [pixel]')
                     ax[1][1].set_ylabel('# pixels')
 
-                    ax[1][2].bar(bins_center, hist_counts_rna_norm2, align='center', width=bins_width)
+                    ax[1][2].bar(bins_center, hist_counts_rna_norm2, 
+                                 align='center', width=bins_width)
                     ax[1][2].set_xticks(bins_center)
-                    ax[1][2].set_xticklabels(bins_center.astype(int), rotation=90, ha='right')
+                    ax[1][2].set_xticklabels(bins_center.astype(int), 
+                                             rotation=90, ha='right')
                     ax[1][2].set_xlabel('Distance from region [pixel]')
                     ax[1][2].set_ylabel('Renormalized frequency')
 
                     plt.tight_layout()
-                    name_save = path_save / f'histogram_summary__reg_{i_reg}.png'
-                    plt.savefig(name_save, dpi=200)
+                    plt.savefig(path_save_details / f'histogram_summary__reg_{i_reg}.png', 
+                                dpi=200)
                     plt.close()
                 
-    toolbox.log_message(f'\nProcessing finished!',callback_fun=log_msg_callback)
+                # Save summary histograms
+                df_hist_RNA_all.to_csv(path_save / f'histogram__RNA.csv',
+                                       index=False)
+                df_hist_PIX_all.to_csv(path_save / f'histogram__PIX.csv',
+                                       index=False))
+                df_hist_RNA_norm_all.to_csv(path_save / f'histogram__RNA_norm.csv',
+                                       index=False))
+                
+    toolbox.log_message(f'\nProcessing finished!', callback_fun=log_msg_callback)

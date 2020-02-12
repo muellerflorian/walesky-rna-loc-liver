@@ -94,6 +94,36 @@ We recommend naming this annotation `Cells`.
 You can run this analysis either with the provided code in the Jupyter notebook,
 or use ImJoy.
 
+#### Analysis in ImJoy
+If you use **Imjoy**, you need to install the **Python plugin engine**. 
+The first installation might take a bit of time, since the necessary Python environments
+on the plugin engine are created.
+
+Once installed, you will see in the plugin sidebar, where you can launch the analysis in a
+few steps
+
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/cellEnv-plugin-dialog.png" width="250px"></img>
+
+1. You have to analye the folder that should be processed. Click on the blue text
+    `Press to define folder` to do so.
+
+2. If needed, change the analysis parameters (see Table below), and press on blue text 
+   `Press to run analysis`. 
+
+        Option           | Type | Default     | Description
+        ---------------- | ---- | ----------- | -----------
+        `Region label`    | str  | `Cells` | Label of the annotated regions.
+        `Annotation file` | str  | `annotation.json` | Name of the ImJoy annotation file.
+        `Hist [min]`    | int  |  0 | Minimum value of histogram to summarize enrichment (in pixel).
+        `Hist [max]`     | int  | 300 |Maximum value of histogram to summarize enrichment (in pixel).
+        `Hist [bin]`     | int  | 50 | Bin size (in pixel).
+
+3. The plugin will then analyse all sample folders containing an annotation file. 
+   Progress can be monitored in the plugin log, accessible via the `i` next to the plugin name.
+
+**Progress is reported** in the plugin log (accessible with the 'i' symbol
+next to the plugin name) and the ImJoy progress bar.
+
 #### With Jupyter notebook
 Once you have your conda environment installed as described in the Overview section,
 you can open the Jupyter notebook and analyze your data. You have to execute the first cell
@@ -102,56 +132,39 @@ to load the necessary code.
 The second cell allows you to
 
 1.  Define the folder containing your data.
-2.  Defining the labels for the two annotated reference regions.
+2.  Defining the parameters described above for the analysis. 
 
-Executing the cell, will launch the analysis workflow. described above.
-
-#### Analysis in ImJoy
-If you use **Imjoy**, you need to install the **Python plugin engine**. 
-The first installation might take a bit of time, since the necessary Python environments
-on the plugin engine are created.
-
-Once installed, you will see in the plugin sidebar, before using it, you have to specify
-a few analysis parameters, as explained in the table below.
+Executing the cell, will launch the analysis workflow as described above.
 
 
-Option           | Type | Default     | Description
----------------- | ---- | ----------- | -----------
-`Region label`    | str  | `Cells` | Label of the annotated regions.
-`Annotation file` | str  | `annotation.json` | Name of the ImJoy annotation file.
-`Hist [min]`    | int  |  0 | Minimum value of histogram to summarize enrichment (in pixel).
-`Hist [max]`     | int  | 300 |Maximum value of histogram to summarize enrichment (in pixel).
-`Hist [bin]`     | int  | 50 | Bin size (in pixel).
-
-
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/cellenv-plugin-dialog.png" width="250px"></img>
-
-Then you can press on the plugin name to execute the plugin. In a dialog, you will
-be asked to specify a folder, please select the parental folder containing the different
-sample folders. The plugin will then analyse all sample folders containing an
-annotation file. The regions in this file will then be used to establish the spatial
-expression gradient between these two regions.
-
-**Progress is reported** in the plugin log (accessible with the 'i' symbol
-next to the plugin name) and the ImJoy progress bar.
-
-### 4. Created outputs
+### 4. Generated result files
 
 The function will create a number of result files, which are stored in the
 subfolder `analysis__cell_env`. For each FQ result file, a separate subfolder 
-with name of this file is created.
+with name of this file is created. In this folder the different histograms are 
+summarized 
 
+-   **`histogram__PIX.csv`**. Contains PIXEL histograms for all regions, e.g. 
+    number of pixels in the defined equi-distant zones around the regions. 
+    These values are used for renormalization. First column is the center of histogram bin (in pixel).
+
+-   **`histogram__RNA.csv`**. Contains RNA counts per equi-distant zone for all regions.
+
+-   **`histogram__RNA_norm.csv`**. Contains renormalized RNA counts per equi-distant 
+    zone for all regions.
+
+    
 In this folder, results for **each region** are stored
 Results files have the full name of the FQ file with the following prefixes
 
--   **histogram__reg_i.csv** (tab delimited text file), where i is a running index. 
+-   **`histogram__reg_i.csv`**, histograms for region `i`. 
     Contains the spatial expression gradient as a table:
 
-    -   1st col: center of histogram bins
+    -   1st col: center of histogram bins (in pixel).
     -   2nd col: RNA counts
     -   3rd col: Pixel counts
     -   4th col: Normalize counts.
 
--   **histogram_summary__reg_i.png**, summary image of for region `i`. First row shows
+-   **`histogram_summary__reg_i.png`**, summary image of for region `i`. First row shows
     smFISH image, mask of region, distance transform (distance from region). Second row 
     shows the raw histograms for RNAs and pixels, as well as the renormalized histogram. 
