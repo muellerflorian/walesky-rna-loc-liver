@@ -13,7 +13,9 @@ from fqa import toolbox
 # Function definition
 def process_folder(path_scan, region_label, bin_prop,
                    annotation_file='annotation.json', 
-                   log_msg_callback=None, log_prog_callback=None):
+                   callback_log=None,
+                   callback_status=None, 
+                   callback_progress=None):
     """[summary]
     TODO: add docstring
     Parameters
@@ -33,7 +35,8 @@ def process_folder(path_scan, region_label, bin_prop,
 
         # Get sample path
         path_sample = p_sample.parents[0]
-        toolbox.log_message(f'\n\n>> Analyzing {p_sample}', callback_fun=log_msg_callback)
+        toolbox.log_message(' ', callback_fun=callback_log)
+        toolbox.log_message(f'>> Analyzing {p_sample}', callback_fun=callback_log)
 
         # Open annotation
         file_read = path_sample / annotation_file
@@ -46,12 +49,19 @@ def process_folder(path_scan, region_label, bin_prop,
         # Calculate distance transform for each annotated cell
         # Note that coordinates are exchanged and y flipped
         n_regs = 0
-        toolbox.log_message(f' Loop over regions [Create distance maps]. Will label {region_label} for analysis.', callback_fun=log_msg_callback)      
-        for feat in tqdm(data_json['features']):    
+        toolbox.log_message(f'  [Create distance maps]: Loop over regions with label: {region_label}', callback_fun=callback_log)      
+
+        if callback_status:
+            callback_status(f'  [Create distance maps]: Loop over regions with label: {region_label}')
+
+        n_feats = len(data_json['features'])
+        for feat_ind, feat in enumerate(tqdm(data_json['features'], total=n_feats)): 
             label = feat['properties']['label']
-            
+
+            if callback_progress:
+                callback_progress(feat_ind/n_feats)
+
             if label == region_label:
-                #toolbox.log_message(f'Annotated region found:  ({region_label})', callback_fun=log_msg_callback)
                 reg_pos = np.squeeze(np.asarray(feat['geometry']['coordinates']))
                 reg_pos[:, [0, 1]] = reg_pos[:, [1, 0]]
                 reg_pos[:, 0] = -1*reg_pos[:, 0]+img_size[0]
@@ -67,13 +77,18 @@ def process_folder(path_scan, region_label, bin_prop,
 
                 n_regs += 1
 
-        toolbox.log_message(f'   Total number of annotated regions  in image: {n_regs}', 
-                            callback_fun=log_msg_callback)    
+        toolbox.log_message(f'   Number of annotated regions: {n_regs}', 
+                            callback_fun=callback_log)    
+        
+        if n_regs == 0:
+            toolbox.log_message(f'WARNING.\nNO regions with label {region_label} found. Is this label correct?',
+                                callback_fun=callback_log) 
+            continue
 
         # Loop over all FQ result files
         for p_fq in path_sample.glob('*_spots_*'):
 
-                toolbox.log_message(f' \nOpening FQ file: {p_fq}', callback_fun=log_msg_callback)
+                toolbox.log_message(f' \nOpening FQ file: {p_fq}', callback_fun=callback_log)
 
                 # Get information (path, file name) to save results
                 file_base = p_fq.stem
@@ -84,20 +99,21 @@ def process_folder(path_scan, region_label, bin_prop,
 
                 # XY positions in pixel
                 if len(spots_all) == 0:
-                    toolbox.log_message(f'No RNAs detected in this file.', callback_fun=log_msg_callback)
+                    toolbox.log_message(f'No RNAs detected in this file.', callback_fun=callback_log)
                     continue
                 else:
                     pos_rna = np.divide(spots_all[:, 0:2], fq_dict['settings']['microscope']['pix_xy']).astype(int)
 
                 # Open FISH image
                 file_FISH_img = path_sample / fq_dict['file_names']['smFISH']
-                toolbox.log_message(f'  Reading FISH image: {file_FISH_img}',callback_fun=log_msg_callback)
+                toolbox.log_message(f'  Reading FISH image: {file_FISH_img}',callback_fun=callback_log)
                 img_FISH = imread(file_FISH_img)
 
                 # Folder to save results
                 path_save = path_sample / 'analysis__cell_env' / file_base
                 toolbox.log_message(f'  Results will be saved in folder: {path_save}',
-                                    callback_fun=log_msg_callback)
+                                    callback_fun=callback_log)
+                
                 if not path_save.is_dir():
                     path_save.mkdir(parents=True)
 
@@ -123,9 +139,16 @@ def process_folder(path_scan, region_label, bin_prop,
                 df_hist_PIX_all = pd.DataFrame({'bins_center': bins_center})
                 df_hist_RNA_norm_all = pd.DataFrame({'bins_center': bins_center})
 
-                toolbox.log_message(f' Loop over regions [Calculate expression gradients]', callback_fun=log_msg_callback) 
+                toolbox.log_message(f' [Calculate expression gradients]: Loop over regions', callback_fun=callback_log) 
+                
+                if callback_status:
+                    callback_status(f'[Calculate expression gradients]: Loop over regions')
+            
                 for i_reg in tqdm(range(0, n_regs)):
                     df_loop = df_rna_dist.loc[df_rna_dist['region_label'] == i_reg]
+
+                    if callback_progress:
+                        callback_progress(i_reg/n_regs)
 
                     # Distance transform
                     dist_mat_loop = dist_mat[:, :, i_reg]
@@ -208,6 +231,7 @@ def process_folder(path_scan, region_label, bin_prop,
                     plt.close()
                 
                 # Save summary histograms
+                # TODO: consider including the sample name into the name to save results
                 df_hist_RNA_all.to_csv(path_save / f'histogram__RNA.csv',
                                        index=False)
                 df_hist_PIX_all.to_csv(path_save / f'histogram__PIX.csv',
@@ -216,5 +240,8 @@ def process_folder(path_scan, region_label, bin_prop,
                                        index=False)
                 
     
-    toolbox.log_message(f'\nProcessing finished!', callback_fun=log_msg_callback)
+    toolbox.log_message(f'\nProcessing finished!', callback_fun=callback_log)
+    
+    if callback_status:
+        callback_status(f'Processing finished!')
 

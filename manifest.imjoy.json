@@ -5,10 +5,41 @@
  "version": "0.2.0",
  "plugins": [
   {
+   "name": "CellEnvironment",
+   "type": "native-python",
+   "version": "0.1.0",
+   "description": "Calculate expression levels around annotated regions.",
+   "tags": [
+    "stable",
+    "dev"
+   ],
+   "ui": "",
+   "cover": "",
+   "inputs": null,
+   "outputs": null,
+   "flags": [],
+   "icon": "extension",
+   "api_version": "0.1.7",
+   "env": "conda create -n rna-loc-liver python=3.6",
+   "permissions": [],
+   "requirements": {
+    "stable": [
+     "pip: matplotlib scikit-image numpy pandas",
+     "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@5483191"
+    ],
+    "dev": [
+     "pip: matplotlib scikit-image numpy pandas",
+     "pip:  -U --editable D:\\Documents\\code\\GitHub\\projects\\walesky-rna-loc-liver"
+    ]
+   },
+   "dependencies": [],
+   "uri": "imjoy-plugins\\CellEnvironment.imjoy.html"
+  },
+  {
    "name": "ExprGradient",
    "type": "native-python",
    "version": "0.1.4",
-   "description": "Calculate epxression gradient",
+   "description": "Calculate epxression gradients between two reference regions.",
    "tags": [
     "stable",
     "dev"
@@ -23,7 +54,7 @@
    "flags": [],
    "icon": "extension",
    "api_version": "0.1.5",
-   "env": "conda create -n ExprGradient python=3.6",
+   "env": "conda create -n rna-loc-liver python=3.6",
    "requirements": {
     "stable": [
      "pip: matplotlib scikit-image nested-lookup",
@@ -31,11 +62,11 @@
     ],
     "dev": [
      "pip: matplotlib scikit-image nested-lookup",
-     "pip:  -U --editable /Volumes/PILON_HD2/fmueller/Documents/code/walesky-rna-loc-liver"
+     "pip:  -U --editable D:\\Documents\\code\\GitHub\\projects\\walesky-rna-loc-liver"
     ]
    },
    "dependencies": [],
-   "uri": "imjoy-plugins/ExprGradient.imjoy.html"
+   "uri": "imjoy-plugins\\ExprGradient.imjoy.html"
   }
  ],
  "collections": []

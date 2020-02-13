@@ -16,6 +16,9 @@ can contain RNAs is larger, this histogram will be normalized, by this area.
 
 ## Required tools
 
+### FISH-quant for RNA detection
+For more information, Please visit the dedicated section [**here**](rna-detection.md) 
+
 ### ImJoy Plugins
 These plugins have to be installed only once, after installation they will be
 available in the dedicated ImJoy workspace: **`liver-rna-loc`**
@@ -27,16 +30,12 @@ After confirmation, the plugin together with additional auxiliary plugins will b
 * `ImageAnnotator`: annotate your images.
 <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank">**Install from here.**</a>
 
-* `CellEnvironment`: calculate expression gradient. <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=muellerflorian/walesky-rna-loc-liver:CellEnvironment@stable&upgrade=1" target="_blank">**Install from here.**</a>
+* `CellEnvironment`: calculate expression gradient. <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=muellerflorian/walesky-rna-loc-liver:CellEnvironment@stable&upgrade=1" target="_blank">**Install from here.**</a> Alternatively, you can also use the provided Jupyter notebook.
 
 <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/cell_env.png" width="600px"></img>
 
-TODO: add plugin to GitHub. 
-
 ### Jupyter notebook
-TODO: add notebook to GitHub. 
-To perform the calculation of the expression gradients, we also provide a Jupyter notebook `cell_environment.ipynb`, which can be found
-on GitHub in the folder [`notebooks`](https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks).
+To perform the calculation of the expression gradients, we also provide a Jupyter notebook `cell_environment.ipynb`, which can be found on GitHub in the folder [`notebooks`](https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks).
 
 ## Data
 
@@ -49,7 +48,6 @@ This workflow requires that data is organised in the following away
 0.  FQ result files are in the same folder. A folder can contain **multiple FQ results** for different channels.
 0.  An annotation file with the outlines cells (`annotation.json`). See below
     for more details.
-
 
 In the example below, a folder contains the annotations (`annotation.json`),
 two different channels (`...(green).tif` and `...(red).tif` ), the FQ results
@@ -78,21 +76,23 @@ You can find already processed demo data
 
 TODO: upon publication, demo data will be moved to Zenodo.
 
-## Analysis
+## Analysis workflow
 
 ### 1. RNA detection with FQ
-Please consult the dedicated section [**here**](rna-detection.md) for more details.
+For more details, please consult the dedicated section [**here**](rna-detection.md) 
 
 ### 2. Annotation of cells.
-Please consult the dedicated section [**here**](imjoy-annotation.md) for more details.
+For this workflow, all cells that should be analyze have to be manually annotated in ImJoy with one annotation
+type. We recommend naming this annotation `Cells`, but other names can be used as well (but you have
+to update the default value in the analysis scripts as described below).
 
-For this workflow, you outline all cells that you want to analyze with one annotation type. 
-We recommend naming this annotation `Cells`.
+For more details, please consult the dedicated section [**here**](imjoy-annotation.md)
 
 
 ### 3. Calculate density profiles
-You can run this analysis either with the provided code in the Jupyter notebook,
-or use ImJoy.
+You can run this analysis either with the dedicated ImJoy plugin or the provided Jupyter notebook.
+In either case, you need to have a local installation of Python. For more information consult the 
+dedicated section [**here**](tools.md). 
 
 #### Analysis in ImJoy
 If you use **Imjoy**, you need to install the **Python plugin engine**. 
@@ -126,8 +126,10 @@ next to the plugin name) and the ImJoy progress bar.
 
 #### With Jupyter notebook
 Once you have your conda environment installed as described in the Overview section,
-you can open the Jupyter notebook and analyze your data. You have to execute the first cell
-to load the necessary code.
+you can open the Jupyter notebook (`cell_environment.ipynb`, which can be found on 
+GitHub in the folder `notebooks`.
+
+You have to execute the first cell to import the analysis package.
 
 The second cell allows you to
 

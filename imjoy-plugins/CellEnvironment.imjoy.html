@@ -20,7 +20,7 @@
   "permissions": [],
   "requirements": {"stable":["pip: matplotlib scikit-image numpy pandas",
                              "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@5483191"],
-                     "dev": ["pip: matplotlib scikit-image numpy",
+                     "dev": ["pip: matplotlib scikit-image numpy pandas",
                              "pip:  -U --editable D:\\Documents\\code\\GitHub\\projects\\walesky-rna-loc-liver"]},
   "dependencies": []
 }
@@ -74,18 +74,19 @@ class ImJoyPlugin():
         ret_data = await api.showFileDialog(title="Please select a folder containing data to pre-process", type= 'directory', engine=api.ENGINE_URL)
         if not ret_data:
             return
+        path_user = ret_data.path
 
-        # Folder that was specified
-        path_data = Path(ret_data.path)
-        api.log(f'Specified folder: {str(path_data)}')
+        # Ugly patch to correct for bug in showFileDialog which returns \ for subfolders
+        if (path_user[0] == '\\') or (path_user[0] == r'/'):
+            api.log(f'Returned path will be manually corrected: {path_user}')
+            path_user=path_user[1:]
 
-        cwd = Path.cwd()
-        api.log(f'Current working directory: {str(cwd)}')
-
-
-        # TODO: solve problem of composite path:leading "/" provided by api.showFileDialog overwrites all children directories of cwd.
-        path_scan = cwd / path_data
+        # Get scan folder
+        path_scan = Path.cwd() / Path(path_user)
+        api.log(f'Specified folder: {str( Path(path_user))}')
+        api.log(f'Current working directory: {str(Path.cwd())}')
         api.log(f'Path to process: {str(path_scan)}')
+        self.path_scan = path_scan
 
         # Change ui of registered op
         api.register({
@@ -100,13 +101,14 @@ class ImJoyPlugin():
         Analyse specified folder.
         """
         
-        await cell_environment.process_folder(
-            path_scan = Path("D:/Documents/Data/collaborations/walesky-rna-loc-liver/200131_macrophages/data_for_cell_environment"), #self.path_scan, 
+        cell_environment.process_folder(
+            path_scan = self.path_scan, 
             region_label = ctx.config.reg_label, 
             bin_prop = (ctx.config.hist_min,ctx.config.hist_max,ctx.config.hist_bin_size), 
             annotation_file = ctx.config.annotation_file, 
-            log_msg_callback = api.log, 
-            log_prog_callback = api.showProgress)
+            callback_log = api.log, 
+            callback_status = api.showStatus,
+            callback_progress = api.showProgress)
 
 
     async def run(self, ctx):
