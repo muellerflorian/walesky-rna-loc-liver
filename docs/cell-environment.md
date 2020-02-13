@@ -1,7 +1,6 @@
 # Cell environment
-In this workflow, the spatial expression around cells is determined. For this, the user
-can define different cells per image, and the expression profile along equidistant regions 
-around these cells is calculated.
+In this workflow, the expression levels around user-defined regions, e.g. cells, is determined. 
+Expression levels are measured in equi-distant zones around each region.
 
 As input the workflow requires:
 
@@ -9,10 +8,13 @@ As input the workflow requires:
 -   **ImJoy** annotation files: positions of cells.
 
 ## Summary of analysis workflow
-
-For each RNA, we determine the closest distance of an RNA to a membrane. For each cells, the number of 
-close RNAs is summarized as a distance histogram. To account that for larger distances, the area that
-can contain RNAs is larger, this histogram will be normalized, by this area.
+For each RNA, the closest distance of an RNA to any of the regions is calculated. 
+The user can then define the spacing of the zones around each region. 
+For each region, the number of RNAs per zone is computed. Additionally, 
+the number of pixels in each zone, i.e. it's area is calculated. If required, this
+can be used to normalized the RNA counts, i.e. to account for the fact that 
+zones that are further away will have a larger area and thus more chance to have
+RNAs in them.
 
 ## Required tools
 
