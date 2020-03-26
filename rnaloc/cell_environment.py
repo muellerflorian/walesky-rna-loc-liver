@@ -62,6 +62,7 @@ def process_folder(path_scan,
             callback_status(f'  [Create distance maps]: Loop over regions with label: {region_label}')
 
         n_feats = len(data_json['features'])
+        
         for feat_ind, feat in enumerate(tqdm(data_json['features'], total=n_feats)): 
             label = feat['properties']['label']
 
@@ -75,12 +76,13 @@ def process_folder(path_scan,
                 mask_loop = toolbox.make_mask(reg_pos, img_size)
 
                 dist_nuc = ndimage.distance_transform_edt(np.logical_not(mask_loop))
+                
                 if n_regs == 0:
-                    dist_mat = np.copy(dist_nuc)
-                    reg_masks = np.copy(mask_loop)
+                    dist_mat = np.copy(dist_nuc.astype('uint16'))
+                    reg_masks = np.copy(mask_loop.astype('bool'))
                 else:
-                    dist_mat = np.dstack((dist_mat, dist_nuc))
-                    reg_masks = np.dstack((reg_masks, mask_loop))
+                    dist_mat = np.dstack((dist_mat, dist_nuc.astype('uint16')))
+                    reg_masks = np.dstack((reg_masks, mask_loop.astype('bool')))
 
                 n_regs += 1
 
