@@ -48,7 +48,7 @@ This workflow requires that data is organised in the following away
 1.  A parental folder contains all sample folders.
 0.  Each sample (usually a field of view) is in a separate folder, e.g. named `Sample_1`, `Sample_2`, ....       Each sample folder can contain images of multiple channels.
 0.  FQ result files are in the same folder. A folder can contain **multiple FQ results** for different channels.
-0.  An annotation file with the outlines cells (`annotation.json`). See below
+0.  An annotation file with the outlines cells (ending with `annotation.json`). See below
     for more details.
 
 In the example below, a folder contains the annotations (`annotation.json`),
@@ -61,12 +61,12 @@ for each FQ results file in this folder.
 
 ```
 ├─ data_for_expression_gradient/
-│  ├─ Sample_1
-│  │  ├─ annotation.json
+│  ├─ sample_1
+│  │  ├─ sample_1_annotation.json
 │  │  ├─ sample_1_green_outline_spots_181018.txt
 │  │  ├─ sample_1_green.tif
 │  │  ├─ sample_1_red.tif
-│  ├─ Sample_2
+│  ├─ sample_2
 │  │  ├─ ...
 ```
 

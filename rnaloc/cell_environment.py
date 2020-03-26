@@ -8,13 +8,17 @@ from scipy import ndimage
 import matplotlib.pyplot as plt
 from skimage.io import imread
 
-from fqa import toolbox
+from rnaloc import toolbox
+
 
 # Function definition
-def process_folder(path_scan, region_label, bin_prop,
-                   annotation_file='annotation.json', 
+def process_folder(path_scan, 
+                   region_label, 
+                   bin_prop,
+                   annotation_file='annotation.json',
+                   output_path='acquisition>>analysis',
                    callback_log=None,
-                   callback_status=None, 
+                   callback_status=None,
                    callback_progress=None):
     """[summary]
     TODO: add docstring
@@ -26,25 +30,28 @@ def process_folder(path_scan, region_label, bin_prop,
         [description], by default 'annotation.json'
     """
 
+    # Print all input parameters
+    toolbox.log_message(f"Function (process_folder) called with: {str(locals())} ", callback_fun=callback_log)
+
     # Created bins for histogram
     bins_hist = np.arange(bin_prop[0], bin_prop[1], bin_prop[2])
     bins_width = 0.8 * (bins_hist[1] - bins_hist[0])
     bins_center = (bins_hist[:-1] + bins_hist[1:]) / 2
 
-    for p_sample in path_scan.rglob(annotation_file):
+    for p_annotation in path_scan.rglob(f'*{annotation_file}*'):
 
         # Get sample path
-        path_sample = p_sample.parents[0]
+        path_sample = p_annotation.parents[0]
         toolbox.log_message(' ', callback_fun=callback_log)
-        toolbox.log_message(f'>> Analyzing {p_sample}', callback_fun=callback_log)
+        toolbox.log_message(f'>> Analyzing {p_annotation}', callback_fun=callback_log)
 
         # Open annotation
         file_read = path_sample / annotation_file
-        if not file_read.is_file():
-            print(f'Annotation not found: {file_read}')
+        if not p_annotation.is_file():
+            print(f'Annotation not found: {p_annotation}')
             return
 
-        data_json, img_size = toolbox.read_annotation(file_read)
+        data_json, img_size = toolbox.read_annotation(p_annotation)
 
         # Calculate distance transform for each annotated cell
         # Note that coordinates are exchanged and y flipped
@@ -79,7 +86,7 @@ def process_folder(path_scan, region_label, bin_prop,
 
         toolbox.log_message(f'   Number of annotated regions: {n_regs}', 
                             callback_fun=callback_log)    
-        
+
         if n_regs == 0:
             toolbox.log_message(f'WARNING.\nNO regions with label {region_label} found. Is this label correct?',
                                 callback_fun=callback_log) 
@@ -110,17 +117,19 @@ def process_folder(path_scan, region_label, bin_prop,
                 img_FISH = imread(file_FISH_img)
 
                 # Folder to save results
-                path_save = path_sample / 'analysis__cell_env' / file_base
+                path_save_base = toolbox.create_output_path(path_sample, output_path)
+                toolbox.log_message(f' Results will be saved here: {path_save_base}', callback_fun=callback_log)
+
+                path_save = path_save_base / 'analysis__cell_env' / file_base
                 toolbox.log_message(f'  Results will be saved in folder: {path_save}',
                                     callback_fun=callback_log)
-                
+
                 if not path_save.is_dir():
                     path_save.mkdir(parents=True)
 
-                path_save_details = path_sample / 'analysis__cell_env' / file_base / 'results_per_region'
+                path_save_details = path_save / 'per_region'
                 if not path_save_details.is_dir():
                     path_save_details.mkdir(parents=True)
-
 
                 # Matrix with distance to all nuclei: each RNA is one row
                 rna_dist_regs_all = dist_mat[pos_rna[:, 0], pos_rna[:, 1], :]
@@ -140,10 +149,10 @@ def process_folder(path_scan, region_label, bin_prop,
                 df_hist_RNA_norm_all = pd.DataFrame({'bins_center': bins_center})
 
                 toolbox.log_message(f' [Calculate expression gradients]: Loop over regions', callback_fun=callback_log) 
-                
+
                 if callback_status:
                     callback_status(f'[Calculate expression gradients]: Loop over regions')
-            
+
                 for i_reg in tqdm(range(0, n_regs)):
                     df_loop = df_rna_dist.loc[df_rna_dist['region_label'] == i_reg]
 
@@ -226,10 +235,12 @@ def process_folder(path_scan, region_label, bin_prop,
                     ax[1][2].set_ylabel('Renormalized frequency')
 
                     plt.tight_layout()
-                    plt.savefig(path_save_details / f'histogram_summary__reg_{i_reg}.png', 
-                                dpi=200)
+                    plt.savefig(path_save_details / f'hist__reg_{i_reg}.png', dpi=200)
+
+                    #plt.savefig(path_save / f'histogram_summary__reg_{i_reg}.png', 
+                    #            dpi=200)
                     plt.close()
-                
+
                 # Save summary histograms
                 # TODO: consider including the sample name into the name to save results
                 df_hist_RNA_all.to_csv(path_save / f'histogram__RNA.csv',
@@ -237,11 +248,10 @@ def process_folder(path_scan, region_label, bin_prop,
                 df_hist_PIX_all.to_csv(path_save / f'histogram__PIX.csv',
                                        index=False)
                 df_hist_RNA_norm_all.to_csv(path_save / f'histogram__RNA_norm.csv',
-                                       index=False)
-                
-    
+                                            index=False)   
+
     toolbox.log_message(f'\nProcessing finished!', callback_fun=callback_log)
-    
+
     if callback_status:
         callback_status(f'Processing finished!')
 

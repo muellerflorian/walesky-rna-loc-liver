@@ -1,0 +1,9 @@
+numpy==1.18.2
+scikit-image==0.16.2
+scipy==1.4.1
+matplotlib==3.2.1
+nested_lookup==0.2.21
+read-roi==1.5.2
+roipoly==0.5.2
+pandas==1.0.3
+tqdm==4.43.0

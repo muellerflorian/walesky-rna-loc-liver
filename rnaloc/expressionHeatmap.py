@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 # IMPORTS
-import matplotlib as mpl
-mpl.use('Agg')
+#import matplotlib as mpl
+#mpl.use('Agg')
 import matplotlib.pyplot as plt
 
 import os
@@ -12,12 +12,11 @@ from skimage import io
 from scipy import ndimage
 from skimage.io import imread, imsave
 
-from fqa import toolbox
+from rnaloc import toolbox
 
 # Turn off warnings occuring when saving images
 import warnings
 warnings.filterwarnings("ignore", message=".*(is a low contrast image)")
-
 
 
 def folder_scan_process(folder_root,region_labels,log_msg_callback = None,log_prog_callback=None):
@@ -33,7 +32,6 @@ def folder_scan_process(folder_root,region_labels,log_msg_callback = None,log_pr
     for folder_process in folders_proc:
         toolbox.log_message(f'\n\n Processing folder: {folder_process}',callback_fun=log_msg_callback)
         process_folder(folder_process,region_labels,log_msg_callback=log_msg_callback,log_prog_callback=log_prog_callback)
-
 
 
 def process_folder(folder_process,region_labels,log_msg_callback = None,log_prog_callback=None):
