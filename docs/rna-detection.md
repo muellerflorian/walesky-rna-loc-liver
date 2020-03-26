@@ -1,8 +1,15 @@
 # RNA detection with FISH-quant
 
-Below only a quick summary of the analysis steps is presented. For more details consult the <a href="https://bitbucket.org/muellerflorian/fish_quant/src/master/Documentation/FISH_QUANT_v3.pdf" target="_blank">**FQ manual.**</a>.
+## FISH-quant
+[**FISH-quant**](https://bitbucket.org/muellerflorian/fish_quant/) is a Matlab toolbox to
+localize RNAs in 3D from smFISH images.
+
+<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/fq-screenshot.png" width="600px"></img>
+
 
 ## Detection of individual RNAs
+
+Below only a quick summary of the analysis steps is presented. For more details consult the <a href="https://bitbucket.org/muellerflorian/fish_quant/src/master/Documentation/FISH_QUANT_v3.pdf" target="_blank">**FQ manual.**</a>.
 
 1.  Open FQ
 2.  Set analysis folder to folder containing the image that should be analysed:
