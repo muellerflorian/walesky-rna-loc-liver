@@ -6,10 +6,18 @@
 {
   "name": "CellEnvironment",
   "type": "native-python",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Calculate expression levels around annotated regions.",
   "tags": ["stable","dev"],
-  "ui": "",
+  "ui": [
+            "Path DATA: {id: 'path_scan', type: 'string', placeholder: 'paste-path-to-data'}",
+            "Path SAVE: {id: 'path_save', type: 'string', placeholder: 'acquisition˃˃analysis'}",
+            "Region label: {id: 'reg_label', type: 'string', placeholder: 'Cells'}",
+            "Annotation file: {id: 'annotation_file', type: 'string', placeholder: 'annotation.json'}",
+            "Hist [min]: {id: 'hist_min', type: 'number', placeholder: 0}",
+            "Hist [max]: {id: 'hist_max', type: 'number', placeholder: 401}",
+            "Hist [bin_size]: {id: 'hist_bin_size', type: 'number', placeholder: 200}"
+            ],
   "cover": "",
   "inputs": null,
   "outputs": null,
@@ -18,10 +26,8 @@
   "api_version": "0.1.7",
   "env": "",
   "permissions": [],
-  "requirements": {"stable":["pip: matplotlib scikit-image numpy pandas",
-                             "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@5483191"],
-                     "dev": ["pip: matplotlib scikit-image numpy pandas",
-                             "pip:  -U --editable D:\\Documents\\code\\GitHub\\projects\\walesky-rna-loc-liver"]},
+  "requirements": {"stable":["pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@5483191"],
+                     "dev": [""]},
   "dependencies": []
 }
 </config>
@@ -42,78 +48,43 @@ if sys.platform == "darwin":
     matplotlib.use('PS')
 
 class ImJoyPlugin():
+
     def setup(self):
         api.log('CellEnvironment plugin initialized')
 
-        # Prepare data
-        api.register({
-            "name": "Press to define folder",
-            "type": "op",
-            "ui": "Define folder for processing",
-            "run":self.define_folder
-        })
-
-        # Prepare data
-        api.register({
-            "name": "Press to run analysis",
-            "type": "op",
-            "ui": [
-                    "Region label: {id: 'reg_label', type: 'string', placeholder: 'Cells'}",
-                    "Annotation file: {id: 'annotation_file', type: 'string', placeholder: 'annotation.json'}",
-                    "Hist [min]: {id: 'hist_min', type: 'number', placeholder: 0}",
-                    "Hist [max]: {id: 'hist_max', type: 'number', placeholder: 401}",
-                    "Hist [bin_size]: {id: 'hist_bin_size', type: 'number', placeholder: 200}"
-                ],
-            "run":self.run_analysis
-        })
-
-    async def define_folder(self,ctx):
-        """
-        Define folder to be processed.
-        """
-        ret_data = await api.showFileDialog(title="Please select a folder containing data to pre-process", type= 'directory', engine=api.ENGINE_URL)
-        if not ret_data:
-            return
-        path_user = ret_data.path
-
-        # Ugly patch to correct for bug in showFileDialog which returns \ for subfolders
-        if (path_user[0] == '\\') or (path_user[0] == r'/'):
-            api.log(f'Returned path will be manually corrected: {path_user}')
-            path_user=path_user[1:]
-
-        # Get scan folder
-        path_scan = Path.cwd() / Path(path_user)
-        api.log(f'Specified folder: {str( Path(path_user))}')
-        api.log(f'Current working directory: {str(Path.cwd())}')
-        api.log(f'Path to process: {str(path_scan)}')
-        self.path_scan = path_scan
-
-        # Change ui of registered op
-        api.register({
-            "name": "Press to define folder",
-            "type": "op",
-            "ui": str(path_scan),
-            "run":self.define_folder
-        })
-        
-    async def run_analysis(self,ctx):
-        """
-        Analyse specified folder.
-        """
-        
-        cell_environment.process_folder(
-            path_scan = self.path_scan, 
-            region_label = ctx.config.reg_label, 
-            bin_prop = (ctx.config.hist_min,ctx.config.hist_max,ctx.config.hist_bin_size), 
-            annotation_file = ctx.config.annotation_file, 
-            callback_log = api.log, 
-            callback_status = api.showStatus,
-            callback_progress = api.showProgress)
-
-
     async def run(self, ctx):
 
-        api.log('Use specific plugin ops.')
+        # Path containing the data
+        path_scan = ctx.config.path_scan
+        
+        if path_scan == 'paste-path-to-data':
+            api.alert('Path to data has to be specified.')
+            return
+
+        # >> Path to save data
+        path_save = ctx.config.path_save
+
+        # This looks a bit weird, but the default string does not contain the greater sign,
+        # but a close unicode replacement (otherwise rendering would not be possible due security risk, strings are sanitised)
+        path_save = path_save.replace('˃˃', '>>')
+
+        if '>>' in path_save:
+            api.log('Path replacement defined in path_save. Will keep string as is.')
+
+        else:
+            path_save = Path(path_save)
+
+        # Analyze data
+        cell_environment.process_folder(
+                path_scan = Path(path_scan), 
+                region_label = ctx.config.reg_label, 
+                bin_prop = (ctx.config.hist_min,ctx.config.hist_max,ctx.config.hist_bin_size), 
+                annotation_file = ctx.config.annotation_file, 
+                output_path = path_save,
+                callback_log = api.log, 
+                callback_status = api.showStatus,
+                callback_progress = api.showProgress)
+
         
 api.export(ImJoyPlugin())
 </script>

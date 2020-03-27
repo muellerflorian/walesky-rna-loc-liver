@@ -94,26 +94,37 @@ For more details, please consult the dedicated section [**here**](imjoy-annotati
 ### 3. Calculate density profiles
 You can run this analysis either with the dedicated ImJoy plugin or the provided Jupyter notebook.
 In either case, you need to have a local installation of Python. For more information consult the 
-dedicated section [**here**](tools.md). 
+dedicated section [**here**](tools-imjoy.md). 
 
+#### 4. Where results will be saved
+Results will always be saved in a folder `analysis__cell_env`, where for each spot detection results 
+for a given sample a separate folder will be created. However, different options exist to 
+define where this folder will be created: 
+
+1. You can define an absolute path name. then this path will be used to store the data. 
+2. You can define a "replacement operation" where parts of the path name of the results, will be
+   replaced with another string. This is convenient when wanting to store the results in a different location than the raw data. Such a replacement operation is specified with a string where the `old_string` is separated by the `new_string` with a `>>`, e.g. the string `acquisition>>analysis` indicates that not a complete path is provided, but that a string in the provided data folder will be replaced. More specifically, the string `acquisition` will be replaced by `analysis`. 
+
+   
 #### Analysis in ImJoy
-If you use **Imjoy**, you need to install the **Python plugin engine**. 
+If you use **Imjoy**, you need to install the **Jupyter engine**. 
 The first installation might take a bit of time, since the necessary Python environments
 on the plugin engine are created.
 
-Once installed, you will see in the plugin sidebar, where you can launch the analysis in a
-few steps
+Once installed, you will see in the plugin sidebar, where you can launch the analysis:
 
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/cellEnv-plugin-dialog.png" width="250px"></img>
+![cellEnv-plugin-dialog.png](img/cellEnv-plugin-dialog.png){: style="width:300px"}
 
-1. You have to analye the folder that should be processed. Click on the blue text
-    `Press to define folder` to do so.
+1.  Paste the full name of the folder that should be processed. This folder will be recursively searched
+    and each subfolder containing an annotation file will be processed. 
 
-2. If needed, change the analysis parameters (see Table below), and press on blue text 
-   `Press to run analysis`. 
+2. If needed, change the analysis parameters (see Table below), and press on plugin name in blue to launch 
+    the analysis, 
 
         Option           | Type | Default     | Description
         ---------------- | ---- | ----------- | -----------
+        `Path DATA`    | str  |  | Full path to folder that should be scanned for annotation files. 
+        `PATH Save`    | str  |  | Where results should be saved (see above).
         `Region label`    | str  | `Cells` | Label of the annotated regions.
         `Annotation file` | str  | `annotation.json` | Name of the ImJoy annotation file.
         `Hist [min]`    | int  |  0 | Minimum value of histogram to summarize enrichment (in pixel).

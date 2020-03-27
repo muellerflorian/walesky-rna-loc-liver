@@ -108,18 +108,6 @@ For this workflow, you need TWO different annotations
 You can run this analysis either with the provided code in the Jupyter notebook,
 or use ImJoy.
 
-#### With Jupyter notebook
-Once you have your conda environment installed as described in the Overview section,
-you can open the Jupyter notebook and analyze your data. You have to execute the first cell
-to load the necessary code.
-
-The second cell allows you to
-
-1.  Define the folder containing your data.
-2.  Defining the labels for the two annotated reference regions.
-
-Executing the cell, will launch the analysis workflow. described above.
-
 #### Analysis in ImJoy
 If you use **ImJoy**, you need to install the **Python plugin engine**. 
 The first installation might take a bit of time, since the necessary Python environments
@@ -132,7 +120,8 @@ on the arrow down symbol next to the plugin name.
 In the example below the labels `CV` and `PL` are defined for the first and second
 region, respectively.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/expGrad-plugin-dialog.png" width="250px"></img>
+
+![expGrad-plugin-dialog.png](img/expGrad-plugin-dialog.png){: style="width:300px"}
 
 Then you can press on the plugin name to execute the plugin. In a dialog, you will
 be asked to specify a folder, please select the parental folder containing the different
@@ -142,6 +131,18 @@ expression gradient between these two regions.
 
 **Progress is reported** in the plugin log (accessible with the 'i' symbol
 next to the plugin name) and the ImJoy progress bar.
+
+#### With Jupyter notebook
+Once you have your conda environment installed as described in the Overview section,
+you can open the Jupyter notebook and analyze your data. You have to execute the first cell
+to load the necessary code.
+
+The second cell allows you to
+
+1.  Define the folder containing your data.
+2.  Defining the labels for the two annotated reference regions.
+
+Executing the cell, will launch the analysis workflow. described above.
 
 ### 4. Generated result files
 

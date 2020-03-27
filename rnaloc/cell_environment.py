@@ -90,7 +90,7 @@ def process_folder(path_scan,
                             callback_fun=callback_log)    
 
         if n_regs == 0:
-            toolbox.log_message(f'WARNING.\nNO regions with label {region_label} found. Is this label correct?',
+            toolbox.log_message(f'WARNING.\nNO regions with label "{region_label}"" found. Is this label correct?',
                                 callback_fun=callback_log) 
             continue
 
