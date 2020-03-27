@@ -1,0 +1,975 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Collection of post-processing scripts for images analyzed with FISH-quant,">
+      
+      
+        <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/tools-imjoy/">
+      
+      
+        <meta name="author" content="Florian MUELLER">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="/img/icons8-eukaryotic-cells-filled-100.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>ImJoy - Quantify RNA localization in liver</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#imjoy" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" title="Quantify RNA localization in liver" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">wb_sunny</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Quantify RNA localization in liver
+              </span>
+              <span class="md-header-nav__topic">
+                ImJoy
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/muellerflorian/walesky-rna-loc-liver.git" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="Overview" class="md-tabs__link md-tabs__link--active">
+        Overview
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../rna-detection/" title="General workflows" class="md-tabs__link">
+          General workflows
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../expression-gradient/" title="Analysis workflows" class="md-tabs__link">
+          Analysis workflows
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../licence/" title="About" class="md-tabs__link">
+          About
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" title="Quantify RNA localization in liver" class="md-nav__button md-logo">
+      
+        <i class="md-icon">wb_sunny</i>
+      
+    </a>
+    Quantify RNA localization in liver
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/muellerflorian/walesky-rna-loc-liver.git" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        ImJoy
+      </label>
+    
+    <a href="./" title="ImJoy" class="md-nav__link md-nav__link--active">
+      ImJoy
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" title="Basic usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-plugins" title="Installing plugins" class="md-nav__link">
+    Installing plugins
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opening-a-workspace" title="Opening a workspace" class="md-nav__link">
+    Opening a workspace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-python-plugins" title="Running Python plugins" class="md-nav__link">
+    Running Python plugins
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect-jupyter-engine" title="Connect Jupyter engine" class="md-nav__link">
+    Connect Jupyter engine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-plugin-engines" title="Managing plugin engines" class="md-nav__link">
+    Managing plugin engines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-jupyter-engine-for-imjoy" title="Install Jupyter engine for ImJoy" class="md-nav__link">
+    Install Jupyter engine for ImJoy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trouble-shooting" title="Trouble-shooting" class="md-nav__link">
+    Trouble-shooting
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plugin-running-on-wrong-engine" title="Plugin running on wrong engine" class="md-nav__link">
+    Plugin running on wrong engine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-conda-environment" title="Remove conda environment" class="md-nav__link">
+    Remove conda environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reporting-bugs" title="Reporting bugs" class="md-nav__link">
+    Reporting bugs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specify-your-own-jupyter-token" title="Specify your own Jupyter token" class="md-nav__link">
+    Specify your own Jupyter token
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../tools-jupyter/" title="Jupyter" class="md-nav__link">
+      Jupyter
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      General workflows
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        General workflows
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rna-detection/" title="RNA detection with FQ" class="md-nav__link">
+      RNA detection with FQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../imjoy-annotation/" title="Image annotation with ImJoy" class="md-nav__link">
+      Image annotation with ImJoy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Analysis workflows
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Analysis workflows
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../expression-gradient/" title="Expression gradient" class="md-nav__link">
+      Expression gradient
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cell-environment/" title="Cell environment" class="md-nav__link">
+      Cell environment
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      About
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../licence/" title="Licence" class="md-nav__link">
+      Licence
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" title="Basic usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-plugins" title="Installing plugins" class="md-nav__link">
+    Installing plugins
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opening-a-workspace" title="Opening a workspace" class="md-nav__link">
+    Opening a workspace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-python-plugins" title="Running Python plugins" class="md-nav__link">
+    Running Python plugins
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect-jupyter-engine" title="Connect Jupyter engine" class="md-nav__link">
+    Connect Jupyter engine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-plugin-engines" title="Managing plugin engines" class="md-nav__link">
+    Managing plugin engines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-jupyter-engine-for-imjoy" title="Install Jupyter engine for ImJoy" class="md-nav__link">
+    Install Jupyter engine for ImJoy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trouble-shooting" title="Trouble-shooting" class="md-nav__link">
+    Trouble-shooting
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plugin-running-on-wrong-engine" title="Plugin running on wrong engine" class="md-nav__link">
+    Plugin running on wrong engine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-conda-environment" title="Remove conda environment" class="md-nav__link">
+    Remove conda environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reporting-bugs" title="Reporting bugs" class="md-nav__link">
+    Reporting bugs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specify-your-own-jupyter-token" title="Specify your own Jupyter token" class="md-nav__link">
+    Specify your own Jupyter token
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="imjoy">ImJoy<a class="headerlink" href="#imjoy" title="Permanent link">&para;</a></h1>
+<p><a href="https://imjoy.io/docs/#/">ImJoy</a> is image processing platform with an easy to use interface running in your browser.  </p>
+<ul>
+<li>While ImJoy is a browser app, <strong>NO</strong> user data will be transferred over the internet. </li>
+<li>For best stability, we recommend using <a href="https://www.google.com/chrome/"><strong>Chrome</strong></a> to run the ImJoy app.  </li>
+<li>
+<p>Some of its main <strong>features</strong> are:</p>
+<ol>
+<li>
+<p>Specific functionality is provided by <strong>plugins</strong>, which can be installed with simple links. Available 
+    plugins are listed in the plugin list on the left part of the interface. Plugins using Python require 
+    a Plugin engine to be executed. Installation and usasage is detailed below.  </p>
+</li>
+<li>
+<p>ImJoy can have several <strong>workspaces</strong>. Each workspace can contain multiple plugins and is 
+    dedicated to a specific data processing task. Workspaces can be selected from little puzzle 
+    symbol in the upper left part of the interface.</p>
+</li>
+</ol>
+</li>
+</ul>
+<p><img alt="imjoy-interface" src="../img/imjoy-interface.png" /></p>
+<h2 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
+<h3 id="installing-plugins">Installing plugins<a class="headerlink" href="#installing-plugins" title="Permanent link">&para;</a></h3>
+<p>We provide links to install ImJoy plugins for the different workflows. </p>
+<p>If you press on the installation link, the ImJoy app will open and display a
+dialog asking if you want to install the specified plugin. To confirm, press 
+the <code>install</code> button.</p>
+<p><img alt="imjoy-plugin-installation" src="../img/imjoy-plugin-installation.png" style="width:300px" /></p>
+<p>These installation links also specify in which <strong>ImJoy workspaces</strong> the plugin will be installed.  </p>
+<h3 id="opening-a-workspace">Opening a workspace<a class="headerlink" href="#opening-a-workspace" title="Permanent link">&para;</a></h3>
+<p>Once a plugin is installed, ImJoy remembers the workspaces and plugins it contains. </p>
+<p>If you want to redo an analysis, you simply have to open the <a href="https://imjoy.io/#/app">ImJoy app</a> 
+and select the appropriate (<code>fq-segmentation</code> for this package): </p>
+<p><img alt="imjoy-workspace.gif" src="../img/imjoy-workspace.gif" style="width:500px" /></p>
+<p>If <strong>updates</strong> for the installed plugins 
+are available, you will see a corresponding symbol next to the plugin name.</p>
+<h2 id="running-python-plugins">Running Python plugins<a class="headerlink" href="#running-python-plugins" title="Permanent link">&para;</a></h2>
+<p>Most of the provided plugins use Python for data processing. To use these plugins, 
+you have to connect ImJoy to a Plugin engine. For this repository, we use <strong>Jupyter notebooks</strong> as 
+and engine, which can be installed via Miniconda (see installation instructions <a href="#install-jupyter-engine-for-imjoy">below</a>). </p>
+<h3 id="connect-jupyter-engine">Connect Jupyter engine<a class="headerlink" href="#connect-jupyter-engine" title="Permanent link">&para;</a></h3>
+<p>Once installed Jupyter is installed, you can start a Jupyter Notebook in the anaconda terminal, 
+to which ImJoy can connect. </p>
+<ul>
+<li>Please note that this engine runs on your local machine, so no data-transfer over the internet is taking place. </li>
+<li>In order to connect a Jupyter engine, you need to specify its url that also contains a token (a passphrase). 
+    If you launch a Jupyter notebook for the first time, you have to provide this URL to ImJoy
+    (indicated below with <strong>First time only</strong>). After this, ImJoy will remember it. </li>
+</ul>
+<p><img alt="terminal-launch-jupyter.png" src="../img/terminal-launch-jupyter.png" /></p>
+<ol>
+<li>
+<p>Launch a <strong>Jupyter Engine for ImJoy</strong>:</p>
+<ol>
+<li>Start an <strong>anaconda terminal</strong>. </li>
+<li><strong>Activate the environment</strong>: <code>conda activate rna-loc-liver</code></li>
+<li><strong>Start Jupyter engine</strong>: <code>imjoy --jupyter</code></li>
+<li><strong>First time only</strong>: copy the provided URL including the token, 
+    e.g. <code>http://127.0.0.1:8888/?token=8b4885e452db1af7cd7b3cfa6c62036cbae46995e473c25e</code></li>
+</ol>
+</li>
+<li>
+<p><strong>Connect ImJoy to Jupyter Engine</strong>: </p>
+<ol>
+<li>In the ImJoy app, press on the rocket symbol in the upper right corner.<ul>
+<li><strong>First time only</strong>: select <code>Add Jupyter-Engine</code>, paste the URL from the step above, and you can give a new name to the engine</li>
+<li><strong>Subsequent use</strong>: press on the pre-defined plugin engine to connect to it (of course you have to launch it first).</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>If this is the only engine, plugins will be <strong>automatically connected</strong>. You can verify this, 
+   by clicking on the puzzle symbol next to the plugin name. Depending on the plugin, installation
+   might take a while, during this period the plugin name will be in red.  </p>
+<p>If yoy have multiple engines, you have to choose on which engine the plugin should be running 
+(more details <a href="#plugin-running-on-wrong-engine">below</a>).</p>
+</li>
+</ol>
+<p><img alt="imjoy-connect-jupyter.gif" src="../img/imjoy-connect-jupyter.gif" /></p>
+<h3 id="managing-plugin-engines">Managing plugin engines<a class="headerlink" href="#managing-plugin-engines" title="Permanent link">&para;</a></h3>
+<p>ImJoy remembers the plugin engines it connected to (including the token). You can obtain the list of all
+registered engines by pressing on the rocket symbol. </p>
+<p><img alt="imjoy-plugin-manager.png" src="../img/imjoy-plugin-manager.png" style="width:300px" /></p>
+<ul>
+<li><strong>Connected engines</strong> will be shown with their name in black, and a red cross next to the name. Pressing the cross will disconnect ImJoy from the engine, but it will remain in the list. </li>
+<li><strong>Known engines</strong> (but not connected) will be shown with their name in gray, with a little trash symbol next to them. Pressing on the trash symbol will remove the engine. </li>
+</ul>
+<h2 id="install-jupyter-engine-for-imjoy">Install Jupyter engine for ImJoy<a class="headerlink" href="#install-jupyter-engine-for-imjoy" title="Permanent link">&para;</a></h2>
+<p>We recommend installing an <a href="https://docs.conda.io/en/latest/miniconda.html"><strong>Miniconda</strong> with Python</a>: 
+choose Python 3.7 and your operating system. You  can then use the annoconda prompt to excecute the different commands listed below. </p>
+<p>We further recommend creating a <strong>dedicated environment</strong> to run code in this analysis package. This guarantess that only necessary code is installed. 
+To create an environment called <code>fq-segmentation</code>, open an anaconda prompt and type
+(Confirm with <code>y</code> when asked if you want to proceed (<code>Proceed ([y]/n)?</code>): </p>
+<div class="highlight"><pre><span></span>conda create --name rna-loc-liver python=3.7
+</pre></div>
+
+<p><strong>Activate the environment</strong>:
+<div class="highlight"><pre><span></span>conda activate rna-loc-liver
+</pre></div></p>
+<p><strong>Install code Jupyter optimized for ImJoy</strong>:
+<div class="highlight"><pre><span></span>pip install -U imjoy
+</pre></div></p>
+<h2 id="trouble-shooting">Trouble-shooting<a class="headerlink" href="#trouble-shooting" title="Permanent link">&para;</a></h2>
+<h3 id="plugin-running-on-wrong-engine">Plugin running on wrong engine<a class="headerlink" href="#plugin-running-on-wrong-engine" title="Permanent link">&para;</a></h3>
+<p>You have several options</p>
+<ul>
+<li>Disconnect or delete the engine the plugin is connecting to (see )<a href="#managing-plugin-engines">here</a>).</li>
+<li>In the plugin menu (clicking on the little puzzle symbol left of the plugin name), select the appropriate engine.</li>
+</ul>
+<h3 id="remove-conda-environment">Remove conda environment<a class="headerlink" href="#remove-conda-environment" title="Permanent link">&para;</a></h3>
+<p>At one point, your conda environment might get corrupted. You can easily remove it, and create a new one</p>
+<ol>
+<li>Open anaconda terminal</li>
+<li><strong>Activate base environment</strong>: <code>conda activate base</code></li>
+<li><strong>Remove <code>fq-segmentation</code> environment</strong>: <code>conda env remove --name fq-segmentation</code></li>
+</ol>
+<h3 id="reporting-bugs">Reporting bugs<a class="headerlink" href="#reporting-bugs" title="Permanent link">&para;</a></h3>
+<p>Detailed installation logs are provided in the console of the browser. Information in this log, can facilitate the correction of encountered bugs. When reporting problems with this package, please provide the log copied to text file. </p>
+<p>To acces the console log in <strong>Chrome</strong>:</p>
+<ol>
+<li>In the ImJoy app mouse-right-click. </li>
+<li>Select <code>Inspect</code>. </li>
+<li>This will open a new interface on the right size of your browser windows. Select the panel <code>Console</code> and copy the entire content, and paste it to a file.  </li>
+</ol>
+<h3 id="specify-your-own-jupyter-token">Specify your own Jupyter token<a class="headerlink" href="#specify-your-own-jupyter-token" title="Permanent link">&para;</a></h3>
+<p>You can specify your own token <code>yourtoken</code></p>
+<p><div class="highlight"><pre><span></span>imjoy --jupyter --token yourtoken
+</pre></div>
+When launched like this, you will not get the full Jupyter URL in the terminal, but <code>http://localhost:8888/?token=...</code>.</p>
+<p>When copying this link to the ImJoy app for the first time you have to replace the <code>...</code> by the token you actually specified.</p>
+<p>The next time you start jupyter with <code>imjoy --jupyter</code> your custom token will be used</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Overview
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../tools-jupyter/" title="Jupyter" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Jupyter
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2019 Florian MUELLER
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/muellerflorian" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://www.linkedin.com/in/muellerflorian/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+      <a href="https://scholar.google.fr/citations?user=WrEj9t4AAAAJ" class="md-footer-social__link fa fa-google"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

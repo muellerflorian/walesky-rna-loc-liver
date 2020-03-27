@@ -13,7 +13,7 @@
         <meta name="description" content="Collection of post-processing scripts for images analyzed with FISH-quant,">
       
       
-        <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/expression-gradient/">
+        <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/cell-environment/">
       
       
         <meta name="author" content="Florian MUELLER">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Expression gradient - Quantify RNA localization in liver</title>
+        <title>Cell environment - Quantify RNA localization in liver</title>
       
     
     
@@ -104,7 +104,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#expression-gradient-analysis" tabindex="1" class="md-skip">
+      <a href="../#cell-environment" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -130,7 +130,7 @@
                 Quantify RNA localization in liver
               </span>
               <span class="md-header-nav__topic">
-                Expression gradient
+                Cell environment
               </span>
             
           
@@ -240,7 +240,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" title="Analysis workflows" class="md-tabs__link md-tabs__link--active">
+        <a href="../expression-gradient/" title="Analysis workflows" class="md-tabs__link md-tabs__link--active">
           Analysis workflows
         </a>
       
@@ -415,6 +415,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../expression-gradient/" title="Expression gradient" class="md-nav__link">
+      Expression gradient
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -426,11 +438,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Expression gradient
+        Cell environment
       </label>
     
-    <a href="./" title="Expression gradient" class="md-nav__link md-nav__link--active">
-      Expression gradient
+    <a href="./" title="Cell environment" class="md-nav__link md-nav__link--active">
+      Cell environment
     </a>
     
       
@@ -457,6 +469,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fish-quant-for-rna-detection" title="FISH-quant for RNA detection" class="md-nav__link">
+    FISH-quant for RNA detection
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#imjoy-plugins" title="ImJoy Plugins" class="md-nav__link">
@@ -505,8 +524,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#analysis" title="Analysis" class="md-nav__link">
-    Analysis
+  <a href="#analysis-workflow" title="Analysis workflow" class="md-nav__link">
+    Analysis workflow
   </a>
   
     <nav class="md-nav">
@@ -520,8 +539,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-annotation-of-reference-regions" title="2. Annotation of reference regions" class="md-nav__link">
-    2. Annotation of reference regions
+  <a href="#2-annotation-of-cells" title="2. Annotation of cells." class="md-nav__link">
+    2. Annotation of cells.
   </a>
   
 </li>
@@ -533,6 +552,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-where-results-will-be-saved" title="4. Where results will be saved" class="md-nav__link">
+    4. Where results will be saved
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#analysis-in-imjoy" title="Analysis in ImJoy" class="md-nav__link">
@@ -573,18 +599,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../cell-environment/" title="Cell environment" class="md-nav__link">
-      Cell environment
-    </a>
   </li>
 
         
@@ -665,6 +679,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#fish-quant-for-rna-detection" title="FISH-quant for RNA detection" class="md-nav__link">
+    FISH-quant for RNA detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#imjoy-plugins" title="ImJoy Plugins" class="md-nav__link">
     ImJoy Plugins
   </a>
@@ -711,8 +732,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#analysis" title="Analysis" class="md-nav__link">
-    Analysis
+  <a href="#analysis-workflow" title="Analysis workflow" class="md-nav__link">
+    Analysis workflow
   </a>
   
     <nav class="md-nav">
@@ -726,8 +747,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-annotation-of-reference-regions" title="2. Annotation of reference regions" class="md-nav__link">
-    2. Annotation of reference regions
+  <a href="#2-annotation-of-cells" title="2. Annotation of cells." class="md-nav__link">
+    2. Annotation of cells.
   </a>
   
 </li>
@@ -739,6 +760,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-where-results-will-be-saved" title="4. Where results will be saved" class="md-nav__link">
+    4. Where results will be saved
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#analysis-in-imjoy" title="Analysis in ImJoy" class="md-nav__link">
@@ -788,165 +816,174 @@
               
                 
                 
-                <h1 id="expression-gradient-analysis">Expression gradient analysis<a class="headerlink" href="#expression-gradient-analysis" title="Permanent link">&para;</a></h1>
-<p>In this workflow, the spatial expression gradient between two reference regions
-are created. The distances are renormalised such that results from different images
-can be more easily be compared.</p>
+                <h1 id="cell-environment">Cell environment<a class="headerlink" href="#cell-environment" title="Permanent link">&para;</a></h1>
+<p>In this workflow, the expression levels around user-defined regions, e.g. cells, is determined. 
+Expression levels are measured in equi-distant zones around each region.</p>
 <p>As input the workflow requires:</p>
 <ul>
-<li><strong>FISH-quant</strong>  results file: created with FISH-quant.</li>
-<li><strong>ImJoy</strong> annotation files: annotations of the two reference regions.</li>
+<li><strong>FISH-quant</strong>  results file: positions of RNAs.</li>
+<li><strong>ImJoy</strong> annotation files: positions of cells.</li>
 </ul>
 <h2 id="summary-of-analysis-workflow">Summary of analysis workflow<a class="headerlink" href="#summary-of-analysis-workflow" title="Permanent link">&para;</a></h2>
-<p>The expression gradient is calculated as follows</p>
-<ol>
-<li>In the analysis, the distance for RNA from the first reference region is calculated
-    (the shortest distance between the RNA and the polygon defining this region). Negative
-    distances mean that the RNA is inside, positive that the RNA is outside.</li>
-<li>
-<p>These distances are then renormalised with the shortest distance between the center of mass
-    of the second region and the polygon of the first region.
-     <img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity-analysis.png" width="600px"></img></p>
-</li>
-<li>
-<p>Distances are then summarised in histograms with bins of width 0.1 between the minimum
-    and maximum renormalised distance measurements.</p>
-</li>
-<li>These counts are then further renormalised to consider the actual contained area
-    in the image for a given distance. This is done by calculating the distance transform of the image
-    with respect to region 1. These values are treated distance measurements, and treated as
-    described for the RNA distance measurements. The obtained histogram counts are used
-    to normalise the RNA distance counts.</li>
-<li>Lastly, the histogram is such that frequencies sum up to 1.</li>
-</ol>
+<p>For each RNA, the closest distance of an RNA to any of the regions is calculated. 
+The user can then define the spacing of the zones around each region. 
+For each region, the number of RNAs per zone is computed. Additionally, 
+the number of pixels in each zone, i.e. it's area is calculated. If required, this
+can be used to normalized the RNA counts, i.e. to account for the fact that 
+zones that are further away will have a larger area and thus more chance to have
+RNAs in them.</p>
 <h2 id="required-tools">Required tools<a class="headerlink" href="#required-tools" title="Permanent link">&para;</a></h2>
+<h3 id="fish-quant-for-rna-detection">FISH-quant for RNA detection<a class="headerlink" href="#fish-quant-for-rna-detection" title="Permanent link">&para;</a></h3>
+<p>For more information, Please visit the dedicated section <a href="../rna-detection/"><strong>here</strong></a> </p>
 <h3 id="imjoy-plugins">ImJoy Plugins<a class="headerlink" href="#imjoy-plugins" title="Permanent link">&para;</a></h3>
 <p>These plugins have to be installed only once, after installation they will be
 available in the dedicated ImJoy workspace: <strong><code>liver-rna-loc</code></strong></p>
-<p>Pressing on the links below, will open ImJoy in your browser (best in Chrome) and
-allow you to install the required plugins. You will be asked to confirm the installation
-with a dialog as shown below. After confirmation, the plugins will be installed together with
-additional auxiliary plugins.</p>
+<p>When pressing on the links below, ImJoy will open in your browser (best in Chrome) and
+you will be asked to confirm the installation with a dialog as shown below. 
+After confirmation, the plugin together with additional auxiliary plugins will be installed.</p>
 <ul>
 <li>
 <p><code>ImageAnnotator</code>: annotate your images.
 <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=oeway/ImJoy-Plugins:ImageAnnotator&upgrade=1" target="_blank"><strong>Install from here.</strong></a></p>
 </li>
 <li>
-<p><code>ExpGradient</code>: calculate expression gradient. <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=muellerflorian/walesky-rna-loc-liver:ExprGradient@stable&upgrade=1" target="_blank"><strong>Install from here.</strong></a></p>
+<p><code>CellEnvironment</code>: calculate expression gradient. <a href="https://imjoy.io/#/app?w=liver-rna-loc&plugin=muellerflorian/walesky-rna-loc-liver:CellEnvironment@stable&upgrade=1" target="_blank"><strong>Install from here.</strong></a> Alternatively, you can also use the provided Jupyter notebook.</p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/exprdensity.png" width="600px"></img></p>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/cell_env.png" width="600px"></img></p>
 <h3 id="jupyter-notebook">Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permanent link">&para;</a></h3>
-<p>To perform the calculation of the expression gradients, we also provide a 
-Jupyter notebook <code>expression_gradient.ipynb</code>, which can be found on GitHub
-in the folder <a href="https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks"><code>notebooks</code></a>.</p>
+<p>To perform the calculation of the expression gradients, we also provide a Jupyter notebook <code>cell_environment.ipynb</code>, which can be found on GitHub in the folder <a href="https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks"><code>notebooks</code></a>.</p>
 <h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
 <h3 id="data-organisation">Data organisation<a class="headerlink" href="#data-organisation" title="Permanent link">&para;</a></h3>
 <p>This workflow requires that data is organised in the following away</p>
 <ol>
 <li>A parental folder contains all sample folders.</li>
 <li>Each sample (usually a field of view) is in a separate folder, e.g. named <code>Sample_1</code>, <code>Sample_2</code>, ....       Each sample folder can contain images of multiple channels.</li>
-<li>FQ result file are in the same folder. A folder can contain FQ results for different channels.</li>
-<li>An annotation file with the two reference regions (<code>annotation.json</code>). See below
+<li>FQ result files are in the same folder. A folder can contain <strong>multiple FQ results</strong> for different channels.</li>
+<li>An annotation file with the outlines cells (ending with <code>annotation.json</code>). See below
     for more details.</li>
 </ol>
 <p>In the example below, a folder contains the annotations (<code>annotation.json</code>),
 two different channels (<code>...(green).tif</code> and <code>...(red).tif</code> ), the FQ results
-for both channels <code>....txt</code>, and an annotation file (<code>annotation.json</code>).</p>
+for the green channels <code>....txt</code>, and an annotation file (<code>annotation.json</code>).</p>
 <p>Please note that you can have <strong>only one annotation file per sample folder</strong>. You
-can generate it based on any of the channels, but the same annnotations will be used
+can create it by visualizing any of the channels, but the same annotations will be used
 for each FQ results file in this folder.</p>
 <div class="highlight"><pre><span></span>├─ data_for_expression_gradient/
-│  ├─ Sample_1
-│  │  ├─ annotation.json
+│  ├─ sample_1
+│  │  ├─ sample_1_annotation.json
 │  │  ├─ sample_1_green_outline_spots_181018.txt
 │  │  ├─ sample_1_green.tif
-│  │  ├─ sample_1_red_outline_spots_181017.txt
 │  │  ├─ sample_1_red.tif
-│  ├─ Sample_2
+│  ├─ sample_2
 │  │  ├─ ...
 </pre></div>
 
 <h3 id="demo-data">Demo data<a class="headerlink" href="#demo-data" title="Permanent link">&para;</a></h3>
+<p>TODO: add demo data for cell environment analysis.</p>
 <p>You can find already processed demo data
 <a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank"><strong>here.</strong></a></p>
 <p>TODO: upon publication, demo data will be moved to Zenodo.</p>
-<h2 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h2>
+<h2 id="analysis-workflow">Analysis workflow<a class="headerlink" href="#analysis-workflow" title="Permanent link">&para;</a></h2>
 <h3 id="1-rna-detection-with-fq">1. RNA detection with FQ<a class="headerlink" href="#1-rna-detection-with-fq" title="Permanent link">&para;</a></h3>
-<p>Please consult the dedicated section <a href="../rna-detection/"><strong>here</strong></a> for more details.</p>
-<h3 id="2-annotation-of-reference-regions">2. Annotation of reference regions<a class="headerlink" href="#2-annotation-of-reference-regions" title="Permanent link">&para;</a></h3>
-<p>Please consult the dedicated section <a href="../imjoy-annotation/"><strong>here</strong></a> for more details.</p>
-<p>For this workflow, you need TWO different annotations</p>
-<ol>
-<li><strong>Central vein</strong>, we recommend naming it <code>CV</code>.</li>
-<li><strong>Portal lobe</strong>, we recommend naming it <code>PL</code>.</li>
-</ol>
+<p>For more details, please consult the dedicated section <a href="../rna-detection/"><strong>here</strong></a> </p>
+<h3 id="2-annotation-of-cells">2. Annotation of cells.<a class="headerlink" href="#2-annotation-of-cells" title="Permanent link">&para;</a></h3>
+<p>For this workflow, all cells that should be analyze have to be manually annotated in ImJoy with one annotation
+type. We recommend naming this annotation <code>Cells</code>, but other names can be used as well (but you have
+to update the default value in the analysis scripts as described below).</p>
+<p>For more details, please consult the dedicated section <a href="../imjoy-annotation/"><strong>here</strong></a></p>
 <h3 id="3-calculate-density-profiles">3. Calculate density profiles<a class="headerlink" href="#3-calculate-density-profiles" title="Permanent link">&para;</a></h3>
-<p>You can run this analysis either with the provided code in the Jupyter notebook,
-or use ImJoy.</p>
+<p>You can run this analysis either with the dedicated ImJoy plugin or the provided Jupyter notebook.
+In either case, you need to have a local installation of Python. For more information consult the 
+dedicated section <a href="../tools-imjoy/"><strong>here</strong></a>. </p>
+<h4 id="4-where-results-will-be-saved">4. Where results will be saved<a class="headerlink" href="#4-where-results-will-be-saved" title="Permanent link">&para;</a></h4>
+<p>Results will always be saved in a folder <code>analysis__cell_env</code>, where for each spot detection results 
+for a given sample a separate folder will be created. However, different options exist to 
+define where this folder will be created: </p>
+<ol>
+<li>You can define an absolute path name. then this path will be used to store the data. </li>
+<li>You can define a "replacement operation" where parts of the path name of the results, will be
+   replaced with another string. This is convenient when wanting to store the results in a different location than the raw data. Such a replacement operation is specified with a string where the <code>old_string</code> is separated by the <code>new_string</code> with a <code>&gt;&gt;</code>, e.g. the string <code>acquisition&gt;&gt;analysis</code> indicates that not a complete path is provided, but that a string in the provided data folder will be replaced. More specifically, the string <code>acquisition</code> will be replaced by <code>analysis</code>. </li>
+</ol>
 <h4 id="analysis-in-imjoy">Analysis in ImJoy<a class="headerlink" href="#analysis-in-imjoy" title="Permanent link">&para;</a></h4>
-<p>If you use <strong>ImJoy</strong>, you need to install the <strong>Python plugin engine</strong>. 
+<p>If you use <strong>Imjoy</strong>, you need to install the <strong>Jupyter engine</strong>. 
 The first installation might take a bit of time, since the necessary Python environments
-are created.</p>
-<p>Once installed, you will see in the the plugin in the sidebar. Before using it, you have 
-to specify the labels of the two reference regions. To access the plugin parameters, press
-on the arrow down symbol next to the plugin name.</p>
-<p>In the example below the labels <code>CV</code> and <code>PL</code> are defined for the first and second
-region, respectively.</p>
-<p><img alt="expGrad-plugin-dialog.png" src="../img/expGrad-plugin-dialog.png" style="width:300px" /></p>
-<p>Then you can press on the plugin name to execute the plugin. In a dialog, you will
-be asked to specify a folder, please select the parental folder containing the different
-sample folders. The plugin will then analyse all sample folders containing an
-annotation file. The regions in this file will then be used to establish the spatial
-expression gradient between these two regions.</p>
+on the plugin engine are created.</p>
+<p>Once installed, you will see in the plugin sidebar, where you can launch the analysis:</p>
+<p><img alt="cellEnv-plugin-dialog.png" src="../img/cellEnv-plugin-dialog.png" style="width:300px" /></p>
+<ol>
+<li>
+<p>Paste the full name of the folder that should be processed. This folder will be recursively searched
+    and each subfolder containing an annotation file will be processed. </p>
+</li>
+<li>
+<p>If needed, change the analysis parameters (see Table below), and press on plugin name in blue to launch 
+    the analysis, </p>
+<pre><code>Option           | Type | Default     | Description
+---------------- | ---- | ----------- | -----------
+`Path DATA`    | str  |  | Full path to folder that should be scanned for annotation files. 
+`PATH Save`    | str  |  | Where results should be saved (see above).
+`Region label`    | str  | `Cells` | Label of the annotated regions.
+`Annotation file` | str  | `annotation.json` | Name of the ImJoy annotation file.
+`Hist [min]`    | int  |  0 | Minimum value of histogram to summarize enrichment (in pixel).
+`Hist [max]`     | int  | 300 |Maximum value of histogram to summarize enrichment (in pixel).
+`Hist [bin]`     | int  | 50 | Bin size (in pixel).
+</code></pre>
+</li>
+<li>
+<p>The plugin will then analyse all sample folders containing an annotation file. 
+   Progress can be monitored in the plugin log, accessible via the <code>i</code> next to the plugin name.</p>
+</li>
+</ol>
 <p><strong>Progress is reported</strong> in the plugin log (accessible with the 'i' symbol
 next to the plugin name) and the ImJoy progress bar.</p>
 <h4 id="with-jupyter-notebook">With Jupyter notebook<a class="headerlink" href="#with-jupyter-notebook" title="Permanent link">&para;</a></h4>
 <p>Once you have your conda environment installed as described in the Overview section,
-you can open the Jupyter notebook and analyze your data. You have to execute the first cell
-to load the necessary code.</p>
+you can open the Jupyter notebook (<code>cell_environment.ipynb</code>, which can be found on 
+GitHub in the folder <code>notebooks</code>.</p>
+<p>You have to execute the first cell to import the analysis package.</p>
 <p>The second cell allows you to</p>
 <ol>
 <li>Define the folder containing your data.</li>
-<li>Defining the labels for the two annotated reference regions.</li>
+<li>Defining the parameters described above for the analysis. </li>
 </ol>
-<p>Executing the cell, will launch the analysis workflow. described above.</p>
+<p>Executing the cell, will launch the analysis workflow as described above.</p>
 <h3 id="4-generated-result-files">4. Generated result files<a class="headerlink" href="#4-generated-result-files" title="Permanent link">&para;</a></h3>
 <p>The function will create a number of result files, which are stored in the
-subfolder <code>analysis__exprGradient</code>.
+subfolder <code>analysis__cell_env</code>. For each FQ result file, a separate subfolder 
+with name of this file is created. In this folder the different histograms are 
+summarized </p>
+<ul>
+<li>
+<p><strong><code>histogram__PIX.csv</code></strong>. Contains PIXEL histograms for all regions, e.g. 
+    number of pixels in the defined equi-distant zones around the regions. 
+    These values are used for renormalization. First column is the center of histogram bin (in pixel).</p>
+</li>
+<li>
+<p><strong><code>histogram__RNA.csv</code></strong>. Contains RNA counts per equi-distant zone for all regions.</p>
+</li>
+<li>
+<p><strong><code>histogram__RNA_norm.csv</code></strong>. Contains renormalized RNA counts per equi-distant 
+    zone for all regions.</p>
+</li>
+</ul>
+<p>In this folder, results for <strong>each region</strong> are stored
 Results files have the full name of the FQ file with the following prefixes</p>
 <ul>
 <li>
-<p><strong>_summary_density</strong> (PNG file). Contains plots of expression density plots.
-    Cells are filled with pixel values corresponding to their expression level.</p>
-</li>
-<li>
-<p><strong>_summary_gradient</strong> (PNG file). Contains summary plots for the spatial gradients
-    between two the two reference points (the first plot shown on this page).</p>
-</li>
-<li>
-<p><strong>hist_expression</strong> (tab delimited text file). Contains the spatial expression
-    gradient as a table:</p>
+<p><strong><code>histogram__reg_i.csv</code></strong>, histograms for region <code>i</code>. 
+    Contains the spatial expression gradient as a table:</p>
 <ul>
-<li>1st col: normalised distance,</li>
-<li>2nd col: normalised counts by number of pixels (4th col)</li>
-<li>3rd col: RNA counts</li>
-<li>4th col: number of pixels in the image within range (for normalisation)</li>
+<li>1st col: center of histogram bins (in pixel).</li>
+<li>2nd col: RNA counts</li>
+<li>3rd col: Pixel counts</li>
+<li>4th col: Normalize counts.</li>
 </ul>
 </li>
 <li>
-<p><strong>img_density</strong> (16bit tif file). Contains the expression density plots. The pixel
-    value of the cell corresponds to the number of RNAs in this cell. No outlines are
-    shown. Files can be rendered with Fiji and an adequate look-up table.</p>
-</li>
-<li>
-<p><strong>img_density_outline</strong> (16 bit tif file). Contains the expression density plot
-    and the cell outlines. The outlines of the cells are set to the maximum RNA count
-    in the image. This guarantees that the outlines can be seen.</p>
-</li>
-<li>
-<p><strong>img_outline</strong> (8 bit image). Outlines of all cells in the image.</p>
+<p><strong><code>histogram_summary__reg_i.png</code></strong>, summary image of for region <code>i</code>. First row shows
+    smFISH image, mask of region, distance transform (distance from region). Second row 
+    shows the raw histograms for RNAs and pixels, as well as the renormalized histogram. </p>
 </li>
 </ul>
                 
@@ -969,7 +1006,7 @@ Results files have the full name of the FQ file with the following prefixes</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../imjoy-annotation/" title="Image annotation with ImJoy" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../expression-gradient/" title="Expression gradient" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -978,19 +1015,19 @@ Results files have the full name of the FQ file with the following prefixes</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Image annotation with ImJoy
+                Expression gradient
               </span>
             </div>
           </a>
         
         
-          <a href="../cell-environment/" title="Cell environment" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../licence/" title="Licence" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Cell environment
+                Licence
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

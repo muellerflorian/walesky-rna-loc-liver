@@ -13,7 +13,7 @@
         <meta name="description" content="Collection of post-processing scripts for images analyzed with FISH-quant,">
       
       
-        <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/licence/">
+        <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/imjoy-annotation/">
       
       
         <meta name="author" content="Florian MUELLER">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Licence - Quantify RNA localization in liver</title>
+        <title>Image annotation with ImJoy - Quantify RNA localization in liver</title>
       
     
     
@@ -104,7 +104,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#license" tabindex="1" class="md-skip">
+      <a href="../#image-annotation-with-imjoy" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -130,7 +130,7 @@
                 Quantify RNA localization in liver
               </span>
               <span class="md-header-nav__topic">
-                Licence
+                Image annotation with ImJoy
               </span>
             
           
@@ -227,7 +227,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../rna-detection/" title="General workflows" class="md-tabs__link">
+        <a href="../rna-detection/" title="General workflows" class="md-tabs__link md-tabs__link--active">
           General workflows
         </a>
       
@@ -253,7 +253,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" title="About" class="md-tabs__link md-tabs__link--active">
+        <a href="../licence/" title="About" class="md-tabs__link">
           About
         </a>
       
@@ -346,10 +346,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       General workflows
@@ -377,11 +379,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../imjoy-annotation/" title="Image annotation with ImJoy" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Image annotation with ImJoy" class="md-nav__link md-nav__link--active">
       Image annotation with ImJoy
     </a>
+    
   </li>
 
         
@@ -442,12 +453,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       About
@@ -463,20 +472,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Licence" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../licence/" title="Licence" class="md-nav__link">
       Licence
     </a>
-    
   </li>
 
         
@@ -513,24 +513,57 @@
               
                 
                 
-                <h1 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h1>
-<p><strong>MIT License</strong></p>
-<p>Copyright &copy; Florian MUELLER</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.</p>
+                <h1 id="image-annotation-with-imjoy">Image annotation with ImJoy<a class="headerlink" href="#image-annotation-with-imjoy" title="Permanent link">&para;</a></h1>
+<p>This is performed with the Annotator plugin running in ImJoy.</p>
+<p><strong>Note</strong> that annotation can only be performed on <strong>2D images</strong>. 
+If your images are 3D, please convert them first to 2D images, e.g. with a maximum intensity projection. </p>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotor_install.png" width="600px"></img></p>
+<p>To <strong>annotate your images</strong>, follow these steps</p>
+<ol>
+<li>Open the annotation plugin by clicking on the plugin name <code>ImageAnnotator</code></li>
+<li>
+<p>The plugin will open with a default image and you have to <strong>load your own data</strong>.</p>
+<ol>
+<li>Press on the <code>File</code> dropdown menu in the upper right corner</li>
+<li>Select <code>Import Samples</code></li>
+<li>In the new dialog press <code>Choose Files</code> and then <code>Select Local Files</code>.
+    In case your files are on a different drive, you can specify the drive
+    from <code>Options</code> and <code>Go to folder</code>.</li>
+<li>In the dialog, select the <strong>parental folder</strong> containing all sample folders.</li>
+<li>ImJoy will display a dialog saying "This will upload ....", confirm. Your
+    data <strong>only be "uploaded" to your local browser</strong> BUT not on an external website.</li>
+<li>This will populate the interface with all sample folders. For each folder,
+    you see a little icon representing a file being present in the folder.
+    You then have to set a filter on the file-name for the channel which will
+    be read into the Annotator plugin. For this you set a name for the channel,
+    e.g. <code>FISH</code>, and the identifier of this image, e.g. <code>green.tif</code>. Press <code>Add Channel</code> to add this channel. You then see this channel as an additional entry in
+    the interface.</li>
+<li>Press <code>Import</code> to open the Annotator with the specified files.</li>
+<li>You then specify your annotation: from the <code>Annotation</code> dropdown menu, you can specify which annotations you want to perform.</li>
+<li>By pressing <code>New Marker</code> you can specify an new annotation type. You can define
+   its name, the colour in which it will show, and what type (use Polygon).</li>
+<li>Once you defined the annotation types, you can annotate your image.</li>
+</ol>
+</li>
+<li>
+<p>Then select which file you want to annotate (from the <code>File</code> dropdown menu), and
+    annotate the two different regions. To annotate, press on one of the annotation types, go to the image, and start annotating. For a polygon, simply press the mouse button, draw your region and release once your are done. The example below shows two annotation types, CV and PL.</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotator_screenshot.png" width="600px"></img></p>
+<ol>
+<li>Once you are done, you can export the annotations from the <code>Exports</code> dropdown menu
+    and selecting the <code>All annotations</code> option.<ol>
+<li>The annotations will be saved in the default download folder of your browser as a zip file.</li>
+<li>You can then unzip this file. It contains the same folder structure as
+    your original parental folder. Each sample folder contains a file <code>annotation.json</code>
+    with the annotations that your created for this sample.</li>
+<li>You can then simply copy the sample folders and paste them in the parental
+    folder containing your data (with Windows explorer or Mac OS finder).
+    When asked if you want to merge the folders, confirm.</li>
+</ol>
+</li>
+</ol>
                 
                   
                 
@@ -551,7 +584,7 @@ IN THE SOFTWARE.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../cell-environment/" title="Cell environment" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../rna-detection/" title="RNA detection with FQ" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -560,11 +593,25 @@ IN THE SOFTWARE.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Cell environment
+                RNA detection with FQ
               </span>
             </div>
           </a>
         
+        
+          <a href="../expression-gradient/" title="Expression gradient" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Expression gradient
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

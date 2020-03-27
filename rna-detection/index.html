@@ -13,7 +13,7 @@
         <meta name="description" content="Collection of post-processing scripts for images analyzed with FISH-quant,">
       
       
-        <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/licence/">
+        <link rel="canonical" href="https://muellerflorian.github.io/walesky-rna-loc-liver/rna-detection/">
       
       
         <meta name="author" content="Florian MUELLER">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Licence - Quantify RNA localization in liver</title>
+        <title>RNA detection with FQ - Quantify RNA localization in liver</title>
       
     
     
@@ -104,7 +104,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#license" tabindex="1" class="md-skip">
+      <a href="../#rna-detection-with-fish-quant" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -130,7 +130,7 @@
                 Quantify RNA localization in liver
               </span>
               <span class="md-header-nav__topic">
-                Licence
+                RNA detection with FQ
               </span>
             
           
@@ -227,7 +227,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../rna-detection/" title="General workflows" class="md-tabs__link">
+        <a href="./" title="General workflows" class="md-tabs__link md-tabs__link--active">
           General workflows
         </a>
       
@@ -253,7 +253,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" title="About" class="md-tabs__link md-tabs__link--active">
+        <a href="../licence/" title="About" class="md-tabs__link">
           About
         </a>
       
@@ -346,10 +346,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       General workflows
@@ -365,11 +367,56 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../rna-detection/" title="RNA detection with FQ" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RNA detection with FQ
+      </label>
+    
+    <a href="./" title="RNA detection with FQ" class="md-nav__link md-nav__link--active">
       RNA detection with FQ
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fish-quant" title="FISH-quant" class="md-nav__link">
+    FISH-quant
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detection-of-individual-rnas" title="Detection of individual RNAs" class="md-nav__link">
+    Detection of individual RNAs
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -442,12 +489,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       About
@@ -463,20 +508,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Licence" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../licence/" title="Licence" class="md-nav__link">
       Licence
     </a>
-    
   </li>
 
         
@@ -502,6 +538,29 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fish-quant" title="FISH-quant" class="md-nav__link">
+    FISH-quant
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detection-of-individual-rnas" title="Detection of individual RNAs" class="md-nav__link">
+    Detection of individual RNAs
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -513,24 +572,59 @@
               
                 
                 
-                <h1 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h1>
-<p><strong>MIT License</strong></p>
-<p>Copyright &copy; Florian MUELLER</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.</p>
+                <h1 id="rna-detection-with-fish-quant">RNA detection with FISH-quant<a class="headerlink" href="#rna-detection-with-fish-quant" title="Permanent link">&para;</a></h1>
+<h2 id="fish-quant">FISH-quant<a class="headerlink" href="#fish-quant" title="Permanent link">&para;</a></h2>
+<p><a href="https://bitbucket.org/muellerflorian/fish_quant/"><strong>FISH-quant</strong></a> is a Matlab toolbox to
+localize RNAs in 3D from smFISH images.</p>
+<p><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/fq-screenshot.png" width="600px"></img></p>
+<h2 id="detection-of-individual-rnas">Detection of individual RNAs<a class="headerlink" href="#detection-of-individual-rnas" title="Permanent link">&para;</a></h2>
+<p>Below only a quick summary of the analysis steps is presented. For more details consult the <a href="https://bitbucket.org/muellerflorian/fish_quant/src/master/Documentation/FISH_QUANT_v3.pdf" target="_blank"><strong>FQ manual.</strong></a>.</p>
+<ol>
+<li>Open FQ</li>
+<li>Set analysis folder to folder containing the image that should be analysed:
+    <code>Menu Folder</code> &gt; <code>Set root folder</code>)</li>
+<li>Open image that should be analysed.</li>
+<li>[Optional] Draw outline of embryo / cells / structure of interest. If you omit  t his step, RNAs will be detected in the entire image. <ol>
+<li>Open dedicated interface:   Button  <code>Define outlines</code></li>
+<li>Draw a new cell: Button <code>New cell</code></li>
+<li>Save outline: Button    <code>Quick-save</code></li>
+<li>Return to main FQ: Button   <code>Finished</code></li>
+</ol>
+</li>
+<li>Filter image (default filter with <code>LoG</code> works usually well).</li>
+<li>Inspect image. On the right part of the interface select <code>Filtered image</code>,
+    disable <code>outline</code>, and double click on the image. This will show a maximum
+    intensity projection of the filtered image in a separate window. Here, you can
+    change the contrast and zoom. In order to determine an appropriate threshold
+    in the next step, determine a generous range of intensities range corresponding
+    to the individual RNA molecules.</li>
+<li>
+<p>Set <strong>pre-detection settings</strong>. FQ will test how many RNAs are detected with a
+    range of user-defined intensity thresholds (based on the manual inspection of
+    the image from above).</p>
+<ol>
+<li>Open dedicated interface:    Button <code>Detect</code></li>
+<li>In the user-dialog change the first two parameter: minimum and maximum
+       threshold to test. We usually use a minimum value that’s somewhat lower
+       than the lowest RNAs to also consider intensity value corresponding to background.</li>
+<li>FQ will calculate the number of detected RNAs for a range of values in
+       this interval. Depending on the size of the image, this can take a little while. Once done, a plot with the number of detected RNAs as a function of the different thresholds is shown. If the specified range is not appropriate, it can be changed in this interface the computation be repeated.</li>
+<li>Ideally, this curve shows a plateau for a value range corresponding to a
+       good detection threshold. If that’s not the case, a reasonable value
+       corresponding to a visual assessment of what individual RNAs are should be chosen. A pre-detection with a given detection threshold can be perform and the results be inspected in a separate window.</li>
+</ol>
+<p>One other parameter that could be important to adjust is the <strong>cropping region</strong> around each RNA that is considered for analysis and fitting. Reducing this size allows sometimes to better detect closely spaced RNAs but at the cost of an  imprecision in the fit. For most applications a value of +/- 2 voxels in XY and Z are a good compromise.</p>
+</li>
+<li>
+<p>Once you are satisfied with the settings press on <code>Perform detection for all cells</code> to return the main window.</p>
+</li>
+<li>Press button <code>Fit</code> to fit each detected spot with a 3D Gaussian function.</li>
+<li>[Optional]. You can set threshold values for the different fitting parameters,
+    e.g. remove spots with very small or very large standard deviations.</li>
+<li>You can now save the detection settings: <code>[FQ] Main</code>&gt;<code>Save</code>&gt;<code>Save detection settings</code>.
+    As a file-name specify <code>FQ__settings_MATURE.txt</code></li>
+<li>If you are satisfied with these detection results, you can save them directly:  <code>[FQ] Main</code>&gt;<code>Save</code>&gt;<code>Detection spots [All]</code>.</li>
+</ol>
                 
                   
                 
@@ -551,7 +645,7 @@ IN THE SOFTWARE.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../cell-environment/" title="Cell environment" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../tools-jupyter/" title="Jupyter" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -560,11 +654,25 @@ IN THE SOFTWARE.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Cell environment
+                Jupyter
               </span>
             </div>
           </a>
         
+        
+          <a href="../imjoy-annotation/" title="Image annotation with ImJoy" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Image annotation with ImJoy
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
