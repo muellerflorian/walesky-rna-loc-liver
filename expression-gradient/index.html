@@ -845,8 +845,8 @@ in the folder <a href="https://github.com/muellerflorian/walesky-rna-loc-liver/t
 <h3 id="data-organisation">Data organisation<a class="headerlink" href="#data-organisation" title="Permanent link">&para;</a></h3>
 <p>This workflow requires that data is organised in the following away</p>
 <ol>
-<li>A parental folder contains all sample folders.</li>
-<li>Each sample (usually a field of view) is in a separate folder, e.g. named <code>Sample_1</code>, <code>Sample_2</code>, ....       Each sample folder can contain images of multiple channels.</li>
+<li>A parental folder contains all sample folders, e.g. <code>data__expression_gradient</code> for the example data.</li>
+<li>Each sample (usually a field of view) is in a separate folder, e.g. named <code>sample_1</code>, <code>sample_2</code>, ....       Each sample folder can contain images of multiple channels.</li>
 <li>FQ result file are in the same folder. A folder can contain FQ results for different channels.</li>
 <li>An annotation file with the two reference regions (<code>annotation.json</code>). See below
     for more details.</li>
@@ -857,20 +857,20 @@ for both channels <code>....txt</code>, and an annotation file (<code>annotation
 <p>Please note that you can have <strong>only one annotation file per sample folder</strong>. You
 can generate it based on any of the channels, but the same annnotations will be used
 for each FQ results file in this folder.</p>
-<div class="highlight"><pre><span></span>├─ data_for_expression_gradient/
-│  ├─ Sample_1
+<div class="highlight"><pre><span></span>├─ data__expression_gradient/
+│  ├─ sample_1
 │  │  ├─ annotation.json
 │  │  ├─ sample_1_green_outline_spots_181018.txt
 │  │  ├─ sample_1_green.tif
 │  │  ├─ sample_1_red_outline_spots_181017.txt
 │  │  ├─ sample_1_red.tif
-│  ├─ Sample_2
+│  ├─ sample_2
 │  │  ├─ ...
 </pre></div>
 
 <h3 id="demo-data">Demo data<a class="headerlink" href="#demo-data" title="Permanent link">&para;</a></h3>
 <p>You can find already processed demo data
-<a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank"><strong>here.</strong></a></p>
+<a href="https://www.dropbox.com/s/bwsel68dqlhq66d/data__expression_gradient.zip?dl=0" target="_blank"><strong>here.</strong></a></p>
 <p>TODO: upon publication, demo data will be moved to Zenodo.</p>
 <h2 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h2>
 <h3 id="1-rna-detection-with-fq">1. RNA detection with FQ<a class="headerlink" href="#1-rna-detection-with-fq" title="Permanent link">&para;</a></h3>

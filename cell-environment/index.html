@@ -539,8 +539,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-annotation-of-cells" title="2. Annotation of cells." class="md-nav__link">
-    2. Annotation of cells.
+  <a href="#2-annotation-of-cells" title="2. Annotation of cells" class="md-nav__link">
+    2. Annotation of cells
   </a>
   
 </li>
@@ -550,15 +550,15 @@
     3. Calculate density profiles
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#4-where-results-will-be-saved" title="4. Where results will be saved" class="md-nav__link">
-    4. Where results will be saved
+  <a href="#4-location-to-store-results" title="4. Location to store results" class="md-nav__link">
+    4. Location to store results
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#analysis-in-imjoy" title="Analysis in ImJoy" class="md-nav__link">
@@ -747,8 +747,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-annotation-of-cells" title="2. Annotation of cells." class="md-nav__link">
-    2. Annotation of cells.
+  <a href="#2-annotation-of-cells" title="2. Annotation of cells" class="md-nav__link">
+    2. Annotation of cells
   </a>
   
 </li>
@@ -758,15 +758,15 @@
     3. Calculate density profiles
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#4-where-results-will-be-saved" title="4. Where results will be saved" class="md-nav__link">
-    4. Where results will be saved
+  <a href="#4-location-to-store-results" title="4. Location to store results" class="md-nav__link">
+    4. Location to store results
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#analysis-in-imjoy" title="Analysis in ImJoy" class="md-nav__link">
@@ -817,30 +817,29 @@
                 
                 
                 <h1 id="cell-environment">Cell environment<a class="headerlink" href="#cell-environment" title="Permanent link">&para;</a></h1>
-<p>In this workflow, the expression levels around user-defined regions, e.g. cells, is determined. 
-Expression levels are measured in equi-distant zones around each region.</p>
+<p>In this workflow, expression levels are measured in equi-distant zones around user-defined regions, e.g. cells.</p>
 <p>As input the workflow requires:</p>
 <ul>
 <li><strong>FISH-quant</strong>  results file: positions of RNAs.</li>
 <li><strong>ImJoy</strong> annotation files: positions of cells.</li>
 </ul>
 <h2 id="summary-of-analysis-workflow">Summary of analysis workflow<a class="headerlink" href="#summary-of-analysis-workflow" title="Permanent link">&para;</a></h2>
-<p>For each RNA, the closest distance of an RNA to any of the regions is calculated. 
-The user can then define the spacing of the zones around each region. 
-For each region, the number of RNAs per zone is computed. Additionally, 
+<p>For each RNA, the distance to every regions is calculated and the RNA is assigned
+to the closest region.</p>
+<p>The user also defines the spacing of equi-distant zones around each region. 
+For each region, the number of RNAs for each zone is computed. Additionally, 
 the number of pixels in each zone, i.e. it's area is calculated. If required, this
-can be used to normalized the RNA counts, i.e. to account for the fact that 
-zones that are further away will have a larger area and thus more chance to have
-RNAs in them.</p>
+can be used to normalized the RNA counts, i.e. to to correct for the large size of regions
+that are are further away.</p>
 <h2 id="required-tools">Required tools<a class="headerlink" href="#required-tools" title="Permanent link">&para;</a></h2>
 <h3 id="fish-quant-for-rna-detection">FISH-quant for RNA detection<a class="headerlink" href="#fish-quant-for-rna-detection" title="Permanent link">&para;</a></h3>
-<p>For more information, Please visit the dedicated section <a href="../rna-detection/"><strong>here</strong></a> </p>
+<p>For more information, Please visit the dedicated section <a href="../rna-detection/"><strong>here</strong></a>.</p>
 <h3 id="imjoy-plugins">ImJoy Plugins<a class="headerlink" href="#imjoy-plugins" title="Permanent link">&para;</a></h3>
 <p>These plugins have to be installed only once, after installation they will be
 available in the dedicated ImJoy workspace: <strong><code>liver-rna-loc</code></strong></p>
 <p>When pressing on the links below, ImJoy will open in your browser (best in Chrome) and
 you will be asked to confirm the installation with a dialog as shown below. 
-After confirmation, the plugin together with additional auxiliary plugins will be installed.</p>
+After confirmation, the plugin and additional auxiliary plugins will be installed.</p>
 <ul>
 <li>
 <p><code>ImageAnnotator</code>: annotate your images.
@@ -855,54 +854,76 @@ After confirmation, the plugin together with additional auxiliary plugins will b
 <p>To perform the calculation of the expression gradients, we also provide a Jupyter notebook <code>cell_environment.ipynb</code>, which can be found on GitHub in the folder <a href="https://github.com/muellerflorian/walesky-rna-loc-liver/tree/master/notebooks"><code>notebooks</code></a>.</p>
 <h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
 <h3 id="data-organisation">Data organisation<a class="headerlink" href="#data-organisation" title="Permanent link">&para;</a></h3>
-<p>This workflow requires that data is organised in the following away</p>
+<p>This workflow permits batch-processing of a large number of files, but requires a strict data-organization</p>
 <ol>
-<li>A parental folder contains all sample folders.</li>
-<li>Each sample (usually a field of view) is in a separate folder, e.g. named <code>Sample_1</code>, <code>Sample_2</code>, ....       Each sample folder can contain images of multiple channels.</li>
+<li>Top folder called <code>acquisition</code>.</li>
+<li>A subfolder for each experimental condition, i.e. <code>cond_1</code> for the example data.</li>
+<li>Each sample (usually a field of view) is in a separate folder, e.g. named <code>sample_1</code>, <code>sample_2</code>, ... .Each sample folder can contain images of multiple channels.</li>
 <li>FQ result files are in the same folder. A folder can contain <strong>multiple FQ results</strong> for different channels.</li>
 <li>An annotation file with the outlines cells (ending with <code>annotation.json</code>). See below
     for more details.</li>
 </ol>
 <p>In the example below, a folder contains the annotations (<code>annotation.json</code>),
-two different channels (<code>...(green).tif</code> and <code>...(red).tif</code> ), the FQ results
-for the green channels <code>....txt</code>, and an annotation file (<code>annotation.json</code>).</p>
+two different channels (<code>...green.tif</code>,  <code>...red.tif</code>, <code>...blue.tif</code> ), the FQ outline file (<code>...outline.txt</code>), the FQ results
+for the red channels <code>...spots.txt</code>, and an annotation file (<code>annotation.json</code>).</p>
 <p>Please note that you can have <strong>only one annotation file per sample folder</strong>. You
 can create it by visualizing any of the channels, but the same annotations will be used
 for each FQ results file in this folder.</p>
-<div class="highlight"><pre><span></span>├─ data_for_expression_gradient/
-│  ├─ sample_1
-│  │  ├─ sample_1_annotation.json
-│  │  ├─ sample_1_green_outline_spots_181018.txt
-│  │  ├─ sample_1_green.tif
-│  │  ├─ sample_1_red.tif
-│  ├─ sample_2
+<div class="highlight"><pre><span></span>├─ data__cell_environment/
+│  ├─ acquisition
+│  │  ├─ cond_1
+│  │  │  ├─ sample_1
+│  │  │  │  ├─ sample_1_annotation.json
+│  │  │  │  ├─ sample_1_red_spots.txt
+│  │  │  │  ├─ sample_1_red_outline.txt
+│  │  │  │  ├─ sample_1_green.tif
+│  │  │  │  ├─ sample_1_red.tif
+│  │  │  │  ├─ sample_1_blue.tif
+│  │  │  ├─ sample_2
+│  │  │  ├─ ...
+│  │  ├─ cond_1
+│  │  │  ├─ sample_1
+│  │  │  ├─ ...
+│  ├─ analysis
+│  │  ├─ cond_1
+│  │  │  ├─ sample_1
+│  │  │  │  ├─ analysis__cell_env
+│  │  │  │  │  ├─ sample_1_red_spots
+│  │  │  │  │  │  ├─ histogram__PIX.csv
+│  │  │  │  │  │  ├─ histogram__RNA.csv
+│  │  │  │  │  │  ├─ histogram__RNA_norm.csv
+│  │  │  │  │  │  ├─ per_region
+│  │  │  │  │  │  │  ├─ hist__reg_0.png
+│  │  │  │  │  │  │  ├─ ...
+│  │  │  │  │  │  │  ├─ histogram__reg_0.csv
+│  │  │  │  │  │  │  ├─ ...
 │  │  ├─ ...
 </pre></div>
 
 <h3 id="demo-data">Demo data<a class="headerlink" href="#demo-data" title="Permanent link">&para;</a></h3>
-<p>TODO: add demo data for cell environment analysis.</p>
 <p>You can find already processed demo data
-<a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank"><strong>here.</strong></a></p>
+<a href="https://www.dropbox.com/s/9uwu8ea7119a1mq/data__cell_environment.zip?dl=0" target="_blank"><strong>here.</strong></a></p>
+<p>The outline cells are macrophages, and have the label <code>Mac</code>.</p>
 <p>TODO: upon publication, demo data will be moved to Zenodo.</p>
 <h2 id="analysis-workflow">Analysis workflow<a class="headerlink" href="#analysis-workflow" title="Permanent link">&para;</a></h2>
 <h3 id="1-rna-detection-with-fq">1. RNA detection with FQ<a class="headerlink" href="#1-rna-detection-with-fq" title="Permanent link">&para;</a></h3>
-<p>For more details, please consult the dedicated section <a href="../rna-detection/"><strong>here</strong></a> </p>
-<h3 id="2-annotation-of-cells">2. Annotation of cells.<a class="headerlink" href="#2-annotation-of-cells" title="Permanent link">&para;</a></h3>
+<p>For more details, please consult the dedicated section <a href="../rna-detection/"><strong>here</strong></a>.</p>
+<h3 id="2-annotation-of-cells">2. Annotation of cells<a class="headerlink" href="#2-annotation-of-cells" title="Permanent link">&para;</a></h3>
 <p>For this workflow, all cells that should be analyze have to be manually annotated in ImJoy with one annotation
 type. We recommend naming this annotation <code>Cells</code>, but other names can be used as well (but you have
 to update the default value in the analysis scripts as described below).</p>
-<p>For more details, please consult the dedicated section <a href="../imjoy-annotation/"><strong>here</strong></a></p>
+<p>For more details, please consult the dedicated section <a href="../imjoy-annotation/"><strong>here</strong></a>.</p>
 <h3 id="3-calculate-density-profiles">3. Calculate density profiles<a class="headerlink" href="#3-calculate-density-profiles" title="Permanent link">&para;</a></h3>
 <p>You can run this analysis either with the dedicated ImJoy plugin or the provided Jupyter notebook.
 In either case, you need to have a local installation of Python. For more information consult the 
-dedicated section <a href="../tools-imjoy/"><strong>here</strong></a>. </p>
-<h4 id="4-where-results-will-be-saved">4. Where results will be saved<a class="headerlink" href="#4-where-results-will-be-saved" title="Permanent link">&para;</a></h4>
-<p>Results will always be saved in a folder <code>analysis__cell_env</code>, where for each spot detection results 
-for a given sample a separate folder will be created. However, different options exist to 
-define where this folder will be created: </p>
+dedicated section <a href="../tools-imjoy/"><strong>here</strong></a>.</p>
+<h3 id="4-location-to-store-results">4. Location to store results<a class="headerlink" href="#4-location-to-store-results" title="Permanent link">&para;</a></h3>
+<p>The results will be saved in a dedicated folder <code>analysis__cell_env</code>. Here, a dedicated folder 
+for each spot detection result will be created and named with the name of the FQ results file. </p>
+<p>Different options exist to define where this folder will be created: </p>
 <ol>
-<li>You can define an absolute path name. then this path will be used to store the data. </li>
-<li>You can define a "replacement operation" where parts of the path name of the results, will be
+<li>You can define an <strong>absolute path name</strong>. This path will be used to store the data. </li>
+<li>You can define a <strong>replacement operation</strong> where parts of the path name of the results, will be
    replaced with another string. This is convenient when wanting to store the results in a different location than the raw data. Such a replacement operation is specified with a string where the <code>old_string</code> is separated by the <code>new_string</code> with a <code>&gt;&gt;</code>, e.g. the string <code>acquisition&gt;&gt;analysis</code> indicates that not a complete path is provided, but that a string in the provided data folder will be replaced. More specifically, the string <code>acquisition</code> will be replaced by <code>analysis</code>. </li>
 </ol>
 <h4 id="analysis-in-imjoy">Analysis in ImJoy<a class="headerlink" href="#analysis-in-imjoy" title="Permanent link">&para;</a></h4>
@@ -918,17 +939,61 @@ on the plugin engine are created.</p>
 </li>
 <li>
 <p>If needed, change the analysis parameters (see Table below), and press on plugin name in blue to launch 
-    the analysis, </p>
-<pre><code>Option           | Type | Default     | Description
----------------- | ---- | ----------- | -----------
-`Path DATA`    | str  |  | Full path to folder that should be scanned for annotation files. 
-`PATH Save`    | str  |  | Where results should be saved (see above).
-`Region label`    | str  | `Cells` | Label of the annotated regions.
-`Annotation file` | str  | `annotation.json` | Name of the ImJoy annotation file.
-`Hist [min]`    | int  |  0 | Minimum value of histogram to summarize enrichment (in pixel).
-`Hist [max]`     | int  | 300 |Maximum value of histogram to summarize enrichment (in pixel).
-`Hist [bin]`     | int  | 50 | Bin size (in pixel).
-</code></pre>
+    the analysis,</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path DATA</code></td>
+<td>str</td>
+<td></td>
+<td>Full path to folder that should be scanned for annotation files.</td>
+</tr>
+<tr>
+<td><code>PATH Save</code></td>
+<td>str</td>
+<td></td>
+<td>Where results should be saved (see above).</td>
+</tr>
+<tr>
+<td><code>Region label</code></td>
+<td>str</td>
+<td><code>Cells</code></td>
+<td>Label of the annotated regions.</td>
+</tr>
+<tr>
+<td><code>Annotation file</code></td>
+<td>str</td>
+<td><code>annotation.json</code></td>
+<td>Name of the ImJoy annotation file.</td>
+</tr>
+<tr>
+<td><code>Hist [min]</code></td>
+<td>int</td>
+<td>0</td>
+<td>Minimum value of histogram to summarize enrichment (in pixel).</td>
+</tr>
+<tr>
+<td><code>Hist [max]</code></td>
+<td>int</td>
+<td>300</td>
+<td>Maximum value of histogram to summarize enrichment (in pixel).</td>
+</tr>
+<tr>
+<td><code>Hist [bin]</code></td>
+<td>int</td>
+<td>50</td>
+<td>Bin size (in pixel).</td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
 <p>The plugin will then analyse all sample folders containing an annotation file. 
@@ -952,7 +1017,7 @@ GitHub in the folder <code>notebooks</code>.</p>
 <p>The function will create a number of result files, which are stored in the
 subfolder <code>analysis__cell_env</code>. For each FQ result file, a separate subfolder 
 with name of this file is created. In this folder the different histograms are 
-summarized </p>
+summarized:</p>
 <ul>
 <li>
 <p><strong><code>histogram__PIX.csv</code></strong>. Contains PIXEL histograms for all regions, e.g. 
