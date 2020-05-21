@@ -32,7 +32,7 @@
    "permissions": [],
    "requirements": {
     "stable": [
-     "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@5483191"
+     "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@master#rnaloc"
     ],
     "dev": [
      ""
@@ -44,7 +44,7 @@
   {
    "name": "ExprGradient",
    "type": "native-python",
-   "version": "0.1.6",
+   "version": "0.1.7",
    "description": "Calculate expression gradients between two reference regions.",
    "tags": [
     "stable",
@@ -64,7 +64,7 @@
    "env": "",
    "requirements": {
     "stable": [
-     "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@master"
+     "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@master#rnaloc"
     ],
     "dev": [
      ""

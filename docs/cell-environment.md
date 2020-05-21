@@ -132,7 +132,7 @@ dedicated section [**here**](tools-imjoy.md).
 The results will be saved in a dedicated folder `analysis__cell_env`. Here, a dedicated folder 
 for each spot detection result will be created and named with the name of the FQ results file. 
 
-Different options exist to define where this folder will be created: 
+Different options exist to define where this folder will be created:
 
 1. You can define an **absolute path name**. This path will be used to store the data. 
 2. You can define a **replacement operation** where parts of the path name of the results, will be

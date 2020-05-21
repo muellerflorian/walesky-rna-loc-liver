@@ -3,5 +3,7 @@ __pycache__
 *.pyc
 site/
 fqa.egg-info/
+rnaloc.egg-info/
 .ipynb_checkpoints/
 .vscode
+
