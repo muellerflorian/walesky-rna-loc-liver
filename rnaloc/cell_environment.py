@@ -62,7 +62,7 @@ def process_folder(path_scan,
             callback_status(f'  [Create distance maps]: Loop over regions with label: {region_label}')
 
         n_feats = len(data_json['features'])
-        
+
         for feat_ind, feat in enumerate(tqdm(data_json['features'], total=n_feats)): 
             label = feat['properties']['label']
 
@@ -76,7 +76,7 @@ def process_folder(path_scan,
                 mask_loop = toolbox.make_mask(reg_pos, img_size)
 
                 dist_nuc = ndimage.distance_transform_edt(np.logical_not(mask_loop))
-                
+
                 if n_regs == 0:
                     dist_mat = np.copy(dist_nuc.astype('uint16'))
                     reg_masks = np.copy(mask_loop.astype('bool'))
@@ -86,16 +86,20 @@ def process_folder(path_scan,
 
                 n_regs += 1
 
+            else:
+                toolbox.log_message(f'   Label will not be processed: {label}', 
+                            callback_fun=callback_log)    
+
         toolbox.log_message(f'   Number of annotated regions: {n_regs}', 
                             callback_fun=callback_log)    
 
         if n_regs == 0:
             toolbox.log_message(f'WARNING.\nNO regions with label "{region_label}"" found. Is this label correct?',
-                                callback_fun=callback_log) 
+                                callback_fun=callback_log)
             continue
 
         # Loop over all FQ result files
-        for p_fq in path_sample.glob('*_spots_*'):
+        for p_fq in path_sample.glob('*_spots*'):
 
                 toolbox.log_message(f' \nOpening FQ file: {p_fq}', callback_fun=callback_log)
 
@@ -103,7 +107,7 @@ def process_folder(path_scan,
                 file_base = p_fq.stem
 
                 # Load FQ results file
-                fq_dict  = toolbox.read_FQ_matlab(p_fq)
+                fq_dict = toolbox.read_FQ_matlab(p_fq)
                 spots_all = toolbox.get_rna(fq_dict)
 
                 # XY positions in pixel

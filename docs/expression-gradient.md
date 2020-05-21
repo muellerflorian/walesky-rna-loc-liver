@@ -57,8 +57,8 @@ in the folder [`notebooks`](https://github.com/muellerflorian/walesky-rna-loc-li
 
 This workflow requires that data is organised in the following away
 
-1.  A parental folder contains all sample folders.
-0.  Each sample (usually a field of view) is in a separate folder, e.g. named `Sample_1`, `Sample_2`, ....       Each sample folder can contain images of multiple channels.
+1.  A parental folder contains all sample folders, e.g. `data__expression_gradient` for the example data.
+0.  Each sample (usually a field of view) is in a separate folder, e.g. named `sample_1`, `sample_2`, ....       Each sample folder can contain images of multiple channels.
 0.  FQ result file are in the same folder. A folder can contain FQ results for different channels.
 0.  An annotation file with the two reference regions (`annotation.json`). See below
     for more details.
@@ -73,20 +73,20 @@ can generate it based on any of the channels, but the same annnotations will be 
 for each FQ results file in this folder.
 
 ```
-├─ data_for_expression_gradient/
-│  ├─ Sample_1
+├─ data__expression_gradient/
+│  ├─ sample_1
 │  │  ├─ annotation.json
 │  │  ├─ sample_1_green_outline_spots_181018.txt
 │  │  ├─ sample_1_green.tif
 │  │  ├─ sample_1_red_outline_spots_181017.txt
 │  │  ├─ sample_1_red.tif
-│  ├─ Sample_2
+│  ├─ sample_2
 │  │  ├─ ...
 ```
 
 ### Demo data
 You can find already processed demo data
-<a href="https://www.dropbox.com/s/qked91rbjwqs9cn/data_for_expression_gradient.zip?dl=0" target="_blank">**here.**</a>
+<a href="https://www.dropbox.com/s/bwsel68dqlhq66d/data__expression_gradient.zip?dl=0" target="_blank">**here.**</a>
 
 TODO: upon publication, demo data will be moved to Zenodo.
 
