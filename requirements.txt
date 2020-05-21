@@ -1,7 +1,9 @@
 numpy
+pandas
 scikit-image
 scipy
 matplotlib
 nested_lookup
 read-roi
 roipoly
+tqdm

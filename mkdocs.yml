@@ -1,5 +1,5 @@
 # Project information
-site_name: Quantify RNA localization in liver tissue
+site_name: Quantify RNA localization in liver
 site_description: Collection of post-processing scripts for images analyzed with FISH-quant,
 site_author: Florian MUELLER
 site_url: https://muellerflorian.github.io/walesky-rna-loc-liver/
@@ -57,11 +57,20 @@ markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.superfences
   - pymdownx.tilde
+  - attr_list
 
 nav:
     - Overview: index.md   # Needed for material theme but not for other
+    - ImJoy: tools-imjoy.md
+    - Jupyter: tools-jupyter.md  # This is strange but only with this organization this file shows upd in the overview together with the index.md
+
+    - General workflows:
+      - RNA detection with FQ: rna-detection.md
+      - Image annotation with ImJoy: imjoy-annotation.md
+
     - Analysis workflows:
       - Expression gradient: expression-gradient.md
+      - Cell environment: cell-environment.md
 
     - About:
       - Licence: licence.md

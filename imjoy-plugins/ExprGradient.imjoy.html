@@ -6,10 +6,11 @@
 {
   "name": "ExprGradient",
   "type": "native-python",
-  "version": "0.1.4",
-  "description": "Calculate epxression gradient",
+  "version": "0.1.6",
+  "description": "Calculate expression gradients between two reference regions.",
   "tags": ["stable","dev"],
   "ui": [
+        "Path DATA: {id: 'folder_root', type: 'string', placeholder: 'paste-path-to-data'}",
         "Name region 1: {id: 'reg1', type: 'string', placeholder: 'CV'}",
         "Name region 2: {id: 'reg2', type: 'string', placeholder: 'PL'}"
     ],
@@ -18,12 +19,10 @@
   "outputs": null,
   "flags": [],
   "icon": "extension",
-  "api_version": "0.1.5",
-  "env": "conda create -n ExprGradient python=3.6",
-  "requirements": {"stable":["pip: matplotlib scikit-image nested-lookup",
-                             "pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@5483191"],
-                     "dev": ["pip: matplotlib scikit-image nested-lookup",
-                             "pip:  -U --editable /Volumes/PILON_HD2/fmueller/Documents/code/walesky-rna-loc-liver"]},
+  "api_version": "0.1.7",
+  "env": "",
+  "requirements": {"stable":["pip: -U git+https://github.com/muellerflorian/walesky-rna-loc-liver@master"],
+                     "dev": [""]},
   "dependencies": []
 }
 </config>
@@ -36,8 +35,7 @@ import matplotlib.pyplot as plt
 
 import asyncio
 from imjoy import api
-
-from fqa import expressionHeatmap
+from rnaloc import expressionHeatmap
 
 class ImJoyPlugin():
     def setup(self):
@@ -45,12 +43,15 @@ class ImJoyPlugin():
 
     async def run(self, ctx):
 
-        # Ask for folder
-        ret = await api.showFileDialog(type='directory')
+        # Path containing the data
+        folder_root = ctx.config.folder_root
+        
+        if folder_root == 'paste-path-to-data':
+            api.alert('Path to data has to be specified.')
+            return
 
-        # Analyze distance map
-        if ret:
-            expressionHeatmap.folder_scan_process(folder_root = ret['path'],
+        # Analyze data
+        expressionHeatmap.folder_scan_process(folder_root = folder_root,
                                                region_labels = (ctx.config.reg1,ctx.config.reg2),
                                                log_msg_callback=api.showStatus,
                                                log_prog_callback=api.showProgress)

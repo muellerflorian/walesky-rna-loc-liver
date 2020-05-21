@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: rnaloc
+Version: 0.1.0
+Summary: Python code to post-process FISH-quant analysis results.
+Home-page: https://github.com/muellerflorian/walesky-rna-loc-liver
+Author: Florian MUELLER
+Author-email: muellerf.research@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: ==3.7.6

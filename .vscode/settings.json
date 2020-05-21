@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "C:\\Users\\muell\\Anaconda3\\envs\\rna-loc-liver\\python.exe",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
+}

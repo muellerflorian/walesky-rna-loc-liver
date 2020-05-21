@@ -13,19 +13,19 @@ Usage
 # Imports
 # ---------------------------------------------------------------------------
 
-import matplotlib as mpl
-mpl.use('Agg')
+#import matplotlib as mpl
+#mpl.use('Agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 import os
 import sys
 import numpy as np
-
-
+import re
+from pathlib import Path
 from skimage.draw import polygon_perimeter, polygon
 
-from nested_lookup import nested_lookup # pip install nested-lookup
+from nested_lookup import nested_lookup  # pip install nested-lookup
 from scipy import ndimage
 import math
 import json
@@ -67,24 +67,69 @@ def colorbar(mappable):
     return fig.colorbar(mappable, cax=cax)
 
 
-def log_message(msg, callback_fun = None):
-    ''' Output log, either terminal or some callback taking a string as input''' 
+def log_message(msg, callback_fun=None):
+    """ Display log, either terminal or any callback accepting a string as input.
+
+    Parameters
+    ----------
+    msg : [string]
+        [description]
+    callback_fun : [type], optional
+        [description], by default None
+    """
     if callback_fun:
         callback_fun(msg)
     else:
         print(msg)
 
 
-
-def log_progress(iteration, total, callback_fun = None):
-    ''' Progress log, either terminal or some callback taking a percantage as input''' 
-    
+def log_progress(iteration, total, callback_fun=None):
+    """ 
+    Progress log, either terminal or some callback taking a percantage as input
+    """
     if callback_fun:
         completed = (iteration / float(total))
         callback_fun(completed)
     else:
-        
+
         print_progress(iteration, total)
+
+
+def create_output_path(data_path, output_path, create_path=True):
+    """
+    Function to determine correct output path.
+
+    If the string output_path contains characters '>>' it will not
+    be interpreted as a path name but as an indicator for a string
+    replacement operation for the data_path: old_str>>new_str
+    """
+    
+    # Make sure they are strings
+    data_path = str(data_path)
+    output_path = str(output_path)
+
+    if (re.search(">>", output_path)):
+      str_orig = re.search(r'^(.*)>>(.*)$', output_path).group(1)
+      str_rep = re.search(r'^(.*)>>(.*)$', output_path).group(2)
+
+      print(f'Replacement parameters found: original string: {str_orig}, replacement string: {str_rep}')
+
+      output_path_return = data_path.replace(str_orig,str_rep)
+      print(f'Output path: {output_path_return}')
+
+    else:
+      print("No match")
+      output_path_return = output_path
+
+    # Convert back to Path
+    output_path_return = Path(output_path_return)
+
+    # Create path
+    if create_path:
+        if not output_path_return.is_dir():
+            output_path_return.mkdir(parents=True)
+
+    return output_path_return
 
 
 def print_progress(iteration, total, prefix='', suffix='', decimals=1, bar_length=100):
@@ -269,10 +314,7 @@ def read_FQ_matlab(file_open):
             else:
                 z_pos = ['']
 
-            #fq_dict['cells'][cell_id].update({nuc_id:{'nuc_pos':{'x': x_pos,'y': y_pos,'z': z_pos}}})
             fq_dict['cells'][cell_id].update({'nuc_pos':{nuc_id:{'x': x_pos,'y': y_pos,'z': z_pos}}})
-            #fq_dict['cells'][cell_id].update({'nuc_pos':{'x': x_pos,'y': y_pos,'z': z_pos,'id':nuc_id}})
-
 
         # Position of detected RNAS
         if 'SPOTS_START' in line:

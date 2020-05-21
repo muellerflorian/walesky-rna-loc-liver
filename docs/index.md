@@ -1,87 +1,27 @@
 
 This is a collection of analysis tools to study RNA localization from single
-molecule FISH (smFISH) images. These tools were developed in context of RNA
-localization in liver, but can likely be applied for different questions as well.
+molecule FISH (smFISH) images. These tools were developed in the **context of RNA
+localization in liver**, but can likely be applied for different questions as well.
 
-We provide different analysis workflows (listed in the banners).
+We provide different analysis workflows (listed in the banners above ).
 For each we specify the required installations, and detailed Instructions
 for how run these workflows and what results are typically obtained.
 
-## Tools
-We use a different open-source software packages, and detail their usage in
-the documentation of each workflow.
+__General analysis workflow__
 
-### FISH-quant: RNA detection
-[**FISH-quant**](https://bitbucket.org/muellerflorian/fish_quant/) is a Matlab toolbox to
-localize RNAs in 3D from smFISH images.
-
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/fq-screenshot.png" width="600px"></img>
-
-### ImJoy
-[**ImJoy**](https://imjoy.io/docs/#/) is image processing platform with an easy
- to use interface powered by a Python engine running in the background. ImJoy plays a
-central role in most analysis workflows.
-
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/imjoy-interface.png" width="600px"></img>
-
-#### Working with ImJoy
-We provide links to install the different ImJoy plugins in dedicated **ImJoy workspaces**.
-Workspaces can be selected from little puzzle symbol in the upper left part of the
-interface.
-
-Most plugins require the **ImJoy Plugin Engine**, to perform computations in
-Python. You will need to **install** it only once, but **launch** it each time
-you work with ImJoy. For more information for how to install and use the plugin engine,
-please consult the [ImJoy documentation](https://imjoy.io/docs/#/user-manual?id=python-engine).
-
-Once installed, ImJoy remembers the workspaces and plugins and you simply have to
-open the web app and select the appropriate workspace [https://imjoy.io/#/app](https://imjoy.io/#/app)
-
-If you press on the installation link, the ImJoy web app will open and display a
-dialog asking if you want to install the specified plugin. To confirm, press the `install` button.
-
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/annotor_install.png" width="400px"></img>
+1. The tools require a very specific data organziation that we specify
+2. RNA detection is performed with FISH-quant in Matlab.
+3. Post-processing is performed with ImJoy plugins. 
 
 
-### Jupyter notebooks
-We also provide Jupyter notebooks for certain Python analysis. To run these notebooks,
-we recommend using [Anaconda with Python 3](https://www.anaconda.com/distribution/).
+## ImJoy plugins
+Most of the workflows are implemented as **ImJoy plugins**, with a simple interface to
+specify the different workflow parameters. We describe in a dedicated [section](tools-imjoy.md) how to **use ImJoy** and the **Plugin engine** to run these plugins. 
 
-There are many introductions to Jupyter, e.g. [here](https://realpython.com/jupyter-notebook-introduction/).
+!!! abstract "Quick summary for how to connect ImJoy to Jupyter engine"
+    1. Open **anaconda terminal**. 
+    2. **Activate environment**: `conda activate rna-loc-liver`
+    3. **Start Jupyter engine**: `imjoy --jupyter`
+    4. **Connect** ImJoy to Jupyter Engine with 🚀 button.
 
-<img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/jupyter-notebook.png" width="600px"></img>
-
-We further recommend creating a **dedicated environment** for the Python code to install the code.
-
-Note 1: that steps 1, 3, 4 below have to be done only once.
-Note 2: each time you want to use Jupyter, you have to activate the environment (step 2),
-and run the notebook (step 5).
-
-You can do this from an anaconda terminal
-
-1. Create the environment, , e.g. named `rna-loc-liver`
-    ```
-    conda create -n rna-loc-liver python=3.7
-    ```
-
-2. **Activate the environment**:
-    ```
-    conda activate rna-loc-liver
-    ```
-
-3. Install the **necessary packages to run Jupyter**
-    ```
-    conda install nb_conda
-    ```
-
-4. **Install the analysis package** and all required packages
-    ```
-    pip install git+https://github.com/muellerflorian/walesky-rna-loc-liver
-    ```
-
-5. Start the Jupyter notebook (best from within the folder containing the notebook).
-    ```
-    jupyter notebook
-    ```
-    Make sure that the notebook is running in the specified environment (upper right
-    corner of interface). If not change it from the menu "Kernel".
+We also provide **Jupyter notebooks** for these workflows, which we recommend only for more experienced Python users. 
