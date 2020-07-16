@@ -17,7 +17,7 @@ Analysis is performed in Matlab and in Python scripts running in ImJoy.
 - [License](#license)
 
 # Documentation
-Here we provide only a brief overview. The officiel documentation with usage is at:
+Here we provide only a brief overview. The complete documentation with usage examples can be found here:
 <a href="https://muellerflorian.github.io/walesky-rna-loc-liver/" target="_blank">**https://muellerflorian.github.io/walesky-rna-loc-liver/.**</a>
 
 # System Requirements
