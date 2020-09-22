@@ -1,4 +1,4 @@
-<a href="https://imjoy.io" target="_blank" ><img src="https://raw.githubusercontent.com/muellerflorian/walesky-rna-loc-liver/master/docs/img/imjoy-logo-powered.svg?sanitize=true" width="140"></img>
+[![powered by ImJoy](https://imjoy.io/static/badge/powered-by-imjoy-badge.svg)](https://imjoy.io/)
 </a>
 ![GitHub](https://img.shields.io/github/license/muellerflorian/walesky-rna-loc-liver)
 
